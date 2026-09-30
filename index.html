@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<link rel="manifest" href="./manifest.webmanifest">
+<title>telc B2 Sprechen Trainer v2</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#f3f4f6;color:#172033;font-family:Arial,sans-serif}
+body{padding-bottom:env(safe-area-inset-bottom)}
+.app{max-width:760px;margin:auto;background:#fff;min-height:100vh}
+header{background:#111827;color:#fff;padding:18px 15px 14px;position:sticky;top:0;z-index:20}
+header h1{margin:0 0 4px;font-size:21px}
+header p{margin:0;color:#cbd5e1;font-size:13px}
+nav{display:flex;gap:6px;padding:8px;overflow-x:auto;position:sticky;top:72px;background:#fff;z-index:19;border-bottom:1px solid #ddd;-webkit-overflow-scrolling:touch}
+nav button{border:0;border-radius:10px;padding:10px 12px;font-weight:bold;white-space:nowrap;min-height:42px;touch-action:manipulation}
+nav button.active{background:#111827;color:#fff}
+main{padding:12px}
+section{display:none}
+section.active{display:block}
+.card{border:1px solid #e5e7eb;border-radius:15px;padding:15px;margin-bottom:12px;box-shadow:0 2px 8px #00000008}
+.hero{background:#eef2ff}
+.badge{display:inline-block;padding:5px 9px;border-radius:99px;background:#e0e7ff;color:#3730a3;font-size:12px;font-weight:bold}
+h2{font-size:20px;margin:8px 0}
+h3{font-size:16px}
+.small{color:#64748b;font-size:13px;line-height:1.5}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.topic{background:#fff;border:1px solid #dbe1ea;border-radius:12px;padding:14px;text-align:left;min-height:86px;touch-action:manipulation}
+.topic strong{display:block;margin-bottom:5px}
+.topic span{font-size:12px;color:#64748b}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+button.primary,button.secondary,button.danger{padding:11px 14px;border-radius:11px;font-weight:bold;min-height:44px;touch-action:manipulation}
+button.primary{background:#111827;color:#fff;border:0}
+button.secondary{background:#fff;border:1px solid #cbd5e1}
+button.danger{background:#fff;border:1px solid #fecaca;color:#b91c1c}
+button:active{transform:scale(.98)}
+.timer{text-align:center;font-size:50px;font-weight:800;margin:10px 0;font-variant-numeric:tabular-nums}
+.phrase{background:#f8fafc;border-left:4px solid #94a3b8;border-radius:9px;padding:11px;margin:8px 0;line-height:1.45}
+details{border:1px solid #e5e7eb;border-radius:9px;padding:10px;margin:7px 0}
+summary{font-weight:bold;cursor:pointer}
+.pill{font-size:12px;color:#64748b}
+.progress{height:9px;background:#e5e7eb;border-radius:99px;overflow:hidden}
+.progress>div{height:100%;background:#111827;width:0;transition:.25s}
+.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{background:#f8fafc;border-radius:12px;padding:12px;text-align:center}
+.stat b{display:block;font-size:21px}
+.stat span{font-size:11px;color:#64748b}
+.choice{width:100%;text-align:left;margin:6px 0;padding:12px;border:1px solid #dbe1ea;background:#fff;border-radius:10px;font-size:15px;line-height:1.35}
+.choice.correct{border-color:#16a34a;background:#f0fdf4}
+.choice.wrong{border-color:#dc2626;background:#fef2f2}
+textarea,input{width:100%;border:1px solid #cbd5e1;border-radius:10px;padding:12px;font:inherit}
+textarea{min-height:105px;resize:vertical}
+.feedback{padding:12px;border-radius:10px;background:#f8fafc;line-height:1.55}
+.kpi{font-size:13px;padding:7px 0}
+.record-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#dc2626;margin-right:6px}
+.hidden{display:none!important}
+.sticky-actions{position:sticky;bottom:8px;background:#ffffffed;padding:8px 0;z-index:10}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.statgrid{grid-template-columns:repeat(3,1fr)}main{padding:10px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <h1>🇩🇪 telc B2 Sprechen Trainer</h1>
+  <p>Teil 1 · Teil 2 · Teil 3 · Ausdruck · Aufnahme</p>
+</header>
+<nav id="nav"></nav>
+<main>
+
+<section id="home" class="active">
+  <div class="card hero">
+    <span class="badge">B2 Sprechen</span>
+    <h2>오늘의 말하기 훈련</h2>
+    <p>시험처럼 연습하고, 부족한 부분은 반복하세요.</p>
+    <div class="progress"><div id="dailyProgress"></div></div>
+    <p class="small" id="dailyText">오늘 0 / 3 세션 완료</p>
+    <div class="row">
+      <button class="primary" onclick="startRoutine()">▶ 오늘의 루틴 시작</button>
+    </div>
+  </div>
+  <div class="card">
+    <h3>📊 나의 기록</h3>
+    <div class="statgrid">
+      <div class="stat"><b id="statSessions">0</b><span>완료 세션</span></div>
+      <div class="stat"><b id="statRecordings">0</b><span>녹음</span></div>
+      <div class="stat"><b id="statDays">0</b><span>연속 학습일</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>추천 루틴</h3>
+    <p class="kpi"><b>① Teil 1</b> — 주제 하나를 90초 동안 말하기</p>
+    <p class="kpi"><b>② Teil 2</b> — 의견 → 이유 → 예시 → 상대방 반응</p>
+    <p class="kpi"><b>③ Teil 3</b> — Vorschlag → Reaktion → Kompromiss → Entscheidung</p>
+  </div>
+</section>
+
+<section id="t1">
+  <div class="card">
+    <span class="badge">TEIL 1 · Über Erfahrungen sprechen</span>
+    <h2>주제 선택</h2>
+    <p class="small">하나를 골라 90초 동안 자유롭게 말하세요.</p>
+    <div class="grid" id="topics"></div>
+  </div>
+  <div id="topic"></div>
+</section>
+
+<section id="t2">
+  <div class="card">
+    <span class="badge">TEIL 2 · Diskussion</span>
+    <h2>텍스트 → 의견 → 토론</h2>
+    <div id="discCard">
+      <p class="small">랜덤 주제를 뽑고 실제 시험처럼 말해보세요.</p>
+      <button class="primary" onclick="newDisc()">🎲 랜덤 토론 주제</button>
+      <div id="disc"></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>🧩 B2 답변 구조</h3>
+    <div class="phrase"><b>In dem Text geht es um die Frage, ob …</b></div>
+    <div class="phrase"><b>Ich persönlich bin der Meinung, dass …</b></div>
+    <div class="phrase"><b>Ein wichtiger Grund dafür ist, dass …</b></div>
+    <div class="phrase"><b>Ein gutes Beispiel dafür ist …</b></div>
+    <div class="phrase"><b>Andererseits darf man nicht vergessen, dass …</b></div>
+    <div class="phrase"><b>Wie siehst du das?</b></div>
+  </div>
+  <div class="card">
+    <h3>💬 반응 표현</h3>
+    <div class="phrase">Da stimme ich dir vollkommen zu.</div>
+    <div class="phrase">Da hast du teilweise recht.</div>
+    <div class="phrase">Das kann ich nachvollziehen, aber …</div>
+    <div class="phrase">Ich sehe das etwas anders.</div>
+    <button class="secondary" onclick="markSession('t2')">✓ 연습 완료</button>
+  </div>
+</section>
+
+<section id="t3">
+  <div class="card">
+    <span class="badge">TEIL 3 · Gemeinsam etwas planen</span>
+    <h2>함께 계획하기</h2>
+    <p class="small">상대방과 협의해서 하나의 결론을 만드는 연습입니다.</p>
+    <button class="primary" onclick="newPlan()">🎲 랜덤 계획 문제</button>
+    <div id="plan"></div>
+  </div>
+  <div class="card">
+    <h3>🤝 대화 흐름</h3>
+    <div class="phrase"><b>Ich würde vorschlagen, dass wir …</b></div>
+    <div class="phrase"><b>Was hältst du davon?</b></div>
+    <div class="phrase"><b>Das klingt gut, aber …</b></div>
+    <div class="phrase"><b>Wie wäre es, wenn wir …?</b></div>
+    <div class="phrase"><b>Vielleicht können wir beides miteinander verbinden.</b></div>
+    <div class="phrase"><b>Dann sind wir uns also einig, dass …</b></div>
+    <button class="secondary" onclick="markSession('t3')">✓ 연습 완료</button>
+  </div>
+</section>
+
+<section id="ph">
+  <div class="card">
+    <h2>⭐ B2 핵심 표현</h2>
+    <p class="small">표현을 보는 데서 끝내지 말고 직접 문장을 만들어 말하세요.</p>
+    <div id="phraseDrill"></div>
+  </div>
+</section>
+
+
+<section id="ai">
+  <div class="card hero">
+    <span class="badge">🤖 SPRECHPARTNER</span>
+    <h2>AI 시험 파트너</h2>
+    <p class="small">앱이 상대방 역할을 하면서 독일어로 대화를 이어갑니다. 마이크로 말하거나 직접 입력할 수 있습니다.</p>
+    <div class="row">
+      <button type="button" class="primary" onclick="startAI('t2')">💬 Teil 2 시작</button>
+      <button type="button" class="secondary" onclick="startAI('t3')">🤝 Teil 3 시작</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="small" id="aiScenario">먼저 Teil 2 또는 Teil 3를 선택하세요.</div>
+    <div id="aiChat" style="margin-top:10px"></div>
+
+    <div id="aiInputArea" class="hidden">
+      <div class="phrase" id="aiPrompt"></div>
+      <textarea id="aiText" placeholder="독일어로 답변하세요. 예: Ich bin der Meinung, dass ..."></textarea>
+      <div class="row" style="margin-top:8px">
+        <button type="button" class="primary" onclick="submitAIText()">Antwort senden</button>
+        <button type="button" class="secondary" id="speechBtn" onclick="startSpeech()">🎙 말해서 답하기</button>
+      </div>
+      <p class="small" id="speechStatus"></p>
+    </div>
+  </div>
+
+  <div class="card hidden" id="aiFeedback">
+    <h3>📊 말하기 피드백</h3>
+    <div id="aiFeedbackBody"></div>
+  </div>
+</section>
+
+<section id="rec">
+  <div class="card">
+    <span class="badge">🎙 SPEAKING RECORD</span>
+    <h2>나의 말하기 녹음</h2>
+    <p class="small">브라우저에서 직접 녹음하고 재생할 수 있습니다. 녹음 파일은 이 기기의 브라우저 저장소에 보관됩니다.</p>
+    <button class="primary" id="recordBtn" onclick="toggleRecord()">● 녹음 시작</button>
+    <div id="recordStatus" class="small" style="margin-top:10px"></div>
+    <div id="recordings"></div>
+  </div>
+</section>
+
+<section id="routine">
+  <div class="card hero">
+    <span class="badge">15분 루틴</span>
+    <h2 id="routineTitle">오늘의 루틴</h2>
+    <p id="routineDesc">시험에 가까운 순서로 연습합니다.</p>
+  </div>
+  <div class="card" id="routineBody"></div>
+</section>
+
+</main>
+</div>
+
+<script>
+const nav=[
+ ["home","홈"],["t1","Teil 1"],["t2","Teil 2"],["t3","Teil 3"],["ph","표현"],["ai","🤖 대화"],["rec","🎙 녹음"]
+];
+document.getElementById("nav").innerHTML=nav.map(x=>
+ `<button type="button" data-id="${x[0]}" onclick="tab('${x[0]}')">${x[1]}</button>`
+).join("");
+
+function tab(id){
+ document.querySelectorAll("section").forEach(x=>x.classList.remove("active"));
+ const el=document.getElementById(id);
+ if(!el)return;
+ el.classList.add("active");
+ document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("active",x.dataset.id===id));
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+tab("home");
+
+const data=[
+ ["📖 Ein Buch","Ein Buch, das Sie gelesen haben","읽은 책",
+ ["Warum haben Sie sich für dieses Buch entschieden?","Was hat Ihnen besonders gut gefallen?","Würden Sie das Buch weiterempfehlen?","Was haben Sie daraus gelernt?"]],
+ ["🎬 Ein Film","Einen Film, den Sie gesehen haben","본 영화",
+ ["Warum haben Sie diesen Film gesehen?","Was hat Ihnen besonders gefallen?","Würden Sie den Film weiterempfehlen?","Was ist Ihnen besonders im Gedächtnis geblieben?"]],
+ ["✈️ Eine Reise","Eine Reise, die Sie unternommen haben","다녀온 여행",
+ ["Warum haben Sie diese Reise gemacht?","Was hat Ihnen am besten gefallen?","Würden Sie die Reise wiederholen?","Was würden Sie beim nächsten Mal anders machen?"]],
+ ["🎵 Musikveranstaltung","Eine Musikveranstaltung, die Sie besucht haben","음악 행사",
+ ["Welche Musik wurde gespielt?","Wie war die Atmosphäre?","Was hat Ihnen am besten gefallen?","Würden Sie wieder hingehen?"]],
+ ["⚽ Sportereignis","Ein Sportereignis, das Sie besucht haben","스포츠 행사",
+ ["Welches Sportereignis war es?","Wie war die Stimmung?","Was war der spannendste Moment?","Würden Sie so eine Veranstaltung wieder besuchen?"]],
+ ["👤 Wichtige Person","Eine Person, die in Ihrem Leben wichtig war","중요한 사람",
+ ["Warum ist diese Person wichtig für Sie?","Was schätzen Sie an ihr besonders?","Wie hat sie Sie beeinflusst?","Was haben Sie von ihr gelernt?"]],
+ ["⭐ Wichtige Erfahrung","Eine wichtige Erfahrung, die Sie in Ihrem Leben gemacht haben","중요한 경험",
+ ["Warum war diese Erfahrung wichtig?","Wie haben Sie sich damals gefühlt?","Was haben Sie daraus gelernt?","Würden Sie heute etwas anders machen?"]]
+];
+
+document.getElementById("topics").innerHTML=data.map((x,i)=>
+ `<button type="button" class="topic" onclick="openTopic(${i})">
+   <strong>${i+1}. ${x[0]}</strong><span>${x[1]}<br>${x[2]}</span>
+ </button>`
+).join("");
+
+let timer=null;
+function openTopic(i){
+ let x=data[i];
+ document.getElementById("topic").innerHTML=`
+ <div class="card hero">
+  <span class="badge">90 Sekunden</span>
+  <h2>${x[1]}</h2>
+  <p><b>키워드:</b> Zeitpunkt · Ort · Personen · Inhalt · Meinung · Erfahrung · gelernt</p>
+  <div class="timer" id="clock">01:30</div>
+  <div class="row">
+   <button type="button" class="primary" onclick="startTimer()">▶ 시작</button>
+   <button type="button" class="secondary" onclick="resetTimer()">↺ 초기화</button>
+   <button type="button" class="secondary" onclick="tab('rec');prepareRecording('${escapeAttr(x[1])}')">🎙 녹음</button>
+  </div>
+ </div>
+ <div class="card">
+  <h3>🗣️ 시작 문장</h3>
+  <div class="phrase">Ich möchte heute über ${x[0].replace(/^.. /,"")} sprechen.</div>
+  <div class="phrase">Besonders interessant war für mich, dass …</div>
+  <div class="phrase">Durch diese Erfahrung habe ich gelernt, dass …</div>
+ </div>
+ <div class="card">
+  <h3>❓ 예상 질문</h3>
+  ${x[3].map(q=>`<details><summary>${q}</summary><p class="small">이유 + 구체적인 예 + 개인 경험을 2~4문장으로 답해보세요.</p></details>`).join("")}
+ </div>
+ <div class="card">
+  <h3>💬 파트너에게 질문</h3>
+  <div class="phrase">Was hat dir daran am besten gefallen?</div>
+  <div class="phrase">Warum war das für dich besonders wichtig?</div>
+  <div class="phrase">Wie hast du dich dabei gefühlt?</div>
+  <div class="phrase">Würdest du das noch einmal machen?</div>
+  <button type="button" class="secondary" onclick="markSession('t1')">✓ 연습 완료</button>
+ </div>`;
+}
+function escapeAttr(s){return s.replace(/'/g,"&#39;")}
+
+function startTimer(){
+ clearInterval(timer);
+ let n=90,e=document.getElementById("clock");
+ if(!e)return;
+ e.textContent="01:30";
+ timer=setInterval(()=>{
+  n--;
+  e.textContent=String(Math.floor(n/60)).padStart(2,"0")+":"+String(n%60).padStart(2,"0");
+  if(n<=0){
+   clearInterval(timer);
+   if(navigator.vibrate)navigator.vibrate([200,100,200]);
+   e.textContent="00:00";
+   markSession("t1");
+  }
+ },1000);
+}
+function resetTimer(){
+ clearInterval(timer);
+ let e=document.getElementById("clock");
+ if(e)e.textContent="01:30";
+}
+
+const discs=[
+ "Homeoffice sollte für möglichst viele Arbeitnehmer möglich sein.",
+ "Unternehmen sollten eine Vier-Tage-Woche anbieten.",
+ "Städte sollten mehr autofreie Bereiche schaffen.",
+ "Online-Unterricht kann den klassischen Unterricht ersetzen.",
+ "Öffentliche Verkehrsmittel sollten kostenlos sein.",
+ "Erwachsene sollten regelmäßig neue Fähigkeiten lernen.",
+ "Kinder sollten weniger Zeit mit digitalen Geräten verbringen.",
+ "Arbeitnehmer sollten häufiger von zu Hause arbeiten können.",
+ "Schulen sollten mehr praktische Inhalte anbieten.",
+ "Unternehmen sollten mehr in Weiterbildung investieren."
+];
+function newDisc(){
+ let d=discs[Math.floor(Math.random()*discs.length)];
+ document.getElementById("disc").innerHTML=`
+ <div class="feedback"><b>Diskussionsthema:</b><br>${d}
+ <div class="phrase"><b>Aufgabe:</b> Nennen Sie Ihre Meinung, mindestens zwei Gründe und ein konkretes Beispiel. Reagieren Sie anschließend auf eine andere Meinung.</div>
+ <button type="button" class="secondary" onclick="tab('rec');prepareRecording('Teil 2 – ${escapeAttr(d)}')">🎙 Antwort aufnehmen</button></div>`;
+}
+
+const plans=[
+ "Sie möchten gemeinsam einen Ausflug für Ihre Deutschkursgruppe organisieren.",
+ "Sie möchten eine Abschiedsfeier für einen Kollegen organisieren.",
+ "Sie möchten mit Freunden einen Wochenendausflug planen.",
+ "Sie sollen gemeinsam einen Informationsabend organisieren.",
+ "Sie möchten eine kleine Sportveranstaltung für Ihre Gruppe planen.",
+ "Sie möchten für Ihre Gruppe einen gemeinsamen Kulturabend organisieren.",
+ "Sie möchten eine Überraschung für einen Freund organisieren."
+];
+function newPlan(){
+ let p=plans[Math.floor(Math.random()*plans.length)];
+ document.getElementById("plan").innerHTML=`
+ <div class="feedback"><b>Situation:</b><br>${p}
+ <div class="phrase"><b>Besprechen Sie:</b> Termin · Ort · Kosten · Aufgaben · Teilnehmer · Entscheidung</div>
+ <button type="button" class="secondary" onclick="tab('rec');prepareRecording('Teil 3 – ${escapeAttr(p)}')">🎙 Antwort aufnehmen</button></div>`;
+}
+
+const ps=[
+ ["Ich bin der Ansicht, dass …","의견을 분명하게 말하기"],
+ ["Meiner Meinung nach …","내 의견을 말하기"],
+ ["Ein wichtiger Grund dafür ist, dass …","이유 제시"],
+ ["Andererseits darf man nicht vergessen, dass …","반대 측면 제시"],
+ ["Ein gutes Beispiel dafür ist …","구체적인 예 제시"],
+ ["Ich habe selbst die Erfahrung gemacht, dass …","개인 경험 연결"],
+ ["Da stimme ich dir vollkommen zu.","강한 동의"],
+ ["Da hast du teilweise recht.","부분적 동의"],
+ ["Das kann ich nachvollziehen, aber …","이해 + 반론"],
+ ["Ich sehe das etwas anders.","부드러운 반대"],
+ ["Wie siehst du das?","상대방 의견 질문"],
+ ["Was hältst du davon?","제안에 대한 반응"],
+ ["Ich würde vorschlagen, dass wir …","제안"],
+ ["Wie wäre es, wenn wir …?","대안 제시"],
+ ["Dann sind wir uns also einig, dass …","합의·결론"]
+];
+
+let phraseIndex=0;
+function renderPhraseDrill(){
+ const p=ps[phraseIndex];
+ document.getElementById("phraseDrill").innerHTML=`
+ <div class="card hero">
+  <span class="badge">${phraseIndex+1} / ${ps.length}</span>
+  <h2>${p[0]}</h2>
+  <p class="small">${p[1]}</p>
+  <div class="phrase">🎯 <b>연습:</b> 이 표현을 사용해서 본인 경험에 관한 독일어 문장을 직접 만들어 말해보세요.</div>
+  <textarea id="phraseAnswer" placeholder="독일어 문장을 직접 써보거나, 먼저 말한 뒤 기억나는 내용을 적어보세요."></textarea>
+  <div class="row" style="margin-top:8px">
+   <button type="button" class="primary" onclick="checkPhrase()">✓ 문장 확인</button>
+   <button type="button" class="secondary" onclick="phraseNext()">다음 표현 →</button>
+  </div>
+  <div id="phraseFeedback"></div>
+ </div>`;
+}
+function checkPhrase(){
+ const v=document.getElementById("phraseAnswer").value.trim();
+ const f=document.getElementById("phraseFeedback");
+ if(!v){f.innerHTML='<div class="feedback">문장을 하나 만들어 보세요.</div>';return}
+ const target=ps[phraseIndex][0].replace("…","").trim();
+ const first=target.split(" ")[0];
+ f.innerHTML=`<div class="feedback">좋습니다. 핵심 표현 <b>${first}</b>로 시작했는지, 이유·예시가 자연스럽게 연결되는지 소리 내어 다시 확인하세요.<br><br><b>다음 단계:</b> 같은 문장을 보지 않고 다시 말해보세요.</div>`;
+ markSession("phrase");
+}
+function phraseNext(){phraseIndex=(phraseIndex+1)%ps.length;renderPhraseDrill()}
+renderPhraseDrill();
+
+let routineStep=0;
+function startRoutine(){
+ tab("routine");
+ routineStep=0;
+ renderRoutine();
+}
+function renderRoutine(){
+ const steps=[
+  ["Teil 1","90초 동안 하나의 경험을 구조적으로 말하세요.","t1"],
+  ["Teil 2","의견 → 이유 → 예시 → 상대방에게 질문하세요.","t2"],
+  ["Teil 3","제안 → 반응 → 타협 → 최종 결정까지 말하세요.","t3"]
+ ];
+ const s=steps[routineStep];
+ document.getElementById("routineTitle").textContent=`${routineStep+1}/3 · ${s[0]}`;
+ document.getElementById("routineDesc").textContent=s[1];
+ document.getElementById("routineBody").innerHTML=`
+ <p><b>이번 세션:</b> ${s[1]}</p>
+ <div class="row">
+  <button type="button" class="primary" onclick="tab('${s[2]}')">연습 시작</button>
+  <button type="button" class="secondary" onclick="routineNext()">완료하고 다음 →</button>
+ </div>`;
+}
+function routineNext(){
+ markSession("routine"+routineStep);
+ routineStep++;
+ if(routineStep>=3){routineStep=0;updateStats();document.getElementById("routineBody").innerHTML='<div class="feedback"><b>🎉 오늘의 3단계 루틴 완료!</b><br>이제 가장 어려웠던 부분을 한 번 더 연습해 보세요.</div>';}
+ else renderRoutine();
+}
+
+
+const aiScenarios = {
+  t2: [
+    {
+      topic:"Homeoffice sollte für möglichst viele Arbeitnehmer möglich sein.",
+      opening:"Was halten Sie davon, dass Homeoffice für möglichst viele Arbeitnehmer möglich sein sollte?",
+      prompts:[
+        "Welche Vorteile sehen Sie beim Homeoffice?",
+        "Gibt es auch Nachteile?",
+        "Können Sie ein konkretes Beispiel nennen?",
+        "Wie würden Sie auf jemanden reagieren, der Homeoffice komplett ablehnt?"
+      ]
+    },
+    {
+      topic:"Unternehmen sollten eine Vier-Tage-Woche anbieten.",
+      opening:"Wie stehen Sie zu einer Vier-Tage-Woche?",
+      prompts:[
+        "Was spricht Ihrer Meinung nach dafür?",
+        "Welche Probleme könnten entstehen?",
+        "Haben Sie ein Beispiel aus Ihrem eigenen Umfeld?",
+        "Was wäre ein guter Kompromiss?"
+      ]
+    },
+    {
+      topic:"Städte sollten mehr autofreie Bereiche schaffen.",
+      opening:"Sollten Städte Ihrer Meinung nach mehr autofreie Bereiche schaffen?",
+      prompts:[
+        "Welche Vorteile hätte das?",
+        "Welche Nachteile könnte es für die Menschen geben?",
+        "Wie könnte man die Nachteile reduzieren?",
+        "Wie würden Sie jemanden überzeugen, der dagegen ist?"
+      ]
+    }
+  ],
+  t3: [
+    {
+      topic:"Ausflug für eine Deutschkursgruppe organisieren",
+      opening:"Wir sollen gemeinsam einen Ausflug für unsere Deutschkursgruppe organisieren. Wo könnten wir hingehen?",
+      prompts:[
+        "Wann wäre ein geeigneter Termin?",
+        "Wie viel darf der Ausflug kosten?",
+        "Wie organisieren wir die Anreise?",
+        "Was machen wir, wenn einige Teilnehmer nicht mitkommen können?"
+      ]
+    },
+    {
+      topic:"Abschiedsfeier für einen Kollegen organisieren",
+      opening:"Wir möchten gemeinsam eine Abschiedsfeier für einen Kollegen organisieren. Was schlagen Sie vor?",
+      prompts:[
+        "Wo und wann sollten wir die Feier machen?",
+        "Was könnten wir gemeinsam unternehmen?",
+        "Wie viel Geld sollten wir ausgeben?",
+        "Wer übernimmt welche Aufgabe?"
+      ]
+    },
+    {
+      topic:"Informationsabend organisieren",
+      opening:"Wir sollen gemeinsam einen Informationsabend organisieren. Wie könnten wir anfangen?",
+      prompts:[
+        "Wann und wo sollte der Abend stattfinden?",
+        "Welche Informationen brauchen die Teilnehmer?",
+        "Wer übernimmt die einzelnen Aufgaben?",
+        "Wie informieren wir die Teilnehmer?"
+      ]
+    }
+  ]
+};
+
+let aiMode=null, aiScenario=null, aiStep=0, aiTurns=0;
+let recognition=null;
+
+function startAI(mode){
+  aiMode=mode;
+  const list=aiScenarios[mode];
+  aiScenario=list[Math.floor(Math.random()*list.length)];
+  aiStep=0; aiTurns=0;
+  tab("ai");
+  document.getElementById("aiScenario").innerHTML =
+    `<b>${mode==="t2"?"Teil 2 · Diskussion":"Teil 3 · Gemeinsam planen"}</b><br>${aiScenario.topic}`;
+  document.getElementById("aiChat").innerHTML="";
+  document.getElementById("aiFeedback").classList.add("hidden");
+  addAIMessage("partner",aiScenario.opening);
+  setAIPrompt(aiScenario.opening);
+}
+
+function addAIMessage(who,text){
+  const chat=document.getElementById("aiChat");
+  const div=document.createElement("div");
+  div.className="phrase";
+  div.style.borderLeftColor=who==="partner" ? "#6366f1" : "#16a34a";
+  div.innerHTML=`<b>${who==="partner"?"👤 Partner":"🗣 Sie"}:</b><br>${escapeHTML(text)}`;
+  chat.appendChild(div);
+  chat.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+function setAIPrompt(){
+  const p=aiScenario.prompts[aiStep];
+  if(!p){
+    finishAI();
+    return;
+  }
+  document.getElementById("aiPrompt").innerHTML =
+    `<b>Partner:</b> ${escapeHTML(p)}`;
+  document.getElementById("aiInputArea").classList.remove("hidden");
+  document.getElementById("aiText").focus();
+}
+
+function submitAIText(){
+  const el=document.getElementById("aiText");
+  const text=el.value.trim();
+  if(!text)return;
+  addAIMessage("user",text);
+  el.value="";
+  aiTurns++;
+  const response=generatePartnerResponse(text,aiMode,aiStep);
+  setTimeout(()=>{
+    addAIMessage("partner",response);
+    aiStep++;
+    setAIPrompt();
+  },250);
+}
+
+function generatePartnerResponse(text,mode,step){
+  const lower=text.toLowerCase();
+  const hasOpinion=/meinung|ansicht|finde|denke|glaube|meiner/i.test(lower);
+  const hasReason=/weil|grund|deshalb|daher|denn|dadurch/i.test(lower);
+  const hasExample=/beispiel|erfahrung|zum beispiel|bei mir|in meinem/i.test(lower);
+  const hasCounter=/aber|andererseits|jedoch|allerdings/i.test(lower);
+
+  if(mode==="t2"){
+    if(step===0) return hasOpinion
+      ? "Das ist interessant. Können Sie Ihre Meinung mit einem konkreten Grund erklären?"
+      : "Verstehe. Können Sie Ihre persönliche Meinung dazu etwas genauer erklären?";
+    if(step===1) return hasReason
+      ? "Das kann ich nachvollziehen. Können Sie dazu ein konkretes Beispiel nennen?"
+      : "Welchen konkreten Grund gibt es dafür? Versuchen Sie, Ihre Aussage zu begründen.";
+    if(step===2) return hasExample
+      ? "Danke. Und wie würden Sie auf eine Person reagieren, die eine andere Meinung hat?"
+      : "Haben Sie ein konkretes Beispiel aus Ihrem Alltag oder Umfeld?";
+    return hasCounter
+      ? "Das ist ein interessanter Einwand. Wie könnten wir beide Positionen miteinander verbinden?"
+      : "Nehmen wir an, ich bin anderer Meinung. Wie würden Sie mich von Ihrer Position überzeugen?";
+  }
+
+  if(step===0) return "Das klingt interessant. Wann würden Sie das vorschlagen?";
+  if(step===1) return "Einverstanden. Und wie viel Geld sollten wir ungefähr dafür einplanen?";
+  if(step===2) return "Gut. Wie könnten wir die Aufgaben untereinander verteilen?";
+  return "Ich habe einen etwas anderen Vorschlag. Können wir vielleicht einen Kompromiss finden?";
+}
+
+function finishAI(){
+  document.getElementById("aiInputArea").classList.add("hidden");
+  document.getElementById("aiFeedback").classList.remove("hidden");
+  const body=document.getElementById("aiFeedbackBody");
+  const msgs=[...document.querySelectorAll("#aiChat .phrase")].filter(x=>x.innerText.includes("🗣 Sie:"));
+  const all=msgs.map(x=>x.innerText).join(" ");
+  const words=all.trim()?all.trim().split(/\s+/).length:0;
+  const b2=[
+    /weil|deshalb|daher|denn/i.test(all),
+    /einerseits|andererseits|jedoch|allerdings/i.test(all),
+    /beispiel|erfahrung/i.test(all),
+    /meiner meinung|ich bin der meinung|ich bin der ansicht/i.test(all)
+  ].filter(Boolean).length;
+  body.innerHTML=`
+    <div class="statgrid">
+      <div class="stat"><b>${aiTurns}</b><span>답변 횟수</span></div>
+      <div class="stat"><b>${words}</b><span>단어 수</span></div>
+      <div class="stat"><b>${b2}/4</b><span>B2 구조 요소</span></div>
+    </div>
+    <div class="feedback" style="margin-top:10px">
+      <b>스스로 점검하세요</b><br>
+      ${b2>=3?"✓ 의견·이유·예시·연결 표현을 비교적 잘 사용했습니다.":"→ 의견, 이유, 예시, 반대 의견 연결 중 빠진 요소를 한 번 더 연습하세요."}<br>
+      → 같은 주제로 한 번 더 말하면서 문장을 더 길게 연결해 보세요.
+    </div>`;
+  markSession("ai");
+}
+
+function startSpeech(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){
+    document.getElementById("speechStatus").textContent="이 브라우저에서는 음성 인식을 지원하지 않습니다. Chrome/Edge 등 지원 브라우저를 사용하세요.";
+    return;
+  }
+  if(recognition) recognition.stop();
+  recognition=new SR();
+  recognition.lang="de-DE";
+  recognition.interimResults=true;
+  recognition.continuous=false;
+  const status=document.getElementById("speechStatus");
+  const btn=document.getElementById("speechBtn");
+  btn.textContent="■ 듣는 중…";
+  status.textContent="독일어로 말하세요.";
+  let finalText="";
+  recognition.onresult=e=>{
+    let interim="";
+    for(let i=e.resultIndex;i<e.results.length;i++){
+      const t=e.results[i][0].transcript;
+      if(e.results[i].isFinal) finalText+=t;
+      else interim+=t;
+    }
+    document.getElementById("aiText").value=(finalText+" "+interim).trim();
+  };
+  recognition.onerror=()=>{status.textContent="음성을 인식하지 못했습니다. 다시 시도하세요.";btn.textContent="🎙 말해서 답하기"};
+  recognition.onend=()=>{
+    btn.textContent="🎙 말해서 답하기";
+    if(finalText.trim()) status.textContent="인식 완료. Antwort senden을 눌러 보내세요.";
+  };
+  recognition.start();
+}
+
+function escapeHTML(s){
+ return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+}
+
+let recorder=null,recordChunks=[],recordingTitle="자유 말하기";
+let recordings=JSON.parse(localStorage.getItem("telcRecordings")||"[]");
+
+function prepareRecording(title){recordingTitle=title||"자유 말하기";updateRecordStatus("준비됨: "+recordingTitle)}
+function updateRecordStatus(t){document.getElementById("recordStatus").textContent=t}
+async function toggleRecord(){
+ const btn=document.getElementById("recordBtn");
+ if(recorder && recorder.state==="recording"){
+  recorder.stop(); return;
+ }
+ if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+  updateRecordStatus("이 브라우저에서는 녹음을 지원하지 않습니다. Safari/Chrome의 HTTPS 페이지에서 사용하세요.");
+  return;
+ }
+ try{
+  const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+  recordChunks=[];
+  recorder=new MediaRecorder(stream);
+  recorder.ondataavailable=e=>{if(e.data.size)recordChunks.push(e.data)}
+  recorder.onstop=()=>{
+   stream.getTracks().forEach(t=>t.stop());
+   const blob=new Blob(recordChunks,{type:recorder.mimeType||"audio/webm"});
+   const url=URL.createObjectURL(blob);
+   recordings.unshift({title:recordingTitle,date:new Date().toLocaleString(),url:url});
+   // Keep current-session URLs usable; metadata is persisted, blobs are not.
+   localStorage.setItem("telcRecordingMeta",JSON.stringify(recordings.map(x=>({title:x.title,date:x.date}))));
+   document.getElementById("statRecordings").textContent=String(Number(document.getElementById("statRecordings").textContent||0)+1);
+   renderRecordings();
+   updateRecordStatus("녹음 완료");
+   btn.textContent="● 녹음 시작";
+  };
+  recorder.start();
+  btn.textContent="■ 녹음 중지";
+  updateRecordStatus("녹음 중…");
+ }catch(e){updateRecordStatus("마이크 사용이 허용되지 않았습니다. 브라우저 설정에서 마이크 권한을 확인하세요.")}
+}
+function renderRecordings(){
+ const box=document.getElementById("recordings");
+ box.innerHTML=recordings.slice(0,10).map((r,i)=>`
+ <div class="card">
+  <b>${r.title}</b><div class="small">${r.date}</div>
+  ${r.url?`<audio controls style="width:100%;margin-top:8px" src="${r.url}"></audio>`:'<p class="small">이전 세션의 녹음은 브라우저를 새로 열면 재생할 수 없습니다.</p>'}
+ </div>`).join("");
+}
+renderRecordings();
+
+function markSession(kind){
+ let d=JSON.parse(localStorage.getItem("telcStats")||'{"sessions":0,"days":0,"last":"","done":0}');
+ const today=new Date().toISOString().slice(0,10);
+ d.sessions++;
+ if(d.last!==today){
+   const prev=new Date(d.last||today);
+   const now=new Date(today);
+   const diff=Math.round((now-prev)/86400000);
+   d.days=(diff===1)?(d.days+1):1;
+   d.last=today;
+ }
+ d.done=Math.min(3,(d.done||0)+1);
+ localStorage.setItem("telcStats",JSON.stringify(d));
+ updateStats();
+}
+function updateStats(){
+ let d=JSON.parse(localStorage.getItem("telcStats")||'{"sessions":0,"days":0,"last":"","done":0}');
+ document.getElementById("statSessions").textContent=d.sessions||0;
+ document.getElementById("statDays").textContent=d.days||0;
+ document.getElementById("statRecordings").textContent=recordings.length||0;
+ const done=Math.min(3,d.done||0);
+ document.getElementById("dailyProgress").style.width=(done/3*100)+"%";
+ document.getElementById("dailyText").textContent=`오늘 ${done} / 3 세션 완료`;
+}
+updateStats();
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+}
+</script>
+</body>
+</html>
