@@ -319,23 +319,130 @@ function resetTimer(){
 }
 
 const discs=[
- "Homeoffice sollte für möglichst viele Arbeitnehmer möglich sein.",
- "Unternehmen sollten eine Vier-Tage-Woche anbieten.",
- "Städte sollten mehr autofreie Bereiche schaffen.",
- "Online-Unterricht kann den klassischen Unterricht ersetzen.",
- "Öffentliche Verkehrsmittel sollten kostenlos sein.",
- "Erwachsene sollten regelmäßig neue Fähigkeiten lernen.",
- "Kinder sollten weniger Zeit mit digitalen Geräten verbringen.",
- "Arbeitnehmer sollten häufiger von zu Hause arbeiten können.",
- "Schulen sollten mehr praktische Inhalte anbieten.",
- "Unternehmen sollten mehr in Weiterbildung investieren."
+  {
+    topic:"Sollten Kinder weniger Zeit mit digitalen Geräten verbringen?",
+    answer:`Meiner Meinung nach sollten Kinder weniger Zeit mit digitalen Geräten verbringen. Ein wichtiger Grund ist, dass zu viel Bildschirmzeit die Konzentration beeinträchtigen kann. Außerdem ist es wichtig, dass Kinder genug Zeit für Bewegung und persönliche Kontakte haben. Zum Beispiel sollten Kinder lieber draußen spielen oder sich mit Freunden treffen, anstatt mehrere Stunden am Tag am Tablet zu verbringen. Natürlich können digitale Geräte auch beim Lernen hilfreich sein. Trotzdem sollte die Nutzungszeit begrenzt werden.`,
+    ko:`제 생각에는 아이들은 디지털 기기를 사용하는 시간을 줄여야 합니다. 너무 많은 화면 사용 시간은 집중력에 부정적인 영향을 줄 수 있습니다. 또한 아이들에게는 운동과 직접적인 인간관계를 위한 충분한 시간이 필요합니다. 예를 들어 아이들은 하루에 몇 시간씩 태블릿을 사용하는 것보다 밖에서 놀거나 친구들을 만나는 것이 좋습니다. 물론 디지털 기기는 학습에도 도움이 될 수 있지만, 사용 시간은 제한해야 합니다.`
+  },
+  {
+    topic:"Sind soziale Medien für Jugendliche eher hilfreich oder problematisch?",
+    answer:`Ich denke, dass soziale Medien sowohl Vorteile als auch Nachteile haben. Einerseits können Jugendliche schnell Informationen finden und mit ihren Freunden kommunizieren. Andererseits besteht die Gefahr, dass sie zu viel Zeit online verbringen und abhängig werden. Ein Beispiel dafür ist, dass manche Jugendliche ständig auf ihr Smartphone schauen, sogar wenn sie mit anderen Personen zusammen sind. Deshalb halte ich soziale Medien grundsätzlich für sinnvoll, aber sie sollten bewusst und nicht zu viel genutzt werden.`,
+    ko:`제 생각에는 SNS는 장점과 단점이 모두 있습니다. 청소년들은 정보를 빠르게 찾고 친구들과 소통할 수 있습니다. 반면 온라인에서 너무 많은 시간을 보내고 의존하게 될 위험도 있습니다. 예를 들어 어떤 청소년들은 다른 사람과 함께 있을 때조차 계속 스마트폰을 봅니다. 따라서 SNS는 유용하지만 의식적으로, 그리고 지나치게 사용하지 않는 것이 중요합니다.`
+  },
+  {
+    topic:"Sollten Smartphones in der Schule erlaubt sein?",
+    answer:`Meiner Meinung nach sollten Smartphones in der Schule grundsätzlich erlaubt sein, aber nur unter bestimmten Bedingungen. Sie können im Unterricht sehr praktisch sein, zum Beispiel wenn Schüler schnell Informationen suchen oder eine Lern-App benutzen möchten. Gleichzeitig können Smartphones die Schüler leicht ablenken. Deshalb könnte man festlegen, dass Smartphones nur für schulische Zwecke benutzt werden dürfen. So könnten die Vorteile genutzt und gleichzeitig die Nachteile reduziert werden.`,
+    ko:`제 생각에는 학교에서 스마트폰을 원칙적으로 허용하되 특정 조건을 두어야 합니다. 수업에서 정보를 빨리 찾거나 학습 앱을 사용할 때 매우 유용할 수 있습니다. 하지만 스마트폰은 학생들의 집중력을 쉽게 방해할 수 있습니다. 따라서 학업 목적으로만 사용할 수 있도록 규정하면 장점은 활용하고 단점은 줄일 수 있습니다.`
+  },
+  {
+    topic:"Sollte man mehr im Homeoffice arbeiten?",
+    answer:`Ich bin der Meinung, dass man mehr im Homeoffice arbeiten sollte, wenn die Tätigkeit dafür geeignet ist. Ein großer Vorteil ist, dass man keine Zeit für den Arbeitsweg braucht. Dadurch kann man Stress reduzieren und hat mehr Zeit für die Familie. Zum Beispiel kann ein Arbeitnehmer die gewonnene Zeit morgens für seine Kinder nutzen. Allerdings ist der persönliche Kontakt zu Kollegen ebenfalls wichtig. Deshalb finde ich eine Mischung aus Homeoffice und Büroarbeit sinnvoll.`,
+    ko:`업무가 적합하다면 재택근무를 더 많이 해야 한다고 생각합니다. 출퇴근에 시간을 사용할 필요가 없다는 것이 큰 장점입니다. 그 결과 스트레스를 줄이고 가족을 위한 시간을 더 가질 수 있습니다. 하지만 동료들과의 직접적인 접촉도 중요합니다. 따라서 재택근무와 사무실 근무를 혼합하는 것이 합리적이라고 생각합니다.`
+  },
+  {
+    topic:"Ist eine Vier-Tage-Woche sinnvoll?",
+    answer:`Ich halte eine Vier-Tage-Woche grundsätzlich für sinnvoll. Ein wichtiger Vorteil ist, dass die Mitarbeiter mehr Freizeit haben und sich besser erholen können. Dadurch könnten sie bei der Arbeit motivierter und konzentrierter sein. Zum Beispiel könnte ein zusätzlicher freier Tag genutzt werden, um Zeit mit der Familie zu verbringen oder persönliche Termine zu erledigen. Allerdings hängt es stark vom Beruf und von der Arbeitszeit ab. Nicht jede Tätigkeit lässt sich problemlos auf vier Tage verteilen.`,
+    ko:`저는 기본적으로 주 4일 근무가 합리적이라고 생각합니다. 직원들이 더 많은 자유시간을 가지고 더 잘 쉴 수 있다는 장점이 있습니다. 그 결과 직장에서 더 동기부여되고 집중할 수 있습니다. 하지만 직업과 근무시간에 따라 다르며, 모든 업무를 쉽게 4일로 나눌 수 있는 것은 아닙니다.`
+  },
+  {
+    topic:"Was ist wichtiger: ein gutes Gehalt oder ein gutes Arbeitsklima?",
+    answer:`Für mich ist ein gutes Arbeitsklima etwas wichtiger als ein hohes Gehalt. Natürlich ist ein gutes Gehalt wichtig, weil man seine Lebenshaltungskosten bezahlen muss. Aber wenn man jeden Tag unter großem Stress steht oder Probleme mit den Kollegen hat, kann das langfristig sehr belastend sein. Zum Beispiel verbringt man einen großen Teil des Tages bei der Arbeit. Deshalb finde ich es wichtig, dass man sich dort wohlfühlt. Ideal wäre natürlich eine Kombination aus einem guten Gehalt und einem angenehmen Arbeitsklima.`,
+    ko:`저에게는 높은 급여보다 좋은 직장 분위기가 조금 더 중요합니다. 물론 생활비를 지불해야 하므로 좋은 급여도 중요합니다. 하지만 매일 큰 스트레스를 받거나 동료들과 문제가 있다면 장기적으로 매우 힘들 수 있습니다. 따라서 직장에서 편안함을 느끼는 것이 중요하며, 이상적인 것은 좋은 급여와 좋은 직장 분위기를 모두 갖추는 것입니다.`
+  },
+  {
+    topic:"Sollten Schüler mehr Hausaufgaben bekommen?",
+    answer:`Ich glaube nicht, dass Schüler grundsätzlich mehr Hausaufgaben bekommen sollten. Hausaufgaben können zwar helfen, den Unterrichtsstoff zu wiederholen und selbstständig zu lernen. Zu viele Aufgaben können aber Stress verursachen und den Schülern die Freizeit nehmen. Zum Beispiel brauchen Kinder auch Zeit für Sport, Freunde und ihre Familie. Deshalb finde ich es besser, wenige, aber sinnvolle Hausaufgaben zu geben.`,
+    ko:`학생들이 원칙적으로 더 많은 숙제를 받아야 한다고 생각하지 않습니다. 숙제는 수업 내용을 복습하고 스스로 공부하는 데 도움이 될 수 있습니다. 하지만 숙제가 너무 많으면 스트레스를 유발하고 여가시간을 빼앗을 수 있습니다. 따라서 적지만 의미 있는 숙제를 내는 것이 더 좋다고 생각합니다.`
+  },
+  {
+    topic:"Sollten Noten in der Schule abgeschafft werden?",
+    answer:`Ich bin nicht dafür, Noten vollständig abzuschaffen. Noten haben den Vorteil, dass Schüler und Eltern sehen können, wie die Leistungen sind. Außerdem können sie Schüler motivieren, sich zu verbessern. Auf der anderen Seite können schlechte Noten großen Leistungsdruck verursachen. Deshalb könnte man meiner Meinung nach Noten behalten, aber zusätzlich andere Formen der Bewertung verwenden, zum Beispiel persönliche Rückmeldungen und Projekte.`,
+    ko:`저는 학교에서 성적을 완전히 없애는 것에는 찬성하지 않습니다. 성적을 통해 학생과 부모가 학업 성취도를 확인할 수 있고, 학생들에게 발전할 동기를 줄 수도 있습니다. 반면 낮은 성적은 큰 학업 스트레스를 유발할 수 있습니다. 따라서 성적은 유지하되 개인적인 피드백이나 프로젝트 같은 다른 평가 방법도 함께 사용하는 것이 좋다고 생각합니다.`
+  },
+  {
+    topic:"Ist Online-Unterricht genauso gut wie Präsenzunterricht?",
+    answer:`Meiner Meinung nach kann Online-Unterricht sehr gut funktionieren, aber er ist nicht immer genauso effektiv wie Präsenzunterricht. Ein Vorteil des Online-Unterrichts ist, dass man flexibel von zu Hause lernen kann. Außerdem spart man Zeit für den Weg zur Schule oder zur Universität. Beim Präsenzunterricht ist jedoch die persönliche Betreuung einfacher, und man kann direkt mit anderen Schülern kommunizieren. Deshalb finde ich eine Kombination aus beiden Formen besonders sinnvoll.`,
+    ko:`온라인 수업도 매우 효과적일 수 있지만 항상 대면수업만큼 효과적인 것은 아니라고 생각합니다. 집에서 유연하게 공부할 수 있고 이동시간을 절약할 수 있다는 장점이 있습니다. 하지만 대면수업에서는 개인적인 지도가 쉽고 다른 학생들과 직접 소통할 수 있습니다. 따라서 두 가지 형태를 결합하는 것이 특히 합리적이라고 생각합니다.`
+  },
+  {
+    topic:"Sollte der öffentliche Nahverkehr kostenlos sein?",
+    answer:`Ich finde die Idee grundsätzlich gut, den öffentlichen Nahverkehr kostenlos anzubieten. Dadurch könnten mehr Menschen Busse und Bahnen benutzen, und es könnten weniger Autos auf den Straßen unterwegs sein. Das wäre auch gut für die Umwelt. Zum Beispiel könnten Menschen ihr Auto zu Hause lassen, wenn sie kostenlos mit der Bahn fahren können. Allerdings müsste der Staat die Kosten dafür übernehmen. Deshalb müsste zuerst geklärt werden, wie das finanziert werden kann.`,
+    ko:`대중교통을 무료로 제공하는 아이디어가 기본적으로 좋다고 생각합니다. 더 많은 사람들이 버스와 기차를 이용하면 도로의 자동차가 줄어들 수 있고 환경에도 좋습니다. 하지만 국가가 그 비용을 부담해야 하므로 어떻게 재정을 마련할 것인지 먼저 해결해야 합니다.`
+  },
+  {
+    topic:"Sollten Innenstädte stärker für Autos gesperrt werden?",
+    answer:`Meiner Meinung nach sollten Innenstädte stärker für Autos eingeschränkt werden, aber nicht vollständig. Ein wichtiger Grund ist der Umweltschutz. Außerdem könnten dadurch Staus und Lärm reduziert werden. Allerdings brauchen manche Menschen ihr Auto, zum Beispiel ältere Menschen oder Personen, die außerhalb der Stadt arbeiten. Deshalb finde ich es sinnvoll, bestimmte Bereiche für Autos zu sperren und gleichzeitig den öffentlichen Nahverkehr auszubauen.`,
+    ko:`도심에서 자동차를 더 많이 제한해야 하지만 완전히 금지해서는 안 된다고 생각합니다. 중요한 이유는 환경 보호이고, 교통체증과 소음도 줄일 수 있습니다. 하지만 일부 사람들은 자동차가 필요합니다. 따라서 특정 지역의 자동차를 제한하고 동시에 대중교통을 확대하는 것이 합리적입니다.`
+  },
+  {
+    topic:"Sollte man häufiger öffentliche Verkehrsmittel benutzen?",
+    answer:`Ja, ich denke, dass man häufiger öffentliche Verkehrsmittel benutzen sollte. Der wichtigste Grund ist der Umweltschutz. Wenn mehr Menschen Bus und Bahn benutzen, gibt es weniger Autos und dadurch weniger Abgase und Staus. Außerdem kann man während der Fahrt lesen, arbeiten oder sich entspannen. Natürlich ist das Auto manchmal bequemer, besonders mit Kindern oder wenn man viele Dinge transportieren muss. Trotzdem halte ich öffentliche Verkehrsmittel im Alltag für eine gute Alternative.`,
+    ko:`네, 사람들이 대중교통을 더 자주 이용해야 한다고 생각합니다. 가장 중요한 이유는 환경 보호입니다. 더 많은 사람들이 버스와 기차를 이용하면 자동차와 배기가스, 교통체증이 줄어듭니다. 물론 아이들과 함께 있거나 많은 물건을 운반할 때는 자동차가 더 편리할 수 있지만, 일상생활에서는 대중교통이 좋은 대안입니다.`
+  },
+  {
+    topic:"Sollten Arbeitgeber ihre Mitarbeiter zu mehr Sport motivieren?",
+    answer:`Ich finde, dass Arbeitgeber ihre Mitarbeiter zu mehr Bewegung motivieren sollten, aber sie sollten niemanden dazu zwingen. Sport ist wichtig für die Gesundheit und kann außerdem helfen, Stress abzubauen. Zum Beispiel könnte ein Unternehmen einen Fitnessraum anbieten oder einen Zuschuss für ein Fitnessstudio bezahlen. Davon könnten sowohl die Mitarbeiter als auch das Unternehmen profitieren, weil gesunde Mitarbeiter möglicherweise weniger krank sind.`,
+    ko:`고용주는 직원들에게 더 많은 운동을 하도록 동기를 부여해야 하지만 강요해서는 안 된다고 생각합니다. 운동은 건강에 중요하고 스트레스도 줄일 수 있습니다. 예를 들어 회사가 헬스장을 제공하거나 헬스장 비용을 지원할 수 있습니다. 그렇게 하면 직원과 회사 모두 이익을 얻을 수 있습니다.`
+  },
+  {
+    topic:"Ist gesundes Essen zu teuer?",
+    answer:`Ich denke, dass gesundes Essen teilweise teurer sein kann, aber nicht unbedingt immer. Frisches Gemüse, Obst und bestimmte Bio-Produkte können relativ teuer sein. Andererseits kann man auch mit einfachen Lebensmitteln gesund und günstig kochen. Zum Beispiel sind Reis, Kartoffeln, Gemüse und Hülsenfrüchte meistens nicht besonders teuer. Deshalb kommt es meiner Meinung nach darauf an, welche Produkte man kauft und wie man seine Mahlzeiten plant.`,
+    ko:`건강한 음식이 부분적으로 더 비쌀 수 있지만 반드시 항상 그런 것은 아니라고 생각합니다. 신선한 채소, 과일, 일부 유기농 제품은 비교적 비쌀 수 있습니다. 반면 간단한 식재료로 건강하고 저렴하게 요리할 수도 있습니다. 따라서 어떤 제품을 사고 식사를 어떻게 계획하는지가 중요합니다.`
+  },
+  {
+    topic:"Sollten Kinder mehr Sport treiben?",
+    answer:`Ja, meiner Meinung nach sollten Kinder regelmäßig Sport treiben. Bewegung ist wichtig für die körperliche Entwicklung und kann auch die Konzentration verbessern. Außerdem lernen Kinder beim Sport, mit anderen zusammenzuarbeiten. Zum Beispiel können sie in einem Sportverein Fußball spielen oder schwimmen lernen. Natürlich sollten Kinder auch genügend Zeit zum Lernen und Erholen haben. Deshalb sollte Sport ein Teil des Alltags sein, aber nicht zu einem zusätzlichen Leistungsdruck führen.`,
+    ko:`아이들은 규칙적으로 운동해야 한다고 생각합니다. 운동은 신체 발달에 중요하고 집중력 향상에도 도움이 될 수 있습니다. 또한 운동을 통해 다른 사람들과 협력하는 법을 배웁니다. 물론 공부하고 휴식할 시간도 충분히 필요하므로 운동이 추가적인 성과 압박이 되어서는 안 됩니다.`
+  },
+  {
+    topic:"Sollten Eltern weniger Zeit mit der Arbeit und mehr Zeit mit ihren Kindern verbringen?",
+    answer:`Ich denke, dass Eltern möglichst genug Zeit mit ihren Kindern verbringen sollten. Kinder brauchen nicht nur materielle Dinge, sondern auch Aufmerksamkeit und persönliche Betreuung. Außerdem kann gemeinsame Zeit die Beziehung zwischen Eltern und Kindern stärken. Zum Beispiel kann eine gemeinsame Mahlzeit am Abend eine gute Gelegenheit sein, miteinander zu sprechen. Natürlich müssen Eltern auch arbeiten, um Geld zu verdienen. Deshalb ist eine gute Balance zwischen Arbeit und Familie besonders wichtig.`,
+    ko:`부모들은 가능한 한 아이들과 충분한 시간을 보내야 한다고 생각합니다. 아이들에게는 물질적인 것뿐만 아니라 관심과 개인적인 돌봄도 필요합니다. 함께 보내는 시간은 부모와 아이의 관계를 강화할 수 있습니다. 물론 부모들도 일을 해야 하므로 일과 가족 사이의 균형이 특히 중요합니다.`
+  },
+  {
+    topic:"Ist es besser, in einer Großstadt oder auf dem Land zu leben?",
+    answer:`Für mich haben beide Möglichkeiten Vor- und Nachteile. In einer Großstadt gibt es normalerweise mehr Arbeitsplätze, Geschäfte und kulturelle Angebote. Auf dem Land ist das Leben dagegen oft ruhiger und die Natur ist näher. Zum Beispiel kann eine Familie auf dem Land mehr Platz haben und schneller in der Natur sein. Welche Wohnform besser ist, hängt deshalb stark von der persönlichen Situation und den eigenen Prioritäten ab.`,
+    ko:`대도시와 시골 모두 장단점이 있습니다. 대도시에는 일반적으로 일자리, 상점, 문화시설이 더 많습니다. 반면 시골에서는 생활이 더 조용하고 자연이 가깝습니다. 어떤 주거 형태가 더 좋은지는 개인적인 상황과 자신의 우선순위에 크게 달려 있습니다.`
+  },
+  {
+    topic:"Sollten ältere Menschen länger arbeiten?",
+    answer:`Ich denke, ältere Menschen sollten länger arbeiten können, wenn sie das selbst möchten und gesundheitlich dazu in der Lage sind. Ein Vorteil ist, dass sie ihre Erfahrung weiterhin nutzen und weitergeben können. Außerdem können sie länger finanziell unabhängig bleiben. Andererseits kann längeres Arbeiten für manche Menschen körperlich oder psychisch belastend sein. Deshalb sollte das meiner Meinung nach eine freiwillige Entscheidung sein und nicht für alle gelten.`,
+    ko:`나이가 많은 사람들이 원하고 건강상 가능하다면 더 오래 일할 수 있어야 한다고 생각합니다. 자신의 경험을 계속 활용하고 다른 사람들에게 전달할 수 있으며, 경제적으로 더 오랫동안 독립할 수도 있습니다. 반면 어떤 사람들에게는 더 오래 일하는 것이 부담이 될 수 있으므로 자발적인 선택이어야 합니다.`
+  },
+  {
+    topic:"Sollte man gebrauchte Produkte häufiger kaufen?",
+    answer:`Ja, ich finde, dass man gebrauchte Produkte häufiger kaufen sollte. Ein großer Vorteil ist, dass sie meistens günstiger sind. Außerdem kann man dadurch Ressourcen sparen und die Umwelt schützen. Zum Beispiel kann man Möbel, Fahrräder oder elektronische Geräte gebraucht kaufen, wenn sie noch in gutem Zustand sind. Natürlich sollte man vor dem Kauf prüfen, ob das Produkt wirklich funktioniert und keine Mängel hat. Insgesamt halte ich den Kauf gebrauchter Produkte für eine sinnvolle Möglichkeit.`,
+    ko:`중고 제품을 더 자주 구매해야 한다고 생각합니다. 대부분 더 저렴하다는 장점이 있고 자원을 절약하고 환경을 보호할 수도 있습니다. 예를 들어 상태가 좋다면 가구, 자전거 또는 전자제품을 중고로 살 수 있습니다. 다만 구매 전에 제품이 제대로 작동하는지 확인해야 합니다.`
+  },
+  {
+    topic:"Ist Online-Shopping besser als Einkaufen im Geschäft?",
+    answer:`Ich denke, dass Online-Shopping vor allem wegen der Zeitersparnis sehr praktisch ist. Man kann Produkte jederzeit bestellen und hat eine große Auswahl. Außerdem kann man Preise leicht miteinander vergleichen. Beim Einkaufen im Geschäft hat man dagegen die Möglichkeit, die Produkte direkt zu sehen und anzuprobieren. Außerdem bekommt man manchmal eine persönliche Beratung. Deshalb würde ich nicht sagen, dass Online-Shopping grundsätzlich besser ist. Es hängt davon ab, was man kaufen möchte.`,
+    ko:`온라인 쇼핑은 특히 시간 절약 측면에서 매우 편리하다고 생각합니다. 언제든지 주문할 수 있고 선택의 폭도 넓으며 가격도 쉽게 비교할 수 있습니다. 반면 매장에서는 제품을 직접 보고 입어볼 수 있고 개인적인 상담도 받을 수 있습니다. 따라서 온라인 쇼핑이 원칙적으로 더 좋다고 말하기보다는 무엇을 구매하는지에 따라 다르다고 생각합니다.`
+  }
 ];
+
 function newDisc(){
- let d=discs[Math.floor(Math.random()*discs.length)];
- document.getElementById("disc").innerHTML=`
- <div class="feedback"><b>Diskussionsthema:</b><br>${d}
- <div class="phrase"><b>Aufgabe:</b> Nennen Sie Ihre Meinung, mindestens zwei Gründe und ein konkretes Beispiel. Reagieren Sie anschließend auf eine andere Meinung.</div>
- <button type="button" class="secondary" onclick="tab('rec');prepareRecording('Teil 2 – ${escapeAttr(d)}')">🎙 Antwort aufnehmen</button></div>`;
+  const d=discs[Math.floor(Math.random()*discs.length)];
+  document.getElementById("disc").innerHTML=`
+  <div class="feedback">
+    <span class="badge">20 Themen</span>
+    <h3 style="margin-bottom:8px">${escapeHTML(d.topic)}</h3>
+    <div class="phrase">
+      <b>Aufgabe:</b> Nennen Sie Ihre Meinung, mindestens zwei Gründe und ein konkretes Beispiel. Reagieren Sie anschließend auf eine andere Meinung.
+    </div>
+    <details>
+      <summary>🇩🇪 Beispielantwort anzeigen</summary>
+      <div class="phrase">${escapeHTML(d.answer)}</div>
+    </details>
+    <details>
+      <summary>🇰🇷 한국어 해석 보기</summary>
+      <div class="phrase">${escapeHTML(d.ko)}</div>
+    </details>
+    <div class="row" style="margin-top:8px">
+      <button type="button" class="secondary" onclick="tab('rec');prepareRecording('Teil 2 – ${escapeAttr(d.topic)}')">🎙 Antwort aufnehmen</button>
+      <button type="button" class="secondary" onclick="newDisc()">🎲 다른 주제</button>
+    </div>
+  </div>`;
 }
 
 const plans=[
