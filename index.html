@@ -4,10 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#111827">
-<meta name="app-version" content="2026-10-02-teil3-v2">
-<meta name="app-version" content="2026-10-02-teil3-v2">
+<meta name="app-version" content="2026-10-02-teil3-v3">
 <link rel="manifest" href="./manifest.webmanifest">
-<title>telc B2 Sprechen Trainer v2</title>
+<title>telc B2 Sprechen Trainer v3</title>
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:#f3f4f6;color:#172033;font-family:Arial,sans-serif}
@@ -245,19 +244,33 @@ tab("home");
 
 const data=[
  ["📖 Ein Buch","Ein Buch, das Sie gelesen haben","읽은 책",
- ["Warum haben Sie sich für dieses Buch entschieden?","Was hat Ihnen besonders gut gefallen?","Würden Sie das Buch weiterempfehlen?","Was haben Sie daraus gelernt?"]],
+  ["Warum haben Sie sich für dieses Buch entschieden?","Was hat Ihnen besonders gut gefallen?","Würden Sie das Buch weiterempfehlen?","Was haben Sie daraus gelernt?"],
+  `Ich möchte heute über ein Buch sprechen, das ich vor einiger Zeit gelesen habe. Es handelt sich um „Der Alchimist“ von Paulo Coelho. Ich habe mich für dieses Buch entschieden, weil mir ein Freund das Buch empfohlen hat. Besonders gut gefallen hat mir die Geschichte, weil sie davon handelt, seine eigenen Ziele zu verfolgen und nicht so schnell aufzugeben. Außerdem fand ich die Sprache einfach und gleichzeitig sehr interessant. Ich würde das Buch auf jeden Fall weiterempfehlen, besonders Menschen, die sich gerade beruflich oder persönlich neu orientieren. Aus dem Buch habe ich gelernt, dass man seine Ziele ernst nehmen und auch in schwierigen Situationen nicht sofort aufgeben sollte.`,
+  `저는 얼마 전에 읽은 책에 대해 이야기하고 싶습니다. 파울로 코엘료의 《연금술사》라는 책입니다. 친구가 이 책을 추천해 주어서 읽게 되었습니다. 특히 자신의 목표를 추구하고 쉽게 포기하지 않는다는 내용이 마음에 들었습니다. 또한 문체가 쉽고 동시에 매우 흥미로웠습니다. 특히 직업적으로나 개인적으로 새로운 방향을 찾고 있는 사람들에게 이 책을 추천하고 싶습니다. 이 책을 통해 목표를 진지하게 생각하고 어려운 상황에서도 쉽게 포기하지 않는 것이 중요하다는 것을 배웠습니다.`],
  ["🎬 Ein Film","Einen Film, den Sie gesehen haben","본 영화",
- ["Warum haben Sie diesen Film gesehen?","Was hat Ihnen besonders gefallen?","Würden Sie den Film weiterempfehlen?","Was ist Ihnen besonders im Gedächtnis geblieben?"]],
+  ["Warum haben Sie diesen Film gesehen?","Was hat Ihnen besonders gefallen?","Würden Sie den Film weiterempfehlen?","Was ist Ihnen besonders im Gedächtnis geblieben?"],
+  `Ich möchte über einen Film sprechen, den ich vor einiger Zeit gesehen habe. Der Film heißt „The Pursuit of Happyness“. Ich habe ihn gesehen, weil mir ein Freund davon erzählt und ihn empfohlen hat. Besonders gut gefallen hat mir, dass der Film zeigt, wie wichtig Ausdauer und Hoffnung in schwierigen Situationen sind. Die Hauptfigur hat viele Probleme, gibt aber trotzdem nicht auf. Ich würde den Film weiterempfehlen, weil die Geschichte sehr emotional und gleichzeitig motivierend ist. Besonders im Gedächtnis geblieben ist mir eine Szene, in der der Vater seinem Sohn erklärt, dass er seine Träume nicht aufgeben soll.`,
+  `저는 얼마 전에 본 영화에 대해 이야기하고 싶습니다. 영화 제목은 《행복을 찾아서》입니다. 친구가 이 영화를 추천해 주어서 보게 되었습니다. 어려운 상황에서도 끈기와 희망이 얼마나 중요한지를 보여준다는 점이 특히 좋았습니다. 주인공은 많은 어려움을 겪지만 포기하지 않습니다. 이야기가 감동적이면서도 동기부여가 되기 때문에 추천하고 싶습니다. 특히 아버지가 아들에게 꿈을 포기하지 말라고 말하는 장면이 기억에 남았습니다.`],
  ["✈️ Eine Reise","Eine Reise, die Sie unternommen haben","다녀온 여행",
- ["Warum haben Sie diese Reise gemacht?","Was hat Ihnen am besten gefallen?","Würden Sie die Reise wiederholen?","Was würden Sie beim nächsten Mal anders machen?"]],
+  ["Warum haben Sie diese Reise gemacht?","Was hat Ihnen am besten gefallen?","Würden Sie die Reise wiederholen?","Was würden Sie beim nächsten Mal anders machen?"],
+  `Ich möchte über eine Reise sprechen, die ich vor etwa sechs Monaten mit meiner Familie nach Luzern in der Schweiz gemacht habe. Wir wollten gemeinsam Zeit verbringen und eine neue Gegend kennenlernen. Besonders gut gefallen hat mir der große See, weil wir dort eine Fähre nehmen konnten. Außerdem sind wir mit einer Bergbahn auf zwei Berge gefahren und konnten unterwegs eine wunderschöne Landschaft genießen. Die Reise würde ich auf jeden Fall wiederholen, weil sie für die ganze Familie interessant war. Beim nächsten Mal würde ich allerdings länger bleiben, damit wir noch mehr Sehenswürdigkeiten besuchen können.`,
+  `약 6개월 전에 가족과 함께 스위스 루체른으로 여행을 갔던 경험에 대해 이야기하고 싶습니다. 가족과 함께 시간을 보내고 새로운 지역을 알아보기 위해 여행을 했습니다. 특히 큰 호수가 마음에 들었고, 그곳에서 페리를 탈 수 있었습니다. 또한 산악열차를 타고 두 곳의 산에 올라가면서 아름다운 풍경을 즐겼습니다. 온 가족에게 흥미로운 여행이었기 때문에 다시 가고 싶습니다. 다음에는 더 많은 관광지를 보기 위해 조금 더 오래 머물고 싶습니다.`],
  ["🎵 Musikveranstaltung","Eine Musikveranstaltung, die Sie besucht haben","음악 행사",
- ["Welche Musik wurde gespielt?","Wie war die Atmosphäre?","Was hat Ihnen am besten gefallen?","Würden Sie wieder hingehen?"]],
+  ["Welche Musik wurde gespielt?","Wie war die Atmosphäre?","Was hat Ihnen am besten gefallen?","Würden Sie wieder hingehen?"],
+  `Ich möchte über ein Konzert sprechen, das ich vor einiger Zeit besucht habe. Es fand an einem Samstagabend in einer großen Konzerthalle statt. Gespielt wurde hauptsächlich Popmusik, und einige bekannte Lieder wurden vom Publikum mitgesungen. Die Atmosphäre war sehr lebendig und gleichzeitig freundlich. Besonders gut gefallen hat mir die Stimmung zwischen den Musikern und dem Publikum. Ich würde gerne wieder hingehen, weil die Veranstaltung eine gute Möglichkeit war, den Alltag zu vergessen und mit Freunden eine schöne Zeit zu verbringen.`,
+  `저는 얼마 전에 갔던 콘서트에 대해 이야기하고 싶습니다. 토요일 저녁에 큰 콘서트홀에서 열렸습니다. 주로 팝 음악이 연주되었고, 관객들도 몇몇 유명한 노래를 함께 불렀습니다. 분위기는 매우 활기차면서도 좋았습니다. 특히 음악가들과 관객 사이의 분위기가 마음에 들었습니다. 일상을 잊고 친구들과 즐거운 시간을 보낼 수 있었기 때문에 다시 가고 싶습니다.`],
  ["⚽ Sportereignis","Ein Sportereignis, das Sie besucht haben","스포츠 행사",
- ["Welches Sportereignis war es?","Wie war die Stimmung?","Was war der spannendste Moment?","Würden Sie so eine Veranstaltung wieder besuchen?"]],
+  ["Welches Sportereignis war es?","Wie war die Stimmung?","Was war der spannendste Moment?","Würden Sie so eine Veranstaltung wieder besuchen?"],
+  `Ich möchte über ein Fußballspiel sprechen, das ich mit Freunden im Stadion gesehen habe. Das Spiel fand an einem Samstagabend statt und das Stadion war fast vollständig gefüllt. Die Stimmung war unglaublich lebendig, weil beide Mannschaften viele Fans hatten. Besonders spannend war die letzte Phase des Spiels, als in den letzten Minuten noch ein Tor gefallen ist. Ich habe die Atmosphäre im Stadion sehr genossen und würde eine solche Veranstaltung gerne wieder besuchen. Beim nächsten Mal würde ich allerdings etwas früher kommen, damit ich in Ruhe meinen Platz finden kann.`,
+  `저는 친구들과 경기장에서 직접 본 축구 경기에 대해 이야기하고 싶습니다. 경기는 토요일 저녁에 열렸고 경기장은 거의 가득 찼습니다. 두 팀 모두 팬이 많아서 분위기가 매우 활기찼습니다. 특히 경기 마지막 몇 분에 골이 하나 더 들어간 순간이 가장 긴장되고 재미있었습니다. 경기장의 분위기를 매우 즐겼고 다시 이런 행사에 가고 싶습니다. 다음에는 자리를 여유 있게 찾을 수 있도록 조금 더 일찍 가고 싶습니다.`],
  ["👤 Wichtige Person","Eine Person, die in Ihrem Leben wichtig war","중요한 사람",
- ["Warum ist diese Person wichtig für Sie?","Was schätzen Sie an ihr besonders?","Wie hat sie Sie beeinflusst?","Was haben Sie von ihr gelernt?"]],
+  ["Warum ist diese Person wichtig für Sie?","Was schätzen Sie an ihr besonders?","Wie hat sie Sie beeinflusst?","Was haben Sie von ihr gelernt?"],
+  `Ich möchte über eine Person sprechen, die in meinem Leben eine wichtige Rolle gespielt hat. Es handelt sich um einen ehemaligen Kollegen, mit dem ich viele Jahre zusammengearbeitet habe. Ich schätze besonders seine ruhige und zuverlässige Art. Wenn es bei der Arbeit Probleme gab, hat er immer versucht, eine sachliche Lösung zu finden. Dadurch habe ich gelernt, auch in stressigen Situationen ruhig zu bleiben und zuerst nach einer Lösung zu suchen. Er hat mich außerdem darin beeinflusst, anderen Menschen geduldig zuzuhören. Deshalb denke ich noch heute gerne an unsere gemeinsame Zeit zurück.`,
+  `제 삶에서 중요한 역할을 했던 한 사람에 대해 이야기하고 싶습니다. 오랫동안 함께 일했던 전 직장 동료입니다. 저는 특히 그 사람의 차분하고 믿음직한 성격을 높이 평가합니다. 직장에서 문제가 생기면 항상 객관적인 해결책을 찾으려고 했습니다. 그를 통해 스트레스가 많은 상황에서도 침착함을 유지하고 먼저 해결책을 찾는 법을 배웠습니다. 또한 다른 사람의 말을 인내심 있게 듣는 데에도 영향을 받았습니다. 그래서 지금도 함께 일했던 시간을 좋게 기억합니다.`],
  ["⭐ Wichtige Erfahrung","Eine wichtige Erfahrung, die Sie in Ihrem Leben gemacht haben","중요한 경험",
- ["Warum war diese Erfahrung wichtig?","Wie haben Sie sich damals gefühlt?","Was haben Sie daraus gelernt?","Würden Sie heute etwas anders machen?"]]
+  ["Warum war diese Erfahrung wichtig?","Wie haben Sie sich damals gefühlt?","Was haben Sie daraus gelernt?","Würden Sie heute etwas anders machen?"],
+  `Ich möchte über eine wichtige Erfahrung in meinem Leben sprechen, nämlich meinen Umzug nach Deutschland. Diese Erfahrung war für mich besonders wichtig, weil ich meine bisherige Umgebung verlassen und mit meiner Familie ein neues Leben beginnen musste. Am Anfang war ich natürlich etwas unsicher, weil vieles neu war, zum Beispiel die Sprache, die Bürokratie und der Alltag. Gleichzeitig war ich neugierig und motiviert. Durch diese Erfahrung habe ich gelernt, dass man sich auch an große Veränderungen gewöhnen kann, wenn man Schritt für Schritt vorgeht. Heute würde ich mich früher und intensiver mit der deutschen Sprache beschäftigen.`,
+  `제 인생에서 중요한 경험인 독일 이주에 대해 이야기하고 싶습니다. 익숙했던 환경을 떠나 가족과 함께 새로운 삶을 시작해야 했기 때문에 매우 중요한 경험이었습니다. 처음에는 언어, 행정절차, 일상생활 등 많은 것이 새로워서 조금 불안했습니다. 동시에 호기심과 의욕도 있었습니다. 이 경험을 통해 큰 변화도 한 단계씩 진행하면 적응할 수 있다는 것을 배웠습니다. 지금 다시 한다면 독일어를 더 일찍, 더 집중적으로 공부할 것입니다.`]
 ];
 
 document.getElementById("topics").innerHTML=data.map((x,i)=>
@@ -282,10 +295,22 @@ function openTopic(i){
   </div>
  </div>
  <div class="card">
-  <h3>🗣️ 시작 문장</h3>
-  <div class="phrase">Ich möchte heute über ${x[0].replace(/^.. /,"")} sprechen.</div>
-  <div class="phrase">Besonders interessant war für mich, dass …</div>
-  <div class="phrase">Durch diese Erfahrung habe ich gelernt, dass …</div>
+  <h3>🗣️ 90초 예문</h3>
+  <div class="phrase">${escapeHTML(x[4])}</div>
+  <details>
+   <summary>🇰🇷 한국어 해석</summary>
+   <div class="phrase">${escapeHTML(x[5])}</div>
+  </details>
+  <p class="small">※ 예문을 통째로 암기하기보다 <b>Zeitpunkt → Ort → Personen → Inhalt → persönliche Meinung/Erfahrung → Schluss</b> 순서로 본인의 경험에 맞게 바꿔 말하세요.</p>
+ </div>
+ <div class="card">
+  <h3>🧩 말하기 구조</h3>
+  <div class="phrase"><b>1. Einleitung:</b> Ich möchte heute über … sprechen.</div>
+  <div class="phrase"><b>2. Zeitpunkt / Ort:</b> Das war vor … in …</div>
+  <div class="phrase"><b>3. Hauptinhalt:</b> Besonders interessant war, dass …</div>
+  <div class="phrase"><b>4. Meinung / Gefühl:</b> Besonders gut gefallen hat mir …</div>
+  <div class="phrase"><b>5. Erfahrung:</b> Dadurch habe ich gelernt, dass …</div>
+  <div class="phrase"><b>6. Schluss:</b> Deshalb würde ich … / Insgesamt war …</div>
  </div>
  <div class="card">
   <h3>❓ 예상 질문</h3>
@@ -459,15 +484,18 @@ const plans=[
     points:"Termin · Ziel · Kosten · Anreise · Aktivitäten · Aufgaben",
     dialogue:[
       ["A","Ich würde vorschlagen, dass wir einen Tagesausflug für unsere Deutschkursgruppe organisieren. Was hältst du davon?"],
-      ["B","Das finde ich grundsätzlich gut. Aber wohin könnten wir fahren?"],
-      ["A","Wie wäre es mit Heidelberg? Die Stadt ist nicht zu weit entfernt und es gibt dort viel zu sehen."],
-      ["B","Heidelberg klingt gut. Allerdings könnte die Zugfahrt ziemlich teuer sein."],
-      ["A","Das stimmt. Stattdessen könnten wir mit dem Bus fahren. Das wäre wahrscheinlich günstiger."],
-      ["B","Einverstanden. Wann sollten wir losfahren?"],
-      ["A","Ich würde sagen, am Samstag gegen 9 Uhr. Dann haben wir genug Zeit."],
-      ["B","Gut. Wir könnten zuerst die Altstadt besichtigen und danach gemeinsam essen gehen."],
-      ["A","Das gefällt mir. Ich kümmere mich um die Fahrkarten. Könntest du ein Restaurant reservieren?"],
-      ["B","Ja, gerne. Dann sind wir uns also einig, dass wir am Samstag nach Heidelberg fahren."]
+      ["B","Das finde ich gut. Wohin könnten wir fahren?"],
+      ["A","Wie wäre es mit Heidelberg? Dort können wir die Altstadt besichtigen und haben viele Möglichkeiten für Aktivitäten."],
+      ["B","Heidelberg gefällt mir. Wann sollen wir den Ausflug machen?"],
+      ["A","Ich würde Samstag, den 17. Oktober, vorschlagen. Wir könnten um 9 Uhr losfahren und gegen 18 Uhr zurück sein."],
+      ["B","Das passt für mich. Wie kommen wir am besten dorthin?"],
+      ["A","Wir könnten mit dem Zug fahren. Eine andere Möglichkeit wäre der Bus, aber der Zug ist schneller."],
+      ["B","Wie hoch sind die Kosten? Wir sollten das Budget der Gruppe berücksichtigen."],
+      ["A","Mit dem Gruppenticket kostet die Fahrt ungefähr 15 Euro pro Person. Für Essen und Eintritt sollten wir zusätzlich etwa 20 Euro einplanen."],
+      ["B","Insgesamt etwa 35 Euro pro Person finde ich akzeptabel. Was wollen wir dort unternehmen?"],
+      ["A","Zuerst besichtigen wir die Altstadt und das Schloss. Danach könnten wir gemeinsam in einem Restaurant zu Mittag essen."],
+      ["B","Gute Idee. Ich kümmere mich um das Restaurant. Kannst du die Zugtickets organisieren?"],
+      ["A","Ja, das mache ich. Dann sind die Aufgaben verteilt und wir sind uns einig: Samstag, Heidelberg, etwa 35 Euro pro Person."]
     ]
   },
   {
@@ -476,15 +504,19 @@ const plans=[
     situation:"Sie möchten gemeinsam eine Abschiedsfeier für einen Kollegen organisieren.",
     points:"Ort · Termin · Gäste · Essen · Geschenk · Kosten · Aufgaben",
     dialogue:[
-      ["A","Wir müssen noch die Abschiedsfeier für unseren Kollegen organisieren. Ich würde vorschlagen, dass wir sie am Freitagabend machen."],
+      ["A","Wir müssen noch die Abschiedsfeier für unseren Kollegen organisieren. Ich würde Freitag, den 23. Oktober, vorschlagen."],
       ["B","Freitag passt gut. Wo könnten wir die Feier veranstalten?"],
-      ["A","Wir könnten einen Raum im Restaurant reservieren. Dann müssen wir uns nicht um das Essen kümmern."],
-      ["B","Das wäre praktisch, aber vielleicht etwas teuer."],
-      ["A","Das stimmt. Eine andere Möglichkeit wäre, die Feier bei uns im Büro zu machen und das Essen selbst mitzubringen."],
-      ["B","Das finde ich besser. Was könnten wir ihm schenken?"],
-      ["A","Vielleicht könnten wir gemeinsam ein Geschenk kaufen und jeder gibt zehn Euro dazu."],
-      ["B","Gute Idee. Ich kümmere mich um das Geschenk und du kannst die Kollegen informieren."],
-      ["A","Einverstanden. Dann haben wir die wichtigsten Aufgaben verteilt."]
+      ["A","Wir könnten einen Raum in einem Restaurant reservieren. Dort hätten wir genug Platz und müssten uns nicht um das Essen kümmern."],
+      ["B","Das wäre praktisch, aber wahrscheinlich ziemlich teuer. Wie viele Gäste wollen wir einladen?"],
+      ["A","Ich denke, ungefähr 15 Kollegen. Wir sollten außerdem zwei ehemalige Kollegen einladen, die besonders gut mit ihm befreundet sind."],
+      ["B","Einverstanden. Was wollen wir zum Essen bestellen?"],
+      ["A","Ein Buffet wäre am einfachsten. Wir sollten auch vegetarische Optionen anbieten."],
+      ["B","Gute Idee. Wie viel darf die Feier pro Person kosten?"],
+      ["A","Ich würde maximal 30 Euro pro Person für Raum und Essen einplanen. Für das Geschenk könnten wir zusätzlich jeweils 10 Euro sammeln."],
+      ["B","Das klingt vernünftig. Was könnten wir ihm schenken?"],
+      ["A","Vielleicht einen Gutschein für sein Lieblingsgeschäft und eine Karte, auf der alle unterschreiben."],
+      ["B","Ich kann das Geschenk kaufen und die Kollegen um die 10 Euro bitten. Kannst du das Restaurant reservieren und die Gäste informieren?"],
+      ["A","Ja, gerne. Dann sind Ort, Termin, Gäste, Essen, Geschenk, Kosten und Aufgaben geklärt."]
     ]
   },
   {
@@ -493,15 +525,20 @@ const plans=[
     situation:"Sie möchten mit Freunden einen Wochenendausflug planen.",
     points:"Ziel · Termin · Verkehrsmittel · Unterkunft · Aktivitäten · Budget",
     dialogue:[
-      ["A","Wie wäre es, wenn wir am nächsten Wochenende gemeinsam einen Ausflug machen?"],
+      ["A","Wie wäre es, wenn wir am Wochenende vom 24. bis 25. Oktober gemeinsam einen Ausflug machen?"],
       ["B","Gerne. Hast du schon ein Ziel im Kopf?"],
-      ["A","Ich dachte an eine Stadt, die wir mit dem Zug in etwa zwei Stunden erreichen können."],
-      ["B","Das klingt gut. Allerdings sollten wir nicht zu viel Geld ausgeben."],
-      ["A","Dann könnten wir eine günstige Ferienwohnung statt eines Hotels buchen."],
-      ["B","Ja, das wäre eine gute Lösung. Was könnten wir dort unternehmen?"],
-      ["A","Wir könnten am Samstag die Stadt besichtigen und am Sonntag eine Wanderung machen."],
-      ["B","Das gefällt mir. Ich kann nach einer Unterkunft suchen."],
-      ["A","Super. Dann kümmere ich mich um die Zugverbindungen."]
+      ["A","Ich dachte an Nürnberg. Die Stadt ist interessant und wir können sie mit dem Zug in etwa zwei Stunden erreichen."],
+      ["B","Das klingt gut. Wann würden wir fahren?"],
+      ["A","Wir könnten Samstagmorgen um 8 Uhr losfahren und Sonntag gegen 18 Uhr zurückkommen."],
+      ["B","Wie wollen wir hinfahren? Mit dem Auto oder mit dem Zug?"],
+      ["A","Ich würde den Zug nehmen, weil wir dann nicht fahren müssen und unterwegs entspannen können."],
+      ["B","Einverstanden. Wir brauchen dann aber eine Unterkunft. Hast du etwas Günstiges gefunden?"],
+      ["A","Ja, ich habe eine Ferienwohnung im Zentrum gefunden. Sie kostet 80 Euro pro Person für die Nacht."],
+      ["B","Das ist etwas teuer. Unser Budget sollte höchstens 150 Euro pro Person für die ganze Reise betragen."],
+      ["A","Dann suchen wir eine günstigere Unterkunft. Wenn wir Zug, Unterkunft und Essen zusammen für etwa 140 Euro bekommen, passt es."],
+      ["B","Was wollen wir dort unternehmen?"],
+      ["A","Am Samstag besichtigen wir die Altstadt und ein Museum. Am Sonntag könnten wir einen Spaziergang im Park machen."],
+      ["B","Gut. Ich suche eine Unterkunft innerhalb unseres Budgets, und du kümmerst dich um die Zugverbindungen. Dann steht unser Plan."]
     ]
   },
   {
@@ -510,15 +547,19 @@ const plans=[
     situation:"Sie sollen gemeinsam einen Informationsabend organisieren.",
     points:"Termin · Ort · Thema · Referenten · Teilnehmer · Werbung · Aufgaben",
     dialogue:[
-      ["A","Wir sollen einen Informationsabend organisieren. Ich würde vorschlagen, dass wir zuerst einen passenden Termin finden."],
-      ["B","Ich denke, ein Mittwochabend wäre geeignet, weil die meisten Teilnehmer dann Zeit haben könnten."],
-      ["A","Das sehe ich auch so. Wir brauchen außerdem einen geeigneten Raum."],
-      ["B","Vielleicht können wir den Raum in der Volkshochschule nutzen."],
-      ["A","Gute Idee. Wir sollten auch überlegen, wie wir die Teilnehmer informieren."],
-      ["B","Wir könnten eine E-Mail schicken und zusätzlich einen Flyer erstellen."],
-      ["A","Einverstanden. Ich kann den Flyer vorbereiten."],
-      ["B","Dann kümmere ich mich um den Raum und die E-Mail-Einladung."],
-      ["A","Perfekt. Damit sind die wichtigsten Aufgaben verteilt."]
+      ["A","Wir sollen einen Informationsabend organisieren. Ich würde Mittwoch, den 4. November, um 18 Uhr vorschlagen."],
+      ["B","Mittwochabend passt gut. Wo könnten wir die Veranstaltung durchführen?"],
+      ["A","Vielleicht können wir einen Raum in der Volkshochschule nutzen. Dort gibt es auch einen Beamer."],
+      ["B","Das wäre praktisch. Welches Thema wollen wir behandeln?"],
+      ["A","Ich würde das Thema „Leben und Arbeiten in Deutschland“ vorschlagen, weil es für viele Kursteilnehmer interessant ist."],
+      ["B","Gute Idee. Wir brauchen auch Referenten. Kennst du jemanden, der darüber sprechen könnte?"],
+      ["A","Ja. Eine Beraterin vom Jobcenter könnte über Arbeitssuche sprechen. Außerdem könnten wir einen erfahrenen Kursteilnehmer als zweiten Referenten einladen."],
+      ["B","Wie viele Teilnehmer erwarten wir?"],
+      ["A","Ungefähr 30 Personen. Deshalb sollten wir die Anmeldung vorher organisieren."],
+      ["B","Wie machen wir Werbung?"],
+      ["A","Wir schicken eine E-Mail an die Teilnehmer und erstellen zusätzlich einen Flyer. Ich kann den Flyer vorbereiten."],
+      ["B","Dann kümmere ich mich um den Raum und die Referenten. Außerdem erstelle ich die E-Mail-Einladung."],
+      ["A","Perfekt. Damit sind Termin, Ort, Thema, Referenten, Teilnehmer, Werbung und Aufgaben geklärt."]
     ]
   },
   {
@@ -529,13 +570,19 @@ const plans=[
     dialogue:[
       ["A","Ich denke, wir sollten für unsere Gruppe einen Sporttag organisieren. Was hältst du davon?"],
       ["B","Gute Idee. Welche Sportarten könnten wir anbieten?"],
-      ["A","Vielleicht Fußball, Volleyball und Tischtennis."],
-      ["B","Fußball finde ich gut, aber nicht jeder spielt gerne Fußball."],
-      ["A","Da hast du recht. Deshalb sollten wir verschiedene Möglichkeiten anbieten."],
-      ["B","Wir könnten auch Badminton anbieten. Das wäre für viele geeignet."],
-      ["A","Das klingt gut. Wir müssen allerdings noch eine Sporthalle reservieren."],
-      ["B","Ich kann dort anrufen und nachfragen."],
-      ["A","Super. Dann kümmere ich mich um die Teilnehmerliste und die Ausrüstung."]
+      ["A","Ich würde Fußball, Volleyball und Badminton anbieten. So ist für verschiedene Interessen etwas dabei."],
+      ["B","Einverstanden. Wann soll der Sporttag stattfinden?"],
+      ["A","Am Samstag, den 7. November, von 10 bis 16 Uhr."],
+      ["B","Wo können wir ihn veranstalten?"],
+      ["A","Am besten in der Sporthalle der Volkshochschule. Dort können wir auch bei schlechtem Wetter Sport machen."],
+      ["B","Wie viele Teilnehmer erwarten wir?"],
+      ["A","Ungefähr 20 Personen. Wir sollten vorher eine Teilnehmerliste erstellen."],
+      ["B","Welche Ausrüstung brauchen wir?"],
+      ["A","Für Volleyball brauchen wir Netze und Bälle, für Badminton Schläger und Federbälle und für Fußball Bälle und Leibchen."],
+      ["B","Und wie hoch sind die Kosten?"],
+      ["A","Die Hallenmiete kostet 100 Euro. Wenn wir das auf 20 Teilnehmer verteilen, sind das 5 Euro pro Person. Die Ausrüstung können wir teilweise kostenlos vom Verein ausleihen."],
+      ["B","Gut. Ich reserviere die Sporthalle und kümmere mich um die Ausrüstung. Du erstellst die Teilnehmerliste und informierst die Gruppe."],
+      ["A","Genau. Dann sind Sportarten, Ort, Termin, Teilnehmer, Ausrüstung, Kosten und Aufgaben festgelegt."]
     ]
   },
   {
@@ -545,14 +592,18 @@ const plans=[
     points:"Ort · Programm · Essen · Musik · Teilnehmer · Kosten · Aufgaben",
     dialogue:[
       ["A","Wie wäre es mit einem gemeinsamen Kulturabend für unsere Gruppe?"],
-      ["B","Das klingt interessant. Was könnten wir an diesem Abend machen?"],
-      ["A","Wir könnten verschiedene Länder vorstellen und typische Speisen mitbringen."],
-      ["B","Das gefällt mir. Wir könnten auch Musik aus verschiedenen Ländern spielen."],
-      ["A","Genau. Für den Ort könnten wir einen Raum im Gemeindezentrum nutzen."],
-      ["B","Allerdings sollten wir vorher klären, ob dort Essen erlaubt ist."],
-      ["A","Richtig. Ich kann dort nachfragen."],
-      ["B","Und ich kann eine Liste erstellen, damit jeder etwas zum Essen mitbringt."],
-      ["A","Dann machen wir es so. Ich kümmere mich um den Raum und du um die Teilnehmerliste."]
+      ["B","Das klingt interessant. Wo könnten wir den Abend veranstalten?"],
+      ["A","Wir könnten einen Raum im Gemeindezentrum mieten. Dort gibt es genug Platz für etwa 40 Personen."],
+      ["B","Gut. Was soll das Programm sein?"],
+      ["A","Wir könnten verschiedene Länder vorstellen. Jede Person könnte kurz etwas über ihr Land erzählen und ein typisches Gericht mitbringen."],
+      ["B","Das gefällt mir. Wir sollten auch Musik aus verschiedenen Ländern spielen."],
+      ["A","Ja. Außerdem könnten wir am Ende ein kleines Quiz über die vorgestellten Länder machen."],
+      ["B","Was machen wir mit dem Essen?"],
+      ["A","Jeder Teilnehmer bringt eine typische Speise mit. Getränke kaufen wir gemeinsam."],
+      ["B","Wie viele Teilnehmer erwarten wir und wie viel soll es kosten?"],
+      ["A","Ungefähr 30 bis 40 Personen. Die Raummiete kostet 100 Euro, und für Getränke sollten wir etwa 5 Euro pro Person einplanen."],
+      ["B","Das ist akzeptabel. Ich erstelle die Teilnehmerliste und organisiere die Musik. Kannst du den Raum reservieren?"],
+      ["A","Ja, das mache ich. Dann sind Ort, Programm, Essen, Musik, Teilnehmer, Kosten und Aufgaben geklärt."]
     ]
   },
   {
@@ -561,15 +612,19 @@ const plans=[
     situation:"Sie möchten eine Überraschung für einen Freund organisieren.",
     points:"Termin · Ort · Gäste · Geschenk · Essen · Überraschung · Aufgaben",
     dialogue:[
-      ["A","Unser Freund hat bald Geburtstag. Ich würde vorschlagen, dass wir eine Überraschungsparty organisieren."],
+      ["A","Unser Freund hat am 14. November Geburtstag. Ich würde vorschlagen, dass wir eine Überraschungsparty organisieren."],
       ["B","Das finde ich super. Wo könnten wir die Party machen?"],
-      ["A","Vielleicht bei mir zu Hause. Dort haben wir genug Platz."],
-      ["B","Das wäre praktisch. Aber wir müssen aufpassen, dass er nichts davon erfährt."],
-      ["A","Genau. Deshalb sollten wir die anderen Gäste nur privat informieren."],
+      ["A","Vielleicht bei mir zu Hause. Dort haben wir genug Platz für ungefähr 15 Personen."],
+      ["B","Das wäre praktisch. Wen wollen wir einladen?"],
+      ["A","Seine engsten Freunde und zwei Kollegen, also insgesamt etwa 15 Gäste."],
       ["B","Was wollen wir ihm schenken?"],
-      ["A","Wir könnten gemeinsam ein Geschenk kaufen. Ich denke, ein Gutschein wäre eine gute Idee."],
-      ["B","Einverstanden. Ich kann die Gäste informieren und du kümmerst dich um das Geschenk."],
-      ["A","Perfekt. Dann ist alles geklärt."]
+      ["A","Wir könnten gemeinsam einen Gutschein für sein Lieblingsrestaurant kaufen. Jeder gibt dafür 10 Euro dazu."],
+      ["B","Gute Idee. Und was machen wir mit dem Essen?"],
+      ["A","Ich bestelle Pizza und Getränke. Dafür sollten wir zusätzlich etwa 8 Euro pro Person einplanen."],
+      ["B","Wie organisieren wir die Überraschung, ohne dass er etwas merkt?"],
+      ["A","Wir sagen ihm, dass wir uns um 19 Uhr bei mir treffen, aber er soll glauben, dass nur wir beide zusammen essen gehen. Die Gäste kommen schon um 18:30 Uhr."],
+      ["B","Perfekt. Ich informiere die Gäste heimlich und sammle das Geld für das Geschenk. Du kümmerst dich um Essen und Getränke."],
+      ["A","Einverstanden. Dann sind Termin, Ort, Gäste, Geschenk, Essen, Überraschung und Aufgaben geklärt."]
     ]
   },
   {
@@ -579,13 +634,18 @@ const plans=[
     points:"Reiseziel · Dauer · Verkehrsmittel · Unterkunft · Programm · Kosten · Rücksichtnahme",
     dialogue:[
       ["A","Wir sollen einen Ausflug für eine Gruppe älterer Teilnehmer organisieren. Ich würde eine möglichst entspannte Reise vorschlagen."],
-      ["B","Da stimme ich dir zu. Die Teilnehmer sollten nicht zu viel laufen müssen."],
-      ["A","Vielleicht könnten wir eine historische Stadt besuchen und eine Stadtführung mit einem Bus organisieren."],
-      ["B","Das klingt gut. Allerdings sollte die Anreise nicht zu lange dauern."],
-      ["A","Dann wählen wir am besten ein Ziel, das höchstens zwei Stunden entfernt ist."],
-      ["B","Einverstanden. Außerdem sollten wir genügend Pausen einplanen."],
-      ["A","Ja, das ist wichtig. Ich kümmere mich um die Busverbindung."],
-      ["B","Und ich informiere die Teilnehmer über das Programm und die Kosten."]
+      ["B","Da stimme ich dir zu. Welches Reiseziel wäre geeignet?"],
+      ["A","Vielleicht Wiesbaden. Die Stadt ist nicht weit entfernt und bietet eine schöne Altstadt und einen Kurpark."],
+      ["B","Wie lange soll der Ausflug dauern?"],
+      ["A","Es soll ein Tagesausflug sein: von 9 bis ungefähr 18 Uhr. Deshalb brauchen wir keine Unterkunft."],
+      ["B","Wie kommen wir am besten dorthin?"],
+      ["A","Ich würde einen Reisebus nehmen. So müssen die Teilnehmer nicht umsteigen und können bequem sitzen."],
+      ["B","Was wollen wir dort unternehmen?"],
+      ["A","Wir machen eine kurze Stadtführung, besuchen den Kurpark und essen gemeinsam zu Mittag. Zwischen den Aktivitäten planen wir ausreichend Pausen ein."],
+      ["B","Wie viel wird die Reise kosten?"],
+      ["A","Für den Bus rechnen wir mit etwa 20 Euro pro Person. Für Mittagessen und Eintritt sollten wir weitere 15 Euro einplanen, also insgesamt etwa 35 Euro."],
+      ["B","Das klingt angemessen. Wir sollten außerdem darauf achten, dass niemand zu lange laufen muss und dass es genügend Sitzmöglichkeiten gibt."],
+      ["A","Einverstanden. Ich organisiere den Bus und die Stadtführung. Du informierst die Teilnehmer über Programm und Kosten. Damit berücksichtigen wir auch die besonderen Bedürfnisse der Gruppe."]
     ]
   },
   {
@@ -594,15 +654,18 @@ const plans=[
     situation:"Sie möchten gemeinsam mit Ihrer Gruppe einen Kochabend organisieren.",
     points:"Ort · Termin · Gerichte · Zutaten · Kosten · Teilnehmer · Aufgaben",
     dialogue:[
-      ["A","Ich würde vorschlagen, dass wir einen gemeinsamen Kochabend veranstalten."],
-      ["B","Das finde ich eine gute Idee. Wo könnten wir kochen?"],
-      ["A","Vielleicht können wir die Küche in unserem Kurszentrum benutzen."],
-      ["B","Das wäre praktisch. Welche Gerichte wollen wir zubereiten?"],
-      ["A","Wir könnten Gerichte aus verschiedenen Ländern machen, sodass jeder etwas Typisches vorstellen kann."],
-      ["B","Gute Idee. Allerdings sollten wir vorher klären, ob jemand Allergien hat."],
-      ["A","Stimmt. Ich kann die Teilnehmer fragen."],
-      ["B","Dann erstelle ich eine Einkaufsliste."],
-      ["A","Perfekt. So können wir auch die Kosten besser planen."]
+      ["A","Ich würde vorschlagen, dass wir einen gemeinsamen Kochabend veranstalten. Wie wäre es mit Freitag, dem 20. November?"],
+      ["B","Der Termin passt gut. Wo könnten wir kochen?"],
+      ["A","Vielleicht können wir die große Küche in unserem Kurszentrum benutzen. Dort gibt es genug Arbeitsplätze."],
+      ["B","Welche Gerichte wollen wir zubereiten?"],
+      ["A","Wir könnten Gerichte aus verschiedenen Ländern machen, zum Beispiel Curry, Pasta und einen koreanischen Reisgericht."],
+      ["B","Das klingt gut. Wir sollten vorher klären, ob jemand Allergien hat oder bestimmte Lebensmittel nicht essen darf."],
+      ["A","Ich frage alle Teilnehmer danach. Wie viele Personen erwarten wir?"],
+      ["B","Ungefähr 12 Personen. Dann können wir die Mengen entsprechend planen."],
+      ["A","Für die Zutaten würde ich maximal 15 Euro pro Person einplanen. Insgesamt hätten wir also etwa 180 Euro zur Verfügung."],
+      ["B","Einverstanden. Ich erstelle die Einkaufsliste und kaufe die Zutaten ein."],
+      ["A","Ich reserviere die Küche und informiere die Teilnehmer über den Termin. Außerdem können wir die Kosten am Ende durch zwölf teilen."],
+      ["B","Perfekt. Dann sind Ort, Termin, Gerichte, Zutaten, Kosten, Teilnehmer und Aufgaben klar."]
     ]
   },
   {
@@ -611,14 +674,19 @@ const plans=[
     situation:"Sie möchten gemeinsam ein Familienfest organisieren.",
     points:"Termin · Ort · Kinderprogramm · Essen · Getränke · Kosten · Aufgaben",
     dialogue:[
-      ["A","Wir möchten ein Familienfest organisieren. Ich denke, ein Samstag im Park wäre eine gute Möglichkeit."],
-      ["B","Das klingt gut, besonders für die Kinder. Was machen wir bei schlechtem Wetter?"],
-      ["A","Wir könnten einen Raum als Alternative reservieren."],
-      ["B","Das ist sinnvoll. Für das Essen würde ich vorschlagen, dass jeder etwas mitbringt."],
-      ["A","Einverstanden. Dann bleiben die Kosten niedrig."],
-      ["B","Wir sollten außerdem Spiele für die Kinder vorbereiten."],
-      ["A","Ich kann mich um die Spiele kümmern. Könntest du die Eltern über den Termin informieren?"],
-      ["B","Ja, gerne. Dann haben wir schon einen guten Plan."]
+      ["A","Wir möchten ein Familienfest organisieren. Ich würde Samstag, den 28. November, vorschlagen."],
+      ["B","Samstag passt gut. Wo könnten wir das Fest veranstalten?"],
+      ["A","Ich denke, ein Park wäre ideal, weil die Kinder dort viel Platz zum Spielen haben. Bei schlechtem Wetter könnten wir in einen Gemeindesaal ausweichen."],
+      ["B","Das ist sinnvoll. Was wollen wir für die Kinder organisieren?"],
+      ["A","Wir könnten eine Schatzsuche, Ballspiele und einen kleinen Basteltisch vorbereiten."],
+      ["B","Gute Idee. Wie machen wir es mit Essen und Getränken?"],
+      ["A","Ich würde vorschlagen, dass jede Familie etwas zu essen mitbringt. Getränke kaufen wir gemeinsam."],
+      ["B","Wie hoch sollen die Kosten für die Getränke und das Kinderprogramm sein?"],
+      ["A","Wir könnten pro Familie 15 Euro sammeln. Davon bezahlen wir Getränke, Bastelmaterial und kleine Preise für die Kinder."],
+      ["B","Einverstanden. Wie viele Familien erwarten wir?"],
+      ["A","Ungefähr 20 Familien. Ich kümmere mich um die Spiele und das Bastelmaterial."],
+      ["B","Dann informiere ich die Familien über Termin und Ort und erstelle eine Liste für das Essen. Falls das Wetter schlecht ist, reserviere ich den Gemeindesaal."],
+      ["A","Perfekt. Damit sind Termin, Ort, Kinderprogramm, Essen, Getränke, Kosten und Aufgaben geklärt."]
     ]
   },
   {
@@ -627,14 +695,19 @@ const plans=[
     situation:"Sie möchten gemeinsam eine kleine Wohltätigkeitsaktion organisieren.",
     points:"Ort · Termin · Genehmigung · Gegenstände · Werbung · Einnahmen · Aufgaben",
     dialogue:[
-      ["A","Wir könnten einen Flohmarkt organisieren und die Einnahmen für einen guten Zweck spenden."],
+      ["A","Wir könnten einen Flohmarkt organisieren und die Einnahmen für einen guten Zweck spenden. Wie wäre es mit Samstag, dem 5. Dezember?"],
       ["B","Das halte ich für eine gute Idee. Wo könnten wir ihn veranstalten?"],
-      ["A","Vielleicht auf dem Schulhof. Allerdings brauchen wir dafür wahrscheinlich eine Genehmigung."],
-      ["B","Richtig. Ich kann mich darum kümmern."],
-      ["A","Dann würde ich einen Flyer erstellen und online Werbung machen."],
-      ["B","Gut. Außerdem müssen wir Leute finden, die gebrauchte Sachen mitbringen."],
-      ["A","Ich frage die anderen Teilnehmer. Wie wäre es, wenn wir die Preise gemeinsam festlegen?"],
-      ["B","Ja, machen wir das so. Dann sind die Aufgaben klar verteilt."]
+      ["A","Vielleicht auf dem Schulhof. Dort gibt es genug Platz für die Verkaufsstände."],
+      ["B","Dafür brauchen wir wahrscheinlich eine Genehmigung. Wer kümmert sich darum?"],
+      ["A","Ich frage bei der Schule und beim zuständigen Amt nach und kümmere mich um die Genehmigung."],
+      ["B","Gut. Welche Gegenstände wollen wir verkaufen?"],
+      ["A","Wir können gebrauchte Bücher, Kleidung, Spielzeug und kleine Haushaltsgegenstände sammeln. Alle Sachen sollten noch in gutem Zustand sein."],
+      ["B","Wie machen wir Werbung?"],
+      ["A","Ich erstelle einen Flyer und veröffentliche die Information zusätzlich in unserer WhatsApp-Gruppe und auf der Schulwebsite."],
+      ["B","Und wie verwenden wir die Einnahmen?"],
+      ["A","Alle Einnahmen werden vollständig an eine Kinderhilfsorganisation gespendet. Wir führen eine Liste über die Einnahmen, damit alles transparent bleibt."],
+      ["B","Ich kann die Stände organisieren und die Preise gemeinsam mit den anderen Helfern festlegen."],
+      ["A","Perfekt. Dann kümmere ich mich um Genehmigung und Werbung, und du organisierst die Gegenstände und Stände. Damit sind alle Punkte geklärt."]
     ]
   },
   {
@@ -643,14 +716,19 @@ const plans=[
     situation:"Sie möchten mit anderen Kursteilnehmern einen gemeinsamen Lerntag organisieren.",
     points:"Termin · Ort · Lernplan · Pausen · Materialien · Teilnehmer · Aufgaben",
     dialogue:[
-      ["A","Ich würde vorschlagen, dass wir vor der Prüfung einen gemeinsamen Lerntag organisieren."],
+      ["A","Ich würde vorschlagen, dass wir vor der Prüfung einen gemeinsamen Lerntag organisieren. Wie wäre es mit Samstag, dem 12. Dezember?"],
       ["B","Das wäre für mich sehr hilfreich. Wo könnten wir lernen?"],
-      ["A","Vielleicht in der Bibliothek. Dort ist es ruhig."],
-      ["B","Gute Idee. Wir sollten aber auch genügend Pausen einplanen."],
-      ["A","Natürlich. Wir könnten morgens Grammatik und nachmittags Sprechen üben."],
-      ["B","Das finde ich sinnvoll. Jeder könnte außerdem ein Thema vorbereiten."],
-      ["A","Dann übernehme ich die Organisation des Sprechtrainings."],
-      ["B","Und ich kann die Lernmaterialien zusammenstellen."]
+      ["A","Vielleicht in der Bibliothek. Dort ist es ruhig und wir können einen Gruppenraum reservieren."],
+      ["B","Wie viele Teilnehmer sollen mitmachen?"],
+      ["A","Ich denke, acht bis zehn Kursteilnehmer wären ideal, damit die Gruppe nicht zu groß wird."],
+      ["B","Wie sieht unser Lernplan aus?"],
+      ["A","Wir könnten von 9 bis 11 Uhr Grammatik üben, danach eine halbe Stunde Pause machen und von 11:30 bis 13 Uhr Schreiben trainieren. Nach dem Mittagessen üben wir von 14 bis 16 Uhr Sprechen und Hören."],
+      ["B","Das klingt gut. Wir sollten auch weitere Pausen einplanen, damit wir konzentriert bleiben."],
+      ["A","Ja, nach jeder Einheit machen wir eine kurze Pause. Welche Materialien brauchen wir?"],
+      ["B","Wir brauchen die Kursbücher, Modelltests, Hörtexte und Kopien für die Sprechaufgaben."],
+      ["A","Ich kann die Sprechaufgaben und Modelltests vorbereiten. Kannst du die anderen Lernmaterialien zusammenstellen und den Gruppenraum reservieren?"],
+      ["B","Ja, mache ich. Dann informiere ich auch die Teilnehmer über den Termin und den Lernplan."],
+      ["A","Perfekt. Damit sind Termin, Ort, Lernplan, Pausen, Materialien, Teilnehmer und Aufgaben vollständig geplant."]
     ]
   }
 ];
