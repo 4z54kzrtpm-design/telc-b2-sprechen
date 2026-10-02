@@ -58,6 +58,9 @@ textarea{min-height:105px;resize:vertical}
 .hidden{display:none!important}
 .sticky-actions{position:sticky;bottom:8px;background:#ffffffed;padding:8px 0;z-index:10}
 @media(max-width:520px){.grid{grid-template-columns:1fr}.statgrid{grid-template-columns:repeat(3,1fr)}main{padding:10px}}
+
+.plan-topic-note{margin-top:8px;padding:10px;border-radius:10px;background:#f8fafc;font-size:13px;line-height:1.5}
+
 </style>
 </head>
 <body>
@@ -139,8 +142,9 @@ textarea{min-height:105px;resize:vertical}
   <div class="card">
     <span class="badge">TEIL 3 · Gemeinsam etwas planen</span>
     <h2>함께 계획하기</h2>
-    <p class="small">상대방과 협의해서 하나의 결론을 만드는 연습입니다.</p>
+    <p class="small">주제별 상황을 뽑고, 제안 → 반응 → 대안 → 타협 → 역할 분담 → 최종 결정까지 연습합니다.</p>
     <button class="primary" onclick="newPlan()">🎲 랜덤 계획 문제</button>
+    <p class="small">총 12개 주제 · 각 주제별 5분 실전 예문 포함</p>
     <div id="plan"></div>
   </div>
   <div class="card">
@@ -446,20 +450,272 @@ function newDisc(){
 }
 
 const plans=[
- "Sie möchten gemeinsam einen Ausflug für Ihre Deutschkursgruppe organisieren.",
- "Sie möchten eine Abschiedsfeier für einen Kollegen organisieren.",
- "Sie möchten mit Freunden einen Wochenendausflug planen.",
- "Sie sollen gemeinsam einen Informationsabend organisieren.",
- "Sie möchten eine kleine Sportveranstaltung für Ihre Gruppe planen.",
- "Sie möchten für Ihre Gruppe einen gemeinsamen Kulturabend organisieren.",
- "Sie möchten eine Überraschung für einen Freund organisieren."
+  {
+    title:"Ausflug für eine Deutschkursgruppe",
+    ko:"독일어 코스 그룹 소풍/여행",
+    situation:"Sie möchten gemeinsam einen Ausflug für Ihre Deutschkursgruppe organisieren.",
+    points:"Termin · Ziel · Kosten · Anreise · Aktivitäten · Aufgaben",
+    dialogue:[
+      ["A","Ich würde vorschlagen, dass wir einen Tagesausflug für unsere Deutschkursgruppe organisieren. Was hältst du davon?"],
+      ["B","Das finde ich grundsätzlich gut. Aber wohin könnten wir fahren?"],
+      ["A","Wie wäre es mit Heidelberg? Die Stadt ist nicht zu weit entfernt und es gibt dort viel zu sehen."],
+      ["B","Heidelberg klingt gut. Allerdings könnte die Zugfahrt ziemlich teuer sein."],
+      ["A","Das stimmt. Stattdessen könnten wir mit dem Bus fahren. Das wäre wahrscheinlich günstiger."],
+      ["B","Einverstanden. Wann sollten wir losfahren?"],
+      ["A","Ich würde sagen, am Samstag gegen 9 Uhr. Dann haben wir genug Zeit."],
+      ["B","Gut. Wir könnten zuerst die Altstadt besichtigen und danach gemeinsam essen gehen."],
+      ["A","Das gefällt mir. Ich kümmere mich um die Fahrkarten. Könntest du ein Restaurant reservieren?"],
+      ["B","Ja, gerne. Dann sind wir uns also einig, dass wir am Samstag nach Heidelberg fahren."]
+    ]
+  },
+  {
+    title:"Abschiedsfeier für einen Kollegen",
+    ko:"동료 송별회",
+    situation:"Sie möchten gemeinsam eine Abschiedsfeier für einen Kollegen organisieren.",
+    points:"Ort · Termin · Gäste · Essen · Geschenk · Kosten · Aufgaben",
+    dialogue:[
+      ["A","Wir müssen noch die Abschiedsfeier für unseren Kollegen organisieren. Ich würde vorschlagen, dass wir sie am Freitagabend machen."],
+      ["B","Freitag passt gut. Wo könnten wir die Feier veranstalten?"],
+      ["A","Wir könnten einen Raum im Restaurant reservieren. Dann müssen wir uns nicht um das Essen kümmern."],
+      ["B","Das wäre praktisch, aber vielleicht etwas teuer."],
+      ["A","Das stimmt. Eine andere Möglichkeit wäre, die Feier bei uns im Büro zu machen und das Essen selbst mitzubringen."],
+      ["B","Das finde ich besser. Was könnten wir ihm schenken?"],
+      ["A","Vielleicht könnten wir gemeinsam ein Geschenk kaufen und jeder gibt zehn Euro dazu."],
+      ["B","Gute Idee. Ich kümmere mich um das Geschenk und du kannst die Kollegen informieren."],
+      ["A","Einverstanden. Dann haben wir die wichtigsten Aufgaben verteilt."]
+    ]
+  },
+  {
+    title:"Wochenendausflug mit Freunden",
+    ko:"친구들과 주말 여행",
+    situation:"Sie möchten mit Freunden einen Wochenendausflug planen.",
+    points:"Ziel · Termin · Verkehrsmittel · Unterkunft · Aktivitäten · Budget",
+    dialogue:[
+      ["A","Wie wäre es, wenn wir am nächsten Wochenende gemeinsam einen Ausflug machen?"],
+      ["B","Gerne. Hast du schon ein Ziel im Kopf?"],
+      ["A","Ich dachte an eine Stadt, die wir mit dem Zug in etwa zwei Stunden erreichen können."],
+      ["B","Das klingt gut. Allerdings sollten wir nicht zu viel Geld ausgeben."],
+      ["A","Dann könnten wir eine günstige Ferienwohnung statt eines Hotels buchen."],
+      ["B","Ja, das wäre eine gute Lösung. Was könnten wir dort unternehmen?"],
+      ["A","Wir könnten am Samstag die Stadt besichtigen und am Sonntag eine Wanderung machen."],
+      ["B","Das gefällt mir. Ich kann nach einer Unterkunft suchen."],
+      ["A","Super. Dann kümmere ich mich um die Zugverbindungen."]
+    ]
+  },
+  {
+    title:"Informationsabend organisieren",
+    ko:"정보 설명회",
+    situation:"Sie sollen gemeinsam einen Informationsabend organisieren.",
+    points:"Termin · Ort · Thema · Referenten · Teilnehmer · Werbung · Aufgaben",
+    dialogue:[
+      ["A","Wir sollen einen Informationsabend organisieren. Ich würde vorschlagen, dass wir zuerst einen passenden Termin finden."],
+      ["B","Ich denke, ein Mittwochabend wäre geeignet, weil die meisten Teilnehmer dann Zeit haben könnten."],
+      ["A","Das sehe ich auch so. Wir brauchen außerdem einen geeigneten Raum."],
+      ["B","Vielleicht können wir den Raum in der Volkshochschule nutzen."],
+      ["A","Gute Idee. Wir sollten auch überlegen, wie wir die Teilnehmer informieren."],
+      ["B","Wir könnten eine E-Mail schicken und zusätzlich einen Flyer erstellen."],
+      ["A","Einverstanden. Ich kann den Flyer vorbereiten."],
+      ["B","Dann kümmere ich mich um den Raum und die E-Mail-Einladung."],
+      ["A","Perfekt. Damit sind die wichtigsten Aufgaben verteilt."]
+    ]
+  },
+  {
+    title:"Sportveranstaltung für eine Gruppe",
+    ko:"단체 스포츠 행사",
+    situation:"Sie möchten eine kleine Sportveranstaltung für Ihre Gruppe planen.",
+    points:"Sportarten · Ort · Termin · Teilnehmer · Ausrüstung · Kosten · Aufgaben",
+    dialogue:[
+      ["A","Ich denke, wir sollten für unsere Gruppe einen Sporttag organisieren. Was hältst du davon?"],
+      ["B","Gute Idee. Welche Sportarten könnten wir anbieten?"],
+      ["A","Vielleicht Fußball, Volleyball und Tischtennis."],
+      ["B","Fußball finde ich gut, aber nicht jeder spielt gerne Fußball."],
+      ["A","Da hast du recht. Deshalb sollten wir verschiedene Möglichkeiten anbieten."],
+      ["B","Wir könnten auch Badminton anbieten. Das wäre für viele geeignet."],
+      ["A","Das klingt gut. Wir müssen allerdings noch eine Sporthalle reservieren."],
+      ["B","Ich kann dort anrufen und nachfragen."],
+      ["A","Super. Dann kümmere ich mich um die Teilnehmerliste und die Ausrüstung."]
+    ]
+  },
+  {
+    title:"Kulturabend organisieren",
+    ko:"문화의 밤",
+    situation:"Sie möchten für Ihre Gruppe einen gemeinsamen Kulturabend organisieren.",
+    points:"Ort · Programm · Essen · Musik · Teilnehmer · Kosten · Aufgaben",
+    dialogue:[
+      ["A","Wie wäre es mit einem gemeinsamen Kulturabend für unsere Gruppe?"],
+      ["B","Das klingt interessant. Was könnten wir an diesem Abend machen?"],
+      ["A","Wir könnten verschiedene Länder vorstellen und typische Speisen mitbringen."],
+      ["B","Das gefällt mir. Wir könnten auch Musik aus verschiedenen Ländern spielen."],
+      ["A","Genau. Für den Ort könnten wir einen Raum im Gemeindezentrum nutzen."],
+      ["B","Allerdings sollten wir vorher klären, ob dort Essen erlaubt ist."],
+      ["A","Richtig. Ich kann dort nachfragen."],
+      ["B","Und ich kann eine Liste erstellen, damit jeder etwas zum Essen mitbringt."],
+      ["A","Dann machen wir es so. Ich kümmere mich um den Raum und du um die Teilnehmerliste."]
+    ]
+  },
+  {
+    title:"Überraschung für einen Freund",
+    ko:"친구를 위한 깜짝 이벤트",
+    situation:"Sie möchten eine Überraschung für einen Freund organisieren.",
+    points:"Termin · Ort · Gäste · Geschenk · Essen · Überraschung · Aufgaben",
+    dialogue:[
+      ["A","Unser Freund hat bald Geburtstag. Ich würde vorschlagen, dass wir eine Überraschungsparty organisieren."],
+      ["B","Das finde ich super. Wo könnten wir die Party machen?"],
+      ["A","Vielleicht bei mir zu Hause. Dort haben wir genug Platz."],
+      ["B","Das wäre praktisch. Aber wir müssen aufpassen, dass er nichts davon erfährt."],
+      ["A","Genau. Deshalb sollten wir die anderen Gäste nur privat informieren."],
+      ["B","Was wollen wir ihm schenken?"],
+      ["A","Wir könnten gemeinsam ein Geschenk kaufen. Ich denke, ein Gutschein wäre eine gute Idee."],
+      ["B","Einverstanden. Ich kann die Gäste informieren und du kümmerst dich um das Geschenk."],
+      ["A","Perfekt. Dann ist alles geklärt."]
+    ]
+  },
+  {
+    title:"Tagesausflug für ältere Teilnehmer",
+    ko:"고령 참가자를 위한 당일 여행",
+    situation:"Sie sollen eine Reise für eine Gruppe älterer Teilnehmer organisieren.",
+    points:"Reiseziel · Dauer · Verkehrsmittel · Unterkunft · Programm · Kosten · Rücksichtnahme",
+    dialogue:[
+      ["A","Wir sollen einen Ausflug für eine Gruppe älterer Teilnehmer organisieren. Ich würde eine möglichst entspannte Reise vorschlagen."],
+      ["B","Da stimme ich dir zu. Die Teilnehmer sollten nicht zu viel laufen müssen."],
+      ["A","Vielleicht könnten wir eine historische Stadt besuchen und eine Stadtführung mit einem Bus organisieren."],
+      ["B","Das klingt gut. Allerdings sollte die Anreise nicht zu lange dauern."],
+      ["A","Dann wählen wir am besten ein Ziel, das höchstens zwei Stunden entfernt ist."],
+      ["B","Einverstanden. Außerdem sollten wir genügend Pausen einplanen."],
+      ["A","Ja, das ist wichtig. Ich kümmere mich um die Busverbindung."],
+      ["B","Und ich informiere die Teilnehmer über das Programm und die Kosten."]
+    ]
+  },
+  {
+    title:"Gemeinsamer Kochabend",
+    ko:"공동 요리 저녁",
+    situation:"Sie möchten gemeinsam mit Ihrer Gruppe einen Kochabend organisieren.",
+    points:"Ort · Termin · Gerichte · Zutaten · Kosten · Teilnehmer · Aufgaben",
+    dialogue:[
+      ["A","Ich würde vorschlagen, dass wir einen gemeinsamen Kochabend veranstalten."],
+      ["B","Das finde ich eine gute Idee. Wo könnten wir kochen?"],
+      ["A","Vielleicht können wir die Küche in unserem Kurszentrum benutzen."],
+      ["B","Das wäre praktisch. Welche Gerichte wollen wir zubereiten?"],
+      ["A","Wir könnten Gerichte aus verschiedenen Ländern machen, sodass jeder etwas Typisches vorstellen kann."],
+      ["B","Gute Idee. Allerdings sollten wir vorher klären, ob jemand Allergien hat."],
+      ["A","Stimmt. Ich kann die Teilnehmer fragen."],
+      ["B","Dann erstelle ich eine Einkaufsliste."],
+      ["A","Perfekt. So können wir auch die Kosten besser planen."]
+    ]
+  },
+  {
+    title:"Familienfest organisieren",
+    ko:"가족 행사",
+    situation:"Sie möchten gemeinsam ein Familienfest organisieren.",
+    points:"Termin · Ort · Kinderprogramm · Essen · Getränke · Kosten · Aufgaben",
+    dialogue:[
+      ["A","Wir möchten ein Familienfest organisieren. Ich denke, ein Samstag im Park wäre eine gute Möglichkeit."],
+      ["B","Das klingt gut, besonders für die Kinder. Was machen wir bei schlechtem Wetter?"],
+      ["A","Wir könnten einen Raum als Alternative reservieren."],
+      ["B","Das ist sinnvoll. Für das Essen würde ich vorschlagen, dass jeder etwas mitbringt."],
+      ["A","Einverstanden. Dann bleiben die Kosten niedrig."],
+      ["B","Wir sollten außerdem Spiele für die Kinder vorbereiten."],
+      ["A","Ich kann mich um die Spiele kümmern. Könntest du die Eltern über den Termin informieren?"],
+      ["B","Ja, gerne. Dann haben wir schon einen guten Plan."]
+    ]
+  },
+  {
+    title:"Flohmarkt für einen guten Zweck",
+    ko:"자선 목적의 벼룩시장",
+    situation:"Sie möchten gemeinsam eine kleine Wohltätigkeitsaktion organisieren.",
+    points:"Ort · Termin · Genehmigung · Gegenstände · Werbung · Einnahmen · Aufgaben",
+    dialogue:[
+      ["A","Wir könnten einen Flohmarkt organisieren und die Einnahmen für einen guten Zweck spenden."],
+      ["B","Das halte ich für eine gute Idee. Wo könnten wir ihn veranstalten?"],
+      ["A","Vielleicht auf dem Schulhof. Allerdings brauchen wir dafür wahrscheinlich eine Genehmigung."],
+      ["B","Richtig. Ich kann mich darum kümmern."],
+      ["A","Dann würde ich einen Flyer erstellen und online Werbung machen."],
+      ["B","Gut. Außerdem müssen wir Leute finden, die gebrauchte Sachen mitbringen."],
+      ["A","Ich frage die anderen Teilnehmer. Wie wäre es, wenn wir die Preise gemeinsam festlegen?"],
+      ["B","Ja, machen wir das so. Dann sind die Aufgaben klar verteilt."]
+    ]
+  },
+  {
+    title:"Gemeinsamer Lerntag",
+    ko:"공동 학습일",
+    situation:"Sie möchten mit anderen Kursteilnehmern einen gemeinsamen Lerntag organisieren.",
+    points:"Termin · Ort · Lernplan · Pausen · Materialien · Teilnehmer · Aufgaben",
+    dialogue:[
+      ["A","Ich würde vorschlagen, dass wir vor der Prüfung einen gemeinsamen Lerntag organisieren."],
+      ["B","Das wäre für mich sehr hilfreich. Wo könnten wir lernen?"],
+      ["A","Vielleicht in der Bibliothek. Dort ist es ruhig."],
+      ["B","Gute Idee. Wir sollten aber auch genügend Pausen einplanen."],
+      ["A","Natürlich. Wir könnten morgens Grammatik und nachmittags Sprechen üben."],
+      ["B","Das finde ich sinnvoll. Jeder könnte außerdem ein Thema vorbereiten."],
+      ["A","Dann übernehme ich die Organisation des Sprechtrainings."],
+      ["B","Und ich kann die Lernmaterialien zusammenstellen."]
+    ]
+  }
 ];
+
 function newPlan(){
- let p=plans[Math.floor(Math.random()*plans.length)];
- document.getElementById("plan").innerHTML=`
- <div class="feedback"><b>Situation:</b><br>${p}
- <div class="phrase"><b>Besprechen Sie:</b> Termin · Ort · Kosten · Aufgaben · Teilnehmer · Entscheidung</div>
- <button type="button" class="secondary" onclick="tab('rec');prepareRecording('Teil 3 – ${escapeAttr(p)}')">🎙 Antwort aufnehmen</button></div>`;
+  const p=plans[Math.floor(Math.random()*plans.length)];
+  const dialogueHTML=p.dialogue.map((d,i)=>`
+    <div class="phrase" style="border-left-color:${d[0]==="A"?"#111827":"#6366f1"}">
+      <b>${d[0]}:</b> ${escapeHTML(d[1])}
+    </div>`).join("");
+
+  document.getElementById("plan").innerHTML=`
+    <div class="feedback">
+      <span class="badge">THEMA ${plans.indexOf(p)+1} / ${plans.length}</span>
+      <h3 style="margin-bottom:6px">${escapeHTML(p.title)}</h3>
+      <p class="small"><b>🇰🇷 ${escapeHTML(p.ko)}</b></p>
+      <p><b>Situation:</b><br>${escapeHTML(p.situation)}</p>
+      <div class="phrase"><b>Besprechen Sie:</b> ${escapeHTML(p.points)}</div>
+
+      <details open>
+        <summary>🇩🇪 5-Minuten-Musterdialog anzeigen</summary>
+        <div style="margin-top:8px">${dialogueHTML}</div>
+      </details>
+
+      <details>
+        <summary>🇰🇷 핵심 내용 한국어로 보기</summary>
+        <div class="phrase">
+          <b>상황:</b> ${escapeHTML(p.ko)}을/를 함께 계획합니다.<br><br>
+          <b>대화의 핵심:</b> 먼저 한 사람이 제안하고, 상대방이 동의하거나 문제점을 제시합니다.
+          이후 더 저렴하거나 편리한 대안을 제시하고, 마지막에는 날짜·장소·비용·역할 등을 구체적으로 결정합니다.
+        </div>
+        <p class="small">※ 전체 독일어 대화를 한국어로 번역해 암기하기보다, 독일어 문장 구조를 그대로 말하는 연습을 권장합니다.</p>
+      </details>
+
+      <details>
+        <summary>🎯 암기할 핵심 구조</summary>
+        <div class="phrase"><b>1. Vorschlag:</b> Ich würde vorschlagen, dass wir …</div>
+        <div class="phrase"><b>2. Reaktion:</b> Das klingt gut, aber …</div>
+        <div class="phrase"><b>3. Alternative:</b> Stattdessen könnten wir …</div>
+        <div class="phrase"><b>4. Begründung:</b> Das wäre sinnvoll, weil …</div>
+        <div class="phrase"><b>5. Kompromiss:</b> Vielleicht können wir beides miteinander verbinden.</div>
+        <div class="phrase"><b>6. Entscheidung:</b> Dann sind wir uns also einig, dass …</div>
+        <div class="phrase"><b>7. Aufgaben:</b> Ich kümmere mich um … / Du übernimmst …</div>
+      </details>
+
+      <div class="row" style="margin-top:8px">
+        <button type="button" class="secondary" onclick="tab('rec');prepareRecording('Teil 3 – ${escapeAttr(p.title)}')">🎙 Antwort aufnehmen</button>
+        <button type="button" class="secondary" onclick="newPlan()">🎲 다른 주제</button>
+      </div>
+    </div>`;
+}
+
+/* 기존 프로그램과의 호환을 위해 남겨 둔 함수 */
+function translateRough(s){
+  const map = {
+    "Ich würde vorschlagen, dass wir einen Tagesausflug für unsere Deutschkursgruppe organisieren. Was hältst du davon?":"독일어 코스 그룹을 위한 당일 여행을 계획해 보는 게 어떨까? 어떻게 생각해?",
+    "Das finde ich grundsätzlich gut. Aber wohin könnten wir fahren?":"기본적으로 좋은 생각이라고 생각해. 그런데 어디로 갈 수 있을까?",
+    "Wie wäre es mit Heidelberg? Die Stadt ist nicht zu weit entfernt und es gibt dort viel zu sehen.":"하이델베르크는 어때? 너무 멀지 않고 볼 것도 많아.",
+    "Heidelberg klingt gut. Allerdings könnte die Zugfahrt ziemlich teuer sein.":"하이델베르크가 좋을 것 같아. 하지만 기차 요금이 꽤 비쌀 수도 있어.",
+    "Das stimmt. Stattdessen könnten wir mit dem Bus fahren. Das wäre wahrscheinlich günstiger.":"맞아. 대신 버스를 타고 갈 수도 있어. 아마 더 저렴할 거야.",
+    "Einverstanden. Wann sollten wir losfahren?":"좋아. 언제 출발하면 좋을까?",
+    "Ich würde sagen, am Samstag gegen 9 Uhr. Dann haben wir genug Zeit.":"토요일 9시쯤이 좋을 것 같아. 그러면 시간이 충분해.",
+    "Gut. Wir könnten zuerst die Altstadt besichtigen und danach gemeinsam essen gehen.":"좋아. 먼저 구시가지를 둘러보고 그다음 같이 식사하러 가면 좋겠어.",
+    "Das gefällt mir. Ich kümmere mich um die Fahrkarten. Könntest du ein Restaurant reservieren?":"좋아. 내가 기차표를 알아볼게. 너는 식당을 예약해 줄래?",
+    "Ja, gerne. Dann sind wir uns also einig, dass wir am Samstag nach Heidelberg fahren.":"물론이지. 그럼 토요일에 하이델베르크에 가는 것으로 합의하자."
+  };
+  return map[s] || "→ 이 문장의 핵심 의미를 이해하고 독일어로 직접 말해보세요.";
 }
 
 const ps=[
