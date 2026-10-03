@@ -1,25 +1,18 @@
 {
-  "name": "telc B2 Sprechen Trainer",
-  "short_name": "B2 Sprechen",
-  "description": "Mobile telc B2 German speaking practice trainer",
-  "lang": "de",
+  "name": "German Exam Trainer",
+  "short_name": "Exam Trainer",
+  "description": "TELC B1, TELC B2, Goethe B1 and Goethe B2 speaking and writing practice.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
+  "background_color": "#f5f7fb",
+  "theme_color": "#0f172a",
   "orientation": "portrait",
-  "background_color": "#f3f4f6",
-  "theme_color": "#111827",
   "icons": [
     {
-      "src": "./icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "./icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "any maskable"
     }
   ]

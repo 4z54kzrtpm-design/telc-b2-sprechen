@@ -1,1168 +1,482 @@
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#111827">
-<meta name="app-version" content="2026-10-02-teil3-v3">
-<link rel="manifest" href="./manifest.webmanifest">
-<title>telc B2 Sprechen Trainer v3</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="German Exam Trainer">
+<meta name="theme-color" content="#0f172a">
+<meta name="description" content="German Exam Trainer for telc B1, telc B2, Goethe B1 and Goethe B2.">
+<title>German Speaking Exam Trainer</title>
+<link rel="manifest" href="manifest.webmanifest">
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;background:#f3f4f6;color:#172033;font-family:Arial,sans-serif}
-body{padding-bottom:env(safe-area-inset-bottom)}
-.app{max-width:760px;margin:auto;background:#fff;min-height:100vh}
-header{background:#111827;color:#fff;padding:18px 15px 14px;position:sticky;top:0;z-index:20}
-header h1{margin:0 0 4px;font-size:21px}
-header p{margin:0;color:#cbd5e1;font-size:13px}
-nav{display:flex;gap:6px;padding:8px;overflow-x:auto;position:sticky;top:72px;background:#fff;z-index:19;border-bottom:1px solid #ddd;-webkit-overflow-scrolling:touch}
-nav button{border:0;border-radius:10px;padding:10px 12px;font-weight:bold;white-space:nowrap;min-height:42px;touch-action:manipulation}
-nav button.active{background:#111827;color:#fff}
-main{padding:12px}
-section{display:none}
-section.active{display:block}
-.card{border:1px solid #e5e7eb;border-radius:15px;padding:15px;margin-bottom:12px;box-shadow:0 2px 8px #00000008}
-.hero{background:#eef2ff}
-.badge{display:inline-block;padding:5px 9px;border-radius:99px;background:#e0e7ff;color:#3730a3;font-size:12px;font-weight:bold}
-h2{font-size:20px;margin:8px 0}
-h3{font-size:16px}
-.small{color:#64748b;font-size:13px;line-height:1.5}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.topic{background:#fff;border:1px solid #dbe1ea;border-radius:12px;padding:14px;text-align:left;min-height:86px;touch-action:manipulation}
-.topic strong{display:block;margin-bottom:5px}
-.topic span{font-size:12px;color:#64748b}
-.row{display:flex;gap:8px;flex-wrap:wrap}
-button.primary,button.secondary,button.danger{padding:11px 14px;border-radius:11px;font-weight:bold;min-height:44px;touch-action:manipulation}
-button.primary{background:#111827;color:#fff;border:0}
-button.secondary{background:#fff;border:1px solid #cbd5e1}
-button.danger{background:#fff;border:1px solid #fecaca;color:#b91c1c}
-button:active{transform:scale(.98)}
-.timer{text-align:center;font-size:50px;font-weight:800;margin:10px 0;font-variant-numeric:tabular-nums}
-.phrase{background:#f8fafc;border-left:4px solid #94a3b8;border-radius:9px;padding:11px;margin:8px 0;line-height:1.45}
-details{border:1px solid #e5e7eb;border-radius:9px;padding:10px;margin:7px 0}
-summary{font-weight:bold;cursor:pointer}
-.pill{font-size:12px;color:#64748b}
-.progress{height:9px;background:#e5e7eb;border-radius:99px;overflow:hidden}
-.progress>div{height:100%;background:#111827;width:0;transition:.25s}
-.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.stat{background:#f8fafc;border-radius:12px;padding:12px;text-align:center}
-.stat b{display:block;font-size:21px}
-.stat span{font-size:11px;color:#64748b}
-.choice{width:100%;text-align:left;margin:6px 0;padding:12px;border:1px solid #dbe1ea;background:#fff;border-radius:10px;font-size:15px;line-height:1.35}
-.choice.correct{border-color:#16a34a;background:#f0fdf4}
-.choice.wrong{border-color:#dc2626;background:#fef2f2}
-textarea,input{width:100%;border:1px solid #cbd5e1;border-radius:10px;padding:12px;font:inherit}
-textarea{min-height:105px;resize:vertical}
-.feedback{padding:12px;border-radius:10px;background:#f8fafc;line-height:1.55}
-.kpi{font-size:13px;padding:7px 0}
-.record-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#dc2626;margin-right:6px}
-.hidden{display:none!important}
-.sticky-actions{position:sticky;bottom:8px;background:#ffffffed;padding:8px 0;z-index:10}
-@media(max-width:520px){.grid{grid-template-columns:1fr}.statgrid{grid-template-columns:repeat(3,1fr)}main{padding:10px}}
-
-.plan-topic-note{margin-top:8px;padding:10px;border-radius:10px;background:#f8fafc;font-size:13px;line-height:1.5}
-
+:root{--bg:#f5f7fb;--card:#fff;--ink:#172033;--muted:#687386;--line:#e5e9f0;--accent:#2563eb;--accent2:#0f172a;--good:#16a34a;--warn:#d97706;--shadow:0 10px 30px rgba(15,23,42,.08)}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+button{font:inherit;border:0;cursor:pointer}.app{max-width:760px;margin:auto;min-height:100vh}.top{background:var(--accent2);color:white;padding:22px 18px 18px;position:sticky;top:0;z-index:10}.brand{font-weight:800;font-size:20px}.sub{opacity:.72;font-size:12px;margin-top:4px}.screen{display:none;padding:18px}.screen.active{display:block}.hero{padding:18px 0 10px}.hero h1{font-size:32px;line-height:1.08;margin:0 0 10px}.hero p{color:var(--muted);line-height:1.5}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.exam{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow);text-align:left;min-height:145px}.exam strong{display:block;font-size:19px}.exam span{display:block;color:var(--muted);font-size:13px;margin-top:7px;line-height:1.4}.badge{display:inline-block;margin-top:12px;background:#eef2ff;color:#3730a3;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:700}.section-title{font-size:14px;font-weight:800;margin:22px 0 10px}.cards{display:grid;gap:10px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px;box-shadow:0 5px 18px rgba(15,23,42,.05)}.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.small{font-size:12px;color:var(--muted)}.btn{background:var(--accent);color:#fff;border-radius:12px;padding:10px 13px;font-weight:700}.btn.secondary{background:#eef2f7;color:var(--ink)}.btn.dark{background:var(--accent2)}.btn.full{width:100%;margin-top:10px}.back{background:transparent;color:inherit;padding:0;font-size:13px;opacity:.8}.pillbar{display:flex;gap:8px;overflow:auto;padding:5px 0 12px}.pill{white-space:nowrap;background:#fff;border:1px solid var(--line);padding:8px 12px;border-radius:999px;color:var(--muted)}.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}.task{font-size:17px;line-height:1.5;font-weight:700}.en{color:var(--muted);font-size:13px;line-height:1.45;margin-top:8px}.de{font-size:16px;line-height:1.6;background:#f8fafc;border-radius:12px;padding:12px;margin-top:12px}.phrase{padding:11px 0;border-bottom:1px solid var(--line)}.phrase:last-child{border-bottom:0}.timer{text-align:center;font-size:52px;font-weight:800;letter-spacing:2px;margin:15px 0}.timerbox{background:#0f172a;color:#fff;border-radius:20px;padding:18px}.progress{height:8px;background:#e7ebf1;border-radius:10px;overflow:hidden}.progress>i{display:block;height:100%;background:var(--accent);width:0}.nav{position:sticky;bottom:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;padding:8px;gap:5px;z-index:9}.nav button{flex:1;background:transparent;color:var(--muted);padding:8px 4px;font-size:11px}.nav button.active{color:var(--accent);font-weight:800}.recording{display:flex;gap:8px;flex-wrap:wrap}.note{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:12px;padding:12px;font-size:12px;line-height:1.5}.success{background:#ecfdf5;border:1px solid #bbf7d0;color:#166534;border-radius:12px;padding:12px;font-size:12px}.locked{opacity:.7;position:relative}.lock{position:absolute;right:14px;top:14px}.price{font-size:25px;font-weight:900}.writing-model{white-space:pre-wrap}.structure-item{padding:10px 0;border-bottom:1px solid var(--line)}.structure-item:last-child{border-bottom:0}.writing-limit{font-size:12px;color:var(--muted);margin-top:5px}.footer{color:var(--muted);font-size:11px;line-height:1.5;padding:25px 2px 90px}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.hero h1{font-size:28px}.screen{padding:15px}}
 </style>
 </head>
 <body>
 <div class="app">
-<header>
-  <h1>🇩🇪 telc B2 Sprechen Trainer</h1>
-  <p>Teil 1 · Teil 2 · Teil 3 · Ausdruck · Aufnahme</p>
+<header class="top">
+  <div class="brand">German Speaking Exam Trainer</div>
+  <div class="sub" id="topSub">TELC B1 · TELC B2 · Goethe B1 · Goethe B2 · Sprechen + Schreiben</div>
 </header>
-<nav id="nav"></nav>
+
 <main>
+<section id="home" class="screen active">
+  <div class="hero">
+    <h1>Practice the speaking exam.<br>Not random German.</h1>
+    <p>Choose your exam and train the exact speaking format with timed preparation, model answers, useful phrases and recording.</p>
+  </div>
+  <div class="section-title">Choose your exam</div>
+  <div class="grid" id="examGrid"></div>
+  <div class="section-title">Your progress</div>
+  <div class="card">
+    <div class="row"><strong>Speaking sessions</strong><span id="sessions">0</span></div>
+    <div class="progress" style="margin-top:10px"><i id="progressBar"></i></div>
+    <div class="small" style="margin-top:7px">Local progress on this device</div>
+  </div>
+  <div class="section-title">Why this app?</div>
+  <div class="cards">
+    <div class="card"><strong>🎯 Exam-specific</strong><div class="small">TELC and Goethe are separated instead of mixing different formats.</div></div>
+    <div class="card"><strong>⏱️ Timed practice</strong><div class="small">Train under realistic preparation and speaking time pressure.</div></div>
+    <div class="card"><strong>🎙️ Speak out loud</strong><div class="small">Use your browser microphone to record and compare your answer.</div></div>
+  </div>
+</section>
 
-<section id="home" class="active">
-  <div class="card hero">
-    <span class="badge">B2 Sprechen</span>
-    <h2>오늘의 말하기 훈련</h2>
-    <p>시험처럼 연습하고, 부족한 부분은 반복하세요.</p>
-    <div class="progress"><div id="dailyProgress"></div></div>
-    <p class="small" id="dailyText">오늘 0 / 3 세션 완료</p>
-    <div class="row">
-      <button class="primary" onclick="startRoutine()">▶ 오늘의 루틴 시작</button>
+<section id="exam" class="screen">
+  <button class="back" onclick="show('home')">← All exams</button>
+  <div class="hero"><h1 id="examTitle"></h1><p id="examDesc"></p></div>
+  <div class="note" id="examNote"></div>
+  <div class="section-title">Speaking format</div>
+  <div class="cards" id="parts"></div>
+  <div class="section-title">Practice</div>
+  <div class="cards" id="topicCards"></div>
+</section>
+
+<section id="practice" class="screen">
+  <button class="back" onclick="openExam(currentExam)">← Back to exam</button>
+  <div class="hero"><h1 id="practiceTitle"></h1><p id="practicePart"></p></div>
+  <div class="card">
+    <div class="task" id="task"></div>
+    <div class="en" id="taskEn"></div>
+    <div class="section-title">Key points</div>
+    <div id="points"></div>
+    <div class="section-title">Model answer</div>
+    <div class="de" id="model"></div>
+    <div class="en" id="modelEn"></div>
+  </div>
+  <div class="timerbox">
+    <div class="small" style="color:#cbd5e1">Speaking timer</div>
+    <div class="timer" id="timer">01:30</div>
+    <div class="recording">
+      <button class="btn" id="startRec">🎙 Start recording</button>
+      <button class="btn secondary" id="stopRec" disabled>Stop</button>
+      <button class="btn secondary" id="resetTimer">Reset</button>
     </div>
+    <audio id="audio" controls style="display:none;width:100%;margin-top:12px"></audio>
   </div>
-  <div class="card">
-    <h3>📊 나의 기록</h3>
-    <div class="statgrid">
-      <div class="stat"><b id="statSessions">0</b><span>완료 세션</span></div>
-      <div class="stat"><b id="statRecordings">0</b><span>녹음</span></div>
-      <div class="stat"><b id="statDays">0</b><span>연속 학습일</span></div>
-    </div>
-  </div>
-  <div class="card">
-    <h3>추천 루틴</h3>
-    <p class="kpi"><b>① Teil 1</b> — 주제 하나를 90초 동안 말하기</p>
-    <p class="kpi"><b>② Teil 2</b> — 의견 → 이유 → 예시 → 상대방 반응</p>
-    <p class="kpi"><b>③ Teil 3</b> — Vorschlag → Reaktion → Kompromiss → Entscheidung</p>
-  </div>
-</section>
-
-<section id="t1">
-  <div class="card">
-    <span class="badge">TEIL 1 · Über Erfahrungen sprechen</span>
-    <h2>주제 선택</h2>
-    <p class="small">하나를 골라 90초 동안 자유롭게 말하세요.</p>
-    <div class="grid" id="topics"></div>
-  </div>
-  <div id="topic"></div>
-</section>
-
-<section id="t2">
-  <div class="card">
-    <span class="badge">TEIL 2 · Diskussion</span>
-    <h2>텍스트 → 의견 → 토론</h2>
-    <div id="discCard">
-      <p class="small">랜덤 주제를 뽑고 실제 시험처럼 말해보세요.</p>
-      <button class="primary" onclick="newDisc()">🎲 랜덤 토론 주제</button>
-      <div id="disc"></div>
-    </div>
-  </div>
-  <div class="card">
-    <h3>🧩 B2 답변 구조</h3>
-    <div class="phrase"><b>In dem Text geht es um die Frage, ob …</b></div>
-    <div class="phrase"><b>Ich persönlich bin der Meinung, dass …</b></div>
-    <div class="phrase"><b>Ein wichtiger Grund dafür ist, dass …</b></div>
-    <div class="phrase"><b>Ein gutes Beispiel dafür ist …</b></div>
-    <div class="phrase"><b>Andererseits darf man nicht vergessen, dass …</b></div>
-    <div class="phrase"><b>Wie siehst du das?</b></div>
-  </div>
-  <div class="card">
-    <h3>💬 반응 표현</h3>
-    <div class="phrase">Da stimme ich dir vollkommen zu.</div>
-    <div class="phrase">Da hast du teilweise recht.</div>
-    <div class="phrase">Das kann ich nachvollziehen, aber …</div>
-    <div class="phrase">Ich sehe das etwas anders.</div>
-    <button class="secondary" onclick="markSession('t2')">✓ 연습 완료</button>
-  </div>
-</section>
-
-<section id="t3">
-  <div class="card">
-    <span class="badge">TEIL 3 · Gemeinsam etwas planen</span>
-    <h2>함께 계획하기</h2>
-    <p class="small">주제별 상황을 뽑고, 제안 → 반응 → 대안 → 타협 → 역할 분담 → 최종 결정까지 연습합니다.</p>
-    <button class="primary" onclick="newPlan()">🎲 랜덤 계획 문제</button>
-    <p class="small">총 12개 주제 · 각 주제별 5분 실전 예문 포함</p>
-    <div id="plan"></div>
-  </div>
-  <div class="card">
-    <h3>🤝 대화 흐름</h3>
-    <div class="phrase"><b>Ich würde vorschlagen, dass wir …</b></div>
-    <div class="phrase"><b>Was hältst du davon?</b></div>
-    <div class="phrase"><b>Das klingt gut, aber …</b></div>
-    <div class="phrase"><b>Wie wäre es, wenn wir …?</b></div>
-    <div class="phrase"><b>Vielleicht können wir beides miteinander verbinden.</b></div>
-    <div class="phrase"><b>Dann sind wir uns also einig, dass …</b></div>
-    <button class="secondary" onclick="markSession('t3')">✓ 연습 완료</button>
-  </div>
-</section>
-
-<section id="ph">
-  <div class="card">
-    <h2>⭐ B2 핵심 표현</h2>
-    <p class="small">표현을 보는 데서 끝내지 말고 직접 문장을 만들어 말하세요.</p>
-    <div id="phraseDrill"></div>
-  </div>
+  <button class="btn full" onclick="markDone()">✓ Mark practice complete</button>
+  <div class="success" id="doneMsg" style="display:none;margin-top:10px">Completed. Keep speaking without reading the model answer.</div>
 </section>
 
 
-<section id="ai">
-  <div class="card hero">
-    <span class="badge">🤖 SPRECHPARTNER</span>
-    <h2>AI 시험 파트너</h2>
-    <p class="small">앱이 상대방 역할을 하면서 독일어로 대화를 이어갑니다. 마이크로 말하거나 직접 입력할 수 있습니다.</p>
-    <div class="row">
-      <button type="button" class="primary" onclick="startAI('t2')">💬 Teil 2 시작</button>
-      <button type="button" class="secondary" onclick="startAI('t3')">🤝 Teil 3 시작</button>
+<section id="writing" class="screen">
+  <button class="back" onclick="show('home')">← Home</button>
+  <div class="hero"><h1>✍️ Schreiben</h1><p>Practice the writing format with tasks, word count and model answers.</p></div>
+  <div class="section-title">Choose your exam</div>
+  <div class="grid" id="writingExamGrid"></div>
+</section>
+
+<section id="writingExam" class="screen">
+  <button class="back" onclick="show('writing')">← All writing exams</button>
+  <div class="hero"><h1 id="writingExamTitle"></h1><p id="writingExamDesc"></p></div>
+  <div class="note" id="writingExamNote"></div>
+  <div class="section-title">Writing tasks</div>
+  <div class="cards" id="writingTasks"></div>
+</section>
+
+<section id="writingPractice" class="screen">
+  <button class="back" onclick="openWritingExam(currentWritingExam)">← Back to writing tasks</button>
+  <div class="hero"><h1 id="writingPracticeTitle"></h1><p id="writingPracticePart"></p></div>
+
+  <div class="card">
+    <div class="task" id="writingTask"></div>
+    <div class="en" id="writingTaskEn"></div>
+
+    <div class="section-title">Aufgabenpunkte</div>
+    <div id="writingPoints"></div>
+
+    <div class="section-title">Your answer</div>
+    <textarea id="writingInput" placeholder="Schreiben Sie Ihre Antwort hier ..." style="width:100%;min-height:240px;border:1px solid var(--line);border-radius:14px;padding:14px;font:inherit;line-height:1.6;resize:vertical"></textarea>
+    <div class="row" style="margin-top:8px">
+      <span class="small" id="wordCount">0 Wörter</span>
+      <button class="btn secondary" onclick="clearWriting()">Clear</button>
     </div>
   </div>
 
   <div class="card">
-    <div class="small" id="aiScenario">먼저 Teil 2 또는 Teil 3를 선택하세요.</div>
-    <div id="aiChat" style="margin-top:10px"></div>
-
-    <div id="aiInputArea" class="hidden">
-      <div class="phrase" id="aiPrompt"></div>
-      <textarea id="aiText" placeholder="독일어로 답변하세요. 예: Ich bin der Meinung, dass ..."></textarea>
-      <div class="row" style="margin-top:8px">
-        <button type="button" class="primary" onclick="submitAIText()">Antwort senden</button>
-        <button type="button" class="secondary" id="speechBtn" onclick="startSpeech()">🎙 말해서 답하기</button>
-      </div>
-      <p class="small" id="speechStatus"></p>
-    </div>
+    <div class="section-title" style="margin-top:0">⭐ Musterantwort</div>
+    <div class="de" id="writingModel"></div>
+    <div class="en" id="writingModelEn"></div>
   </div>
 
-  <div class="card hidden" id="aiFeedback">
-    <h3>📊 말하기 피드백</h3>
-    <div id="aiFeedbackBody"></div>
-  </div>
-</section>
-
-<section id="rec">
   <div class="card">
-    <span class="badge">🎙 SPEAKING RECORD</span>
-    <h2>나의 말하기 녹음</h2>
-    <p class="small">브라우저에서 직접 녹음하고 재생할 수 있습니다. 녹음 파일은 이 기기의 브라우저 저장소에 보관됩니다.</p>
-    <button class="primary" id="recordBtn" onclick="toggleRecord()">● 녹음 시작</button>
-    <div id="recordStatus" class="small" style="margin-top:10px"></div>
-    <div id="recordings"></div>
+    <div class="section-title" style="margin-top:0">🔎 Useful structure</div>
+    <div id="writingStructure"></div>
   </div>
+
+  <button class="btn full" onclick="markWritingDone()">✓ Mark writing practice complete</button>
+  <div class="success" id="writingDoneMsg" style="display:none;margin-top:10px">Completed. Now write the same task again without looking at the model answer.</div>
 </section>
 
-<section id="routine">
-  <div class="card hero">
-    <span class="badge">15분 루틴</span>
-    <h2 id="routineTitle">오늘의 루틴</h2>
-    <p id="routineDesc">시험에 가까운 순서로 연습합니다.</p>
-  </div>
-  <div class="card" id="routineBody"></div>
+<section id="phrases" class="screen">
+  <div class="hero"><h1>Useful phrases</h1><p>High-value expressions for speaking exams.</p></div>
+  <div class="pillbar" id="phraseFilter"></div>
+  <div class="card" id="phraseList"></div>
 </section>
 
+<section id="routine" class="screen">
+  <div class="hero"><h1>15-minute routine</h1><p>A simple daily routine for exam speaking practice.</p></div>
+  <div class="cards">
+    <div class="card"><strong>1. Prepare — 3 min</strong><div class="small">Read the task. Write only keywords, not full sentences.</div></div>
+    <div class="card"><strong>2. Speak — 4 min</strong><div class="small">Speak freely. Use your structure and connect your ideas.</div></div>
+    <div class="card"><strong>3. Record — 4 min</strong><div class="small">Listen once. Check fluency, vocabulary, grammar and pronunciation.</div></div>
+    <div class="card"><strong>4. Repeat — 4 min</strong><div class="small">Answer the same task again without looking at the model answer.</div></div>
+  </div>
+  <div class="note" style="margin-top:12px">Tip: The goal is not to memorize one perfect answer. Build reusable speaking structures.</div>
+</section>
 </main>
+
+<nav class="nav">
+ <button onclick="show('home')" id="navHome">🏠<br>Home</button>
+ <button onclick="show('writing')" id="navWriting">✍️<br>Schreiben</button>
+  <button onclick="show('phrases')" id="navPhrases">💬<br>Phrases</button>
+ <button onclick="show('routine')" id="navRoutine">⏱<br>Routine</button>
+</nav>
+<div class="footer">
+Independent learning tool. Not affiliated with or endorsed by telc gGmbH or Goethe-Institut.
+Exam formats can change; always check the current official exam information before your test.
+</div>
 </div>
 
 <script>
-const nav=[
- ["home","홈"],["t1","Teil 1"],["t2","Teil 2"],["t3","Teil 3"],["ph","표현"],["ai","🤖 대화"],["rec","🎙 녹음"]
-];
-document.getElementById("nav").innerHTML=nav.map(x=>
- `<button type="button" data-id="${x[0]}" onclick="tab('${x[0]}')">${x[1]}</button>`
-).join("");
-
-function tab(id){
- document.querySelectorAll("section").forEach(x=>x.classList.remove("active"));
- const el=document.getElementById(id);
- if(!el)return;
- el.classList.add("active");
- document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("active",x.dataset.id===id));
- window.scrollTo({top:0,behavior:"smooth"});
-}
-tab("home");
-
-const data=[
- ["📖 Ein Buch","Ein Buch, das Sie gelesen haben","읽은 책",
-  ["Warum haben Sie sich für dieses Buch entschieden?","Was hat Ihnen besonders gut gefallen?","Würden Sie das Buch weiterempfehlen?","Was haben Sie daraus gelernt?"],
-  `Ich möchte heute über ein Buch sprechen, das ich vor einiger Zeit gelesen habe. Es handelt sich um „Der Alchimist“ von Paulo Coelho. Ich habe mich für dieses Buch entschieden, weil mir ein Freund das Buch empfohlen hat. Besonders gut gefallen hat mir die Geschichte, weil sie davon handelt, seine eigenen Ziele zu verfolgen und nicht so schnell aufzugeben. Außerdem fand ich die Sprache einfach und gleichzeitig sehr interessant. Ich würde das Buch auf jeden Fall weiterempfehlen, besonders Menschen, die sich gerade beruflich oder persönlich neu orientieren. Aus dem Buch habe ich gelernt, dass man seine Ziele ernst nehmen und auch in schwierigen Situationen nicht sofort aufgeben sollte.`,
-  `저는 얼마 전에 읽은 책에 대해 이야기하고 싶습니다. 파울로 코엘료의 《연금술사》라는 책입니다. 친구가 이 책을 추천해 주어서 읽게 되었습니다. 특히 자신의 목표를 추구하고 쉽게 포기하지 않는다는 내용이 마음에 들었습니다. 또한 문체가 쉽고 동시에 매우 흥미로웠습니다. 특히 직업적으로나 개인적으로 새로운 방향을 찾고 있는 사람들에게 이 책을 추천하고 싶습니다. 이 책을 통해 목표를 진지하게 생각하고 어려운 상황에서도 쉽게 포기하지 않는 것이 중요하다는 것을 배웠습니다.`],
- ["🎬 Ein Film","Einen Film, den Sie gesehen haben","본 영화",
-  ["Warum haben Sie diesen Film gesehen?","Was hat Ihnen besonders gefallen?","Würden Sie den Film weiterempfehlen?","Was ist Ihnen besonders im Gedächtnis geblieben?"],
-  `Ich möchte über einen Film sprechen, den ich vor einiger Zeit gesehen habe. Der Film heißt „The Pursuit of Happyness“. Ich habe ihn gesehen, weil mir ein Freund davon erzählt und ihn empfohlen hat. Besonders gut gefallen hat mir, dass der Film zeigt, wie wichtig Ausdauer und Hoffnung in schwierigen Situationen sind. Die Hauptfigur hat viele Probleme, gibt aber trotzdem nicht auf. Ich würde den Film weiterempfehlen, weil die Geschichte sehr emotional und gleichzeitig motivierend ist. Besonders im Gedächtnis geblieben ist mir eine Szene, in der der Vater seinem Sohn erklärt, dass er seine Träume nicht aufgeben soll.`,
-  `저는 얼마 전에 본 영화에 대해 이야기하고 싶습니다. 영화 제목은 《행복을 찾아서》입니다. 친구가 이 영화를 추천해 주어서 보게 되었습니다. 어려운 상황에서도 끈기와 희망이 얼마나 중요한지를 보여준다는 점이 특히 좋았습니다. 주인공은 많은 어려움을 겪지만 포기하지 않습니다. 이야기가 감동적이면서도 동기부여가 되기 때문에 추천하고 싶습니다. 특히 아버지가 아들에게 꿈을 포기하지 말라고 말하는 장면이 기억에 남았습니다.`],
- ["✈️ Eine Reise","Eine Reise, die Sie unternommen haben","다녀온 여행",
-  ["Warum haben Sie diese Reise gemacht?","Was hat Ihnen am besten gefallen?","Würden Sie die Reise wiederholen?","Was würden Sie beim nächsten Mal anders machen?"],
-  `Ich möchte über eine Reise sprechen, die ich vor etwa sechs Monaten mit meiner Familie nach Luzern in der Schweiz gemacht habe. Wir wollten gemeinsam Zeit verbringen und eine neue Gegend kennenlernen. Besonders gut gefallen hat mir der große See, weil wir dort eine Fähre nehmen konnten. Außerdem sind wir mit einer Bergbahn auf zwei Berge gefahren und konnten unterwegs eine wunderschöne Landschaft genießen. Die Reise würde ich auf jeden Fall wiederholen, weil sie für die ganze Familie interessant war. Beim nächsten Mal würde ich allerdings länger bleiben, damit wir noch mehr Sehenswürdigkeiten besuchen können.`,
-  `약 6개월 전에 가족과 함께 스위스 루체른으로 여행을 갔던 경험에 대해 이야기하고 싶습니다. 가족과 함께 시간을 보내고 새로운 지역을 알아보기 위해 여행을 했습니다. 특히 큰 호수가 마음에 들었고, 그곳에서 페리를 탈 수 있었습니다. 또한 산악열차를 타고 두 곳의 산에 올라가면서 아름다운 풍경을 즐겼습니다. 온 가족에게 흥미로운 여행이었기 때문에 다시 가고 싶습니다. 다음에는 더 많은 관광지를 보기 위해 조금 더 오래 머물고 싶습니다.`],
- ["🎵 Musikveranstaltung","Eine Musikveranstaltung, die Sie besucht haben","음악 행사",
-  ["Welche Musik wurde gespielt?","Wie war die Atmosphäre?","Was hat Ihnen am besten gefallen?","Würden Sie wieder hingehen?"],
-  `Ich möchte über ein Konzert sprechen, das ich vor einiger Zeit besucht habe. Es fand an einem Samstagabend in einer großen Konzerthalle statt. Gespielt wurde hauptsächlich Popmusik, und einige bekannte Lieder wurden vom Publikum mitgesungen. Die Atmosphäre war sehr lebendig und gleichzeitig freundlich. Besonders gut gefallen hat mir die Stimmung zwischen den Musikern und dem Publikum. Ich würde gerne wieder hingehen, weil die Veranstaltung eine gute Möglichkeit war, den Alltag zu vergessen und mit Freunden eine schöne Zeit zu verbringen.`,
-  `저는 얼마 전에 갔던 콘서트에 대해 이야기하고 싶습니다. 토요일 저녁에 큰 콘서트홀에서 열렸습니다. 주로 팝 음악이 연주되었고, 관객들도 몇몇 유명한 노래를 함께 불렀습니다. 분위기는 매우 활기차면서도 좋았습니다. 특히 음악가들과 관객 사이의 분위기가 마음에 들었습니다. 일상을 잊고 친구들과 즐거운 시간을 보낼 수 있었기 때문에 다시 가고 싶습니다.`],
- ["⚽ Sportereignis","Ein Sportereignis, das Sie besucht haben","스포츠 행사",
-  ["Welches Sportereignis war es?","Wie war die Stimmung?","Was war der spannendste Moment?","Würden Sie so eine Veranstaltung wieder besuchen?"],
-  `Ich möchte über ein Fußballspiel sprechen, das ich mit Freunden im Stadion gesehen habe. Das Spiel fand an einem Samstagabend statt und das Stadion war fast vollständig gefüllt. Die Stimmung war unglaublich lebendig, weil beide Mannschaften viele Fans hatten. Besonders spannend war die letzte Phase des Spiels, als in den letzten Minuten noch ein Tor gefallen ist. Ich habe die Atmosphäre im Stadion sehr genossen und würde eine solche Veranstaltung gerne wieder besuchen. Beim nächsten Mal würde ich allerdings etwas früher kommen, damit ich in Ruhe meinen Platz finden kann.`,
-  `저는 친구들과 경기장에서 직접 본 축구 경기에 대해 이야기하고 싶습니다. 경기는 토요일 저녁에 열렸고 경기장은 거의 가득 찼습니다. 두 팀 모두 팬이 많아서 분위기가 매우 활기찼습니다. 특히 경기 마지막 몇 분에 골이 하나 더 들어간 순간이 가장 긴장되고 재미있었습니다. 경기장의 분위기를 매우 즐겼고 다시 이런 행사에 가고 싶습니다. 다음에는 자리를 여유 있게 찾을 수 있도록 조금 더 일찍 가고 싶습니다.`],
- ["👤 Wichtige Person","Eine Person, die in Ihrem Leben wichtig war","중요한 사람",
-  ["Warum ist diese Person wichtig für Sie?","Was schätzen Sie an ihr besonders?","Wie hat sie Sie beeinflusst?","Was haben Sie von ihr gelernt?"],
-  `Ich möchte über eine Person sprechen, die in meinem Leben eine wichtige Rolle gespielt hat. Es handelt sich um einen ehemaligen Kollegen, mit dem ich viele Jahre zusammengearbeitet habe. Ich schätze besonders seine ruhige und zuverlässige Art. Wenn es bei der Arbeit Probleme gab, hat er immer versucht, eine sachliche Lösung zu finden. Dadurch habe ich gelernt, auch in stressigen Situationen ruhig zu bleiben und zuerst nach einer Lösung zu suchen. Er hat mich außerdem darin beeinflusst, anderen Menschen geduldig zuzuhören. Deshalb denke ich noch heute gerne an unsere gemeinsame Zeit zurück.`,
-  `제 삶에서 중요한 역할을 했던 한 사람에 대해 이야기하고 싶습니다. 오랫동안 함께 일했던 전 직장 동료입니다. 저는 특히 그 사람의 차분하고 믿음직한 성격을 높이 평가합니다. 직장에서 문제가 생기면 항상 객관적인 해결책을 찾으려고 했습니다. 그를 통해 스트레스가 많은 상황에서도 침착함을 유지하고 먼저 해결책을 찾는 법을 배웠습니다. 또한 다른 사람의 말을 인내심 있게 듣는 데에도 영향을 받았습니다. 그래서 지금도 함께 일했던 시간을 좋게 기억합니다.`],
- ["⭐ Wichtige Erfahrung","Eine wichtige Erfahrung, die Sie in Ihrem Leben gemacht haben","중요한 경험",
-  ["Warum war diese Erfahrung wichtig?","Wie haben Sie sich damals gefühlt?","Was haben Sie daraus gelernt?","Würden Sie heute etwas anders machen?"],
-  `Ich möchte über eine wichtige Erfahrung in meinem Leben sprechen, nämlich meinen Umzug nach Deutschland. Diese Erfahrung war für mich besonders wichtig, weil ich meine bisherige Umgebung verlassen und mit meiner Familie ein neues Leben beginnen musste. Am Anfang war ich natürlich etwas unsicher, weil vieles neu war, zum Beispiel die Sprache, die Bürokratie und der Alltag. Gleichzeitig war ich neugierig und motiviert. Durch diese Erfahrung habe ich gelernt, dass man sich auch an große Veränderungen gewöhnen kann, wenn man Schritt für Schritt vorgeht. Heute würde ich mich früher und intensiver mit der deutschen Sprache beschäftigen.`,
-  `제 인생에서 중요한 경험인 독일 이주에 대해 이야기하고 싶습니다. 익숙했던 환경을 떠나 가족과 함께 새로운 삶을 시작해야 했기 때문에 매우 중요한 경험이었습니다. 처음에는 언어, 행정절차, 일상생활 등 많은 것이 새로워서 조금 불안했습니다. 동시에 호기심과 의욕도 있었습니다. 이 경험을 통해 큰 변화도 한 단계씩 진행하면 적응할 수 있다는 것을 배웠습니다. 지금 다시 한다면 독일어를 더 일찍, 더 집중적으로 공부할 것입니다.`]
-];
-
-document.getElementById("topics").innerHTML=data.map((x,i)=>
- `<button type="button" class="topic" onclick="openTopic(${i})">
-   <strong>${i+1}. ${x[0]}</strong><span>${x[1]}<br>${x[2]}</span>
- </button>`
-).join("");
-
-let timer=null;
-function openTopic(i){
- let x=data[i];
- document.getElementById("topic").innerHTML=`
- <div class="card hero">
-  <span class="badge">90 Sekunden</span>
-  <h2>${x[1]}</h2>
-  <p><b>키워드:</b> Zeitpunkt · Ort · Personen · Inhalt · Meinung · Erfahrung · gelernt</p>
-  <div class="timer" id="clock">01:30</div>
-  <div class="row">
-   <button type="button" class="primary" onclick="startTimer()">▶ 시작</button>
-   <button type="button" class="secondary" onclick="resetTimer()">↺ 초기화</button>
-   <button type="button" class="secondary" onclick="tab('rec');prepareRecording('${escapeAttr(x[1])}')">🎙 녹음</button>
-  </div>
- </div>
- <div class="card">
-  <h3>🗣️ 90초 예문</h3>
-  <div class="phrase">${escapeHTML(x[4])}</div>
-  <details>
-   <summary>🇰🇷 한국어 해석</summary>
-   <div class="phrase">${escapeHTML(x[5])}</div>
-  </details>
-  <p class="small">※ 예문을 통째로 암기하기보다 <b>Zeitpunkt → Ort → Personen → Inhalt → persönliche Meinung/Erfahrung → Schluss</b> 순서로 본인의 경험에 맞게 바꿔 말하세요.</p>
- </div>
- <div class="card">
-  <h3>🧩 말하기 구조</h3>
-  <div class="phrase"><b>1. Einleitung:</b> Ich möchte heute über … sprechen.</div>
-  <div class="phrase"><b>2. Zeitpunkt / Ort:</b> Das war vor … in …</div>
-  <div class="phrase"><b>3. Hauptinhalt:</b> Besonders interessant war, dass …</div>
-  <div class="phrase"><b>4. Meinung / Gefühl:</b> Besonders gut gefallen hat mir …</div>
-  <div class="phrase"><b>5. Erfahrung:</b> Dadurch habe ich gelernt, dass …</div>
-  <div class="phrase"><b>6. Schluss:</b> Deshalb würde ich … / Insgesamt war …</div>
- </div>
- <div class="card">
-  <h3>❓ 예상 질문</h3>
-  ${x[3].map(q=>`<details><summary>${q}</summary><p class="small">이유 + 구체적인 예 + 개인 경험을 2~4문장으로 답해보세요.</p></details>`).join("")}
- </div>
- <div class="card">
-  <h3>💬 파트너에게 질문</h3>
-  <div class="phrase">Was hat dir daran am besten gefallen?</div>
-  <div class="phrase">Warum war das für dich besonders wichtig?</div>
-  <div class="phrase">Wie hast du dich dabei gefühlt?</div>
-  <div class="phrase">Würdest du das noch einmal machen?</div>
-  <button type="button" class="secondary" onclick="markSession('t1')">✓ 연습 완료</button>
- </div>`;
-}
-function escapeAttr(s){return s.replace(/'/g,"&#39;")}
-
-function startTimer(){
- clearInterval(timer);
- let n=90,e=document.getElementById("clock");
- if(!e)return;
- e.textContent="01:30";
- timer=setInterval(()=>{
-  n--;
-  e.textContent=String(Math.floor(n/60)).padStart(2,"0")+":"+String(n%60).padStart(2,"0");
-  if(n<=0){
-   clearInterval(timer);
-   if(navigator.vibrate)navigator.vibrate([200,100,200]);
-   e.textContent="00:00";
-   markSession("t1");
-  }
- },1000);
-}
-function resetTimer(){
- clearInterval(timer);
- let e=document.getElementById("clock");
- if(e)e.textContent="01:30";
-}
-
-const discs=[
-  {
-    topic:"Sollten Kinder weniger Zeit mit digitalen Geräten verbringen?",
-    answer:`Meiner Meinung nach sollten Kinder weniger Zeit mit digitalen Geräten verbringen. Ein wichtiger Grund ist, dass zu viel Bildschirmzeit die Konzentration beeinträchtigen kann. Außerdem ist es wichtig, dass Kinder genug Zeit für Bewegung und persönliche Kontakte haben. Zum Beispiel sollten Kinder lieber draußen spielen oder sich mit Freunden treffen, anstatt mehrere Stunden am Tag am Tablet zu verbringen. Natürlich können digitale Geräte auch beim Lernen hilfreich sein. Trotzdem sollte die Nutzungszeit begrenzt werden.`,
-    ko:`제 생각에는 아이들은 디지털 기기를 사용하는 시간을 줄여야 합니다. 너무 많은 화면 사용 시간은 집중력에 부정적인 영향을 줄 수 있습니다. 또한 아이들에게는 운동과 직접적인 인간관계를 위한 충분한 시간이 필요합니다. 예를 들어 아이들은 하루에 몇 시간씩 태블릿을 사용하는 것보다 밖에서 놀거나 친구들을 만나는 것이 좋습니다. 물론 디지털 기기는 학습에도 도움이 될 수 있지만, 사용 시간은 제한해야 합니다.`
-  },
-  {
-    topic:"Sind soziale Medien für Jugendliche eher hilfreich oder problematisch?",
-    answer:`Ich denke, dass soziale Medien sowohl Vorteile als auch Nachteile haben. Einerseits können Jugendliche schnell Informationen finden und mit ihren Freunden kommunizieren. Andererseits besteht die Gefahr, dass sie zu viel Zeit online verbringen und abhängig werden. Ein Beispiel dafür ist, dass manche Jugendliche ständig auf ihr Smartphone schauen, sogar wenn sie mit anderen Personen zusammen sind. Deshalb halte ich soziale Medien grundsätzlich für sinnvoll, aber sie sollten bewusst und nicht zu viel genutzt werden.`,
-    ko:`제 생각에는 SNS는 장점과 단점이 모두 있습니다. 청소년들은 정보를 빠르게 찾고 친구들과 소통할 수 있습니다. 반면 온라인에서 너무 많은 시간을 보내고 의존하게 될 위험도 있습니다. 예를 들어 어떤 청소년들은 다른 사람과 함께 있을 때조차 계속 스마트폰을 봅니다. 따라서 SNS는 유용하지만 의식적으로, 그리고 지나치게 사용하지 않는 것이 중요합니다.`
-  },
-  {
-    topic:"Sollten Smartphones in der Schule erlaubt sein?",
-    answer:`Meiner Meinung nach sollten Smartphones in der Schule grundsätzlich erlaubt sein, aber nur unter bestimmten Bedingungen. Sie können im Unterricht sehr praktisch sein, zum Beispiel wenn Schüler schnell Informationen suchen oder eine Lern-App benutzen möchten. Gleichzeitig können Smartphones die Schüler leicht ablenken. Deshalb könnte man festlegen, dass Smartphones nur für schulische Zwecke benutzt werden dürfen. So könnten die Vorteile genutzt und gleichzeitig die Nachteile reduziert werden.`,
-    ko:`제 생각에는 학교에서 스마트폰을 원칙적으로 허용하되 특정 조건을 두어야 합니다. 수업에서 정보를 빨리 찾거나 학습 앱을 사용할 때 매우 유용할 수 있습니다. 하지만 스마트폰은 학생들의 집중력을 쉽게 방해할 수 있습니다. 따라서 학업 목적으로만 사용할 수 있도록 규정하면 장점은 활용하고 단점은 줄일 수 있습니다.`
-  },
-  {
-    topic:"Sollte man mehr im Homeoffice arbeiten?",
-    answer:`Ich bin der Meinung, dass man mehr im Homeoffice arbeiten sollte, wenn die Tätigkeit dafür geeignet ist. Ein großer Vorteil ist, dass man keine Zeit für den Arbeitsweg braucht. Dadurch kann man Stress reduzieren und hat mehr Zeit für die Familie. Zum Beispiel kann ein Arbeitnehmer die gewonnene Zeit morgens für seine Kinder nutzen. Allerdings ist der persönliche Kontakt zu Kollegen ebenfalls wichtig. Deshalb finde ich eine Mischung aus Homeoffice und Büroarbeit sinnvoll.`,
-    ko:`업무가 적합하다면 재택근무를 더 많이 해야 한다고 생각합니다. 출퇴근에 시간을 사용할 필요가 없다는 것이 큰 장점입니다. 그 결과 스트레스를 줄이고 가족을 위한 시간을 더 가질 수 있습니다. 하지만 동료들과의 직접적인 접촉도 중요합니다. 따라서 재택근무와 사무실 근무를 혼합하는 것이 합리적이라고 생각합니다.`
-  },
-  {
-    topic:"Ist eine Vier-Tage-Woche sinnvoll?",
-    answer:`Ich halte eine Vier-Tage-Woche grundsätzlich für sinnvoll. Ein wichtiger Vorteil ist, dass die Mitarbeiter mehr Freizeit haben und sich besser erholen können. Dadurch könnten sie bei der Arbeit motivierter und konzentrierter sein. Zum Beispiel könnte ein zusätzlicher freier Tag genutzt werden, um Zeit mit der Familie zu verbringen oder persönliche Termine zu erledigen. Allerdings hängt es stark vom Beruf und von der Arbeitszeit ab. Nicht jede Tätigkeit lässt sich problemlos auf vier Tage verteilen.`,
-    ko:`저는 기본적으로 주 4일 근무가 합리적이라고 생각합니다. 직원들이 더 많은 자유시간을 가지고 더 잘 쉴 수 있다는 장점이 있습니다. 그 결과 직장에서 더 동기부여되고 집중할 수 있습니다. 하지만 직업과 근무시간에 따라 다르며, 모든 업무를 쉽게 4일로 나눌 수 있는 것은 아닙니다.`
-  },
-  {
-    topic:"Was ist wichtiger: ein gutes Gehalt oder ein gutes Arbeitsklima?",
-    answer:`Für mich ist ein gutes Arbeitsklima etwas wichtiger als ein hohes Gehalt. Natürlich ist ein gutes Gehalt wichtig, weil man seine Lebenshaltungskosten bezahlen muss. Aber wenn man jeden Tag unter großem Stress steht oder Probleme mit den Kollegen hat, kann das langfristig sehr belastend sein. Zum Beispiel verbringt man einen großen Teil des Tages bei der Arbeit. Deshalb finde ich es wichtig, dass man sich dort wohlfühlt. Ideal wäre natürlich eine Kombination aus einem guten Gehalt und einem angenehmen Arbeitsklima.`,
-    ko:`저에게는 높은 급여보다 좋은 직장 분위기가 조금 더 중요합니다. 물론 생활비를 지불해야 하므로 좋은 급여도 중요합니다. 하지만 매일 큰 스트레스를 받거나 동료들과 문제가 있다면 장기적으로 매우 힘들 수 있습니다. 따라서 직장에서 편안함을 느끼는 것이 중요하며, 이상적인 것은 좋은 급여와 좋은 직장 분위기를 모두 갖추는 것입니다.`
-  },
-  {
-    topic:"Sollten Schüler mehr Hausaufgaben bekommen?",
-    answer:`Ich glaube nicht, dass Schüler grundsätzlich mehr Hausaufgaben bekommen sollten. Hausaufgaben können zwar helfen, den Unterrichtsstoff zu wiederholen und selbstständig zu lernen. Zu viele Aufgaben können aber Stress verursachen und den Schülern die Freizeit nehmen. Zum Beispiel brauchen Kinder auch Zeit für Sport, Freunde und ihre Familie. Deshalb finde ich es besser, wenige, aber sinnvolle Hausaufgaben zu geben.`,
-    ko:`학생들이 원칙적으로 더 많은 숙제를 받아야 한다고 생각하지 않습니다. 숙제는 수업 내용을 복습하고 스스로 공부하는 데 도움이 될 수 있습니다. 하지만 숙제가 너무 많으면 스트레스를 유발하고 여가시간을 빼앗을 수 있습니다. 따라서 적지만 의미 있는 숙제를 내는 것이 더 좋다고 생각합니다.`
-  },
-  {
-    topic:"Sollten Noten in der Schule abgeschafft werden?",
-    answer:`Ich bin nicht dafür, Noten vollständig abzuschaffen. Noten haben den Vorteil, dass Schüler und Eltern sehen können, wie die Leistungen sind. Außerdem können sie Schüler motivieren, sich zu verbessern. Auf der anderen Seite können schlechte Noten großen Leistungsdruck verursachen. Deshalb könnte man meiner Meinung nach Noten behalten, aber zusätzlich andere Formen der Bewertung verwenden, zum Beispiel persönliche Rückmeldungen und Projekte.`,
-    ko:`저는 학교에서 성적을 완전히 없애는 것에는 찬성하지 않습니다. 성적을 통해 학생과 부모가 학업 성취도를 확인할 수 있고, 학생들에게 발전할 동기를 줄 수도 있습니다. 반면 낮은 성적은 큰 학업 스트레스를 유발할 수 있습니다. 따라서 성적은 유지하되 개인적인 피드백이나 프로젝트 같은 다른 평가 방법도 함께 사용하는 것이 좋다고 생각합니다.`
-  },
-  {
-    topic:"Ist Online-Unterricht genauso gut wie Präsenzunterricht?",
-    answer:`Meiner Meinung nach kann Online-Unterricht sehr gut funktionieren, aber er ist nicht immer genauso effektiv wie Präsenzunterricht. Ein Vorteil des Online-Unterrichts ist, dass man flexibel von zu Hause lernen kann. Außerdem spart man Zeit für den Weg zur Schule oder zur Universität. Beim Präsenzunterricht ist jedoch die persönliche Betreuung einfacher, und man kann direkt mit anderen Schülern kommunizieren. Deshalb finde ich eine Kombination aus beiden Formen besonders sinnvoll.`,
-    ko:`온라인 수업도 매우 효과적일 수 있지만 항상 대면수업만큼 효과적인 것은 아니라고 생각합니다. 집에서 유연하게 공부할 수 있고 이동시간을 절약할 수 있다는 장점이 있습니다. 하지만 대면수업에서는 개인적인 지도가 쉽고 다른 학생들과 직접 소통할 수 있습니다. 따라서 두 가지 형태를 결합하는 것이 특히 합리적이라고 생각합니다.`
-  },
-  {
-    topic:"Sollte der öffentliche Nahverkehr kostenlos sein?",
-    answer:`Ich finde die Idee grundsätzlich gut, den öffentlichen Nahverkehr kostenlos anzubieten. Dadurch könnten mehr Menschen Busse und Bahnen benutzen, und es könnten weniger Autos auf den Straßen unterwegs sein. Das wäre auch gut für die Umwelt. Zum Beispiel könnten Menschen ihr Auto zu Hause lassen, wenn sie kostenlos mit der Bahn fahren können. Allerdings müsste der Staat die Kosten dafür übernehmen. Deshalb müsste zuerst geklärt werden, wie das finanziert werden kann.`,
-    ko:`대중교통을 무료로 제공하는 아이디어가 기본적으로 좋다고 생각합니다. 더 많은 사람들이 버스와 기차를 이용하면 도로의 자동차가 줄어들 수 있고 환경에도 좋습니다. 하지만 국가가 그 비용을 부담해야 하므로 어떻게 재정을 마련할 것인지 먼저 해결해야 합니다.`
-  },
-  {
-    topic:"Sollten Innenstädte stärker für Autos gesperrt werden?",
-    answer:`Meiner Meinung nach sollten Innenstädte stärker für Autos eingeschränkt werden, aber nicht vollständig. Ein wichtiger Grund ist der Umweltschutz. Außerdem könnten dadurch Staus und Lärm reduziert werden. Allerdings brauchen manche Menschen ihr Auto, zum Beispiel ältere Menschen oder Personen, die außerhalb der Stadt arbeiten. Deshalb finde ich es sinnvoll, bestimmte Bereiche für Autos zu sperren und gleichzeitig den öffentlichen Nahverkehr auszubauen.`,
-    ko:`도심에서 자동차를 더 많이 제한해야 하지만 완전히 금지해서는 안 된다고 생각합니다. 중요한 이유는 환경 보호이고, 교통체증과 소음도 줄일 수 있습니다. 하지만 일부 사람들은 자동차가 필요합니다. 따라서 특정 지역의 자동차를 제한하고 동시에 대중교통을 확대하는 것이 합리적입니다.`
-  },
-  {
-    topic:"Sollte man häufiger öffentliche Verkehrsmittel benutzen?",
-    answer:`Ja, ich denke, dass man häufiger öffentliche Verkehrsmittel benutzen sollte. Der wichtigste Grund ist der Umweltschutz. Wenn mehr Menschen Bus und Bahn benutzen, gibt es weniger Autos und dadurch weniger Abgase und Staus. Außerdem kann man während der Fahrt lesen, arbeiten oder sich entspannen. Natürlich ist das Auto manchmal bequemer, besonders mit Kindern oder wenn man viele Dinge transportieren muss. Trotzdem halte ich öffentliche Verkehrsmittel im Alltag für eine gute Alternative.`,
-    ko:`네, 사람들이 대중교통을 더 자주 이용해야 한다고 생각합니다. 가장 중요한 이유는 환경 보호입니다. 더 많은 사람들이 버스와 기차를 이용하면 자동차와 배기가스, 교통체증이 줄어듭니다. 물론 아이들과 함께 있거나 많은 물건을 운반할 때는 자동차가 더 편리할 수 있지만, 일상생활에서는 대중교통이 좋은 대안입니다.`
-  },
-  {
-    topic:"Sollten Arbeitgeber ihre Mitarbeiter zu mehr Sport motivieren?",
-    answer:`Ich finde, dass Arbeitgeber ihre Mitarbeiter zu mehr Bewegung motivieren sollten, aber sie sollten niemanden dazu zwingen. Sport ist wichtig für die Gesundheit und kann außerdem helfen, Stress abzubauen. Zum Beispiel könnte ein Unternehmen einen Fitnessraum anbieten oder einen Zuschuss für ein Fitnessstudio bezahlen. Davon könnten sowohl die Mitarbeiter als auch das Unternehmen profitieren, weil gesunde Mitarbeiter möglicherweise weniger krank sind.`,
-    ko:`고용주는 직원들에게 더 많은 운동을 하도록 동기를 부여해야 하지만 강요해서는 안 된다고 생각합니다. 운동은 건강에 중요하고 스트레스도 줄일 수 있습니다. 예를 들어 회사가 헬스장을 제공하거나 헬스장 비용을 지원할 수 있습니다. 그렇게 하면 직원과 회사 모두 이익을 얻을 수 있습니다.`
-  },
-  {
-    topic:"Ist gesundes Essen zu teuer?",
-    answer:`Ich denke, dass gesundes Essen teilweise teurer sein kann, aber nicht unbedingt immer. Frisches Gemüse, Obst und bestimmte Bio-Produkte können relativ teuer sein. Andererseits kann man auch mit einfachen Lebensmitteln gesund und günstig kochen. Zum Beispiel sind Reis, Kartoffeln, Gemüse und Hülsenfrüchte meistens nicht besonders teuer. Deshalb kommt es meiner Meinung nach darauf an, welche Produkte man kauft und wie man seine Mahlzeiten plant.`,
-    ko:`건강한 음식이 부분적으로 더 비쌀 수 있지만 반드시 항상 그런 것은 아니라고 생각합니다. 신선한 채소, 과일, 일부 유기농 제품은 비교적 비쌀 수 있습니다. 반면 간단한 식재료로 건강하고 저렴하게 요리할 수도 있습니다. 따라서 어떤 제품을 사고 식사를 어떻게 계획하는지가 중요합니다.`
-  },
-  {
-    topic:"Sollten Kinder mehr Sport treiben?",
-    answer:`Ja, meiner Meinung nach sollten Kinder regelmäßig Sport treiben. Bewegung ist wichtig für die körperliche Entwicklung und kann auch die Konzentration verbessern. Außerdem lernen Kinder beim Sport, mit anderen zusammenzuarbeiten. Zum Beispiel können sie in einem Sportverein Fußball spielen oder schwimmen lernen. Natürlich sollten Kinder auch genügend Zeit zum Lernen und Erholen haben. Deshalb sollte Sport ein Teil des Alltags sein, aber nicht zu einem zusätzlichen Leistungsdruck führen.`,
-    ko:`아이들은 규칙적으로 운동해야 한다고 생각합니다. 운동은 신체 발달에 중요하고 집중력 향상에도 도움이 될 수 있습니다. 또한 운동을 통해 다른 사람들과 협력하는 법을 배웁니다. 물론 공부하고 휴식할 시간도 충분히 필요하므로 운동이 추가적인 성과 압박이 되어서는 안 됩니다.`
-  },
-  {
-    topic:"Sollten Eltern weniger Zeit mit der Arbeit und mehr Zeit mit ihren Kindern verbringen?",
-    answer:`Ich denke, dass Eltern möglichst genug Zeit mit ihren Kindern verbringen sollten. Kinder brauchen nicht nur materielle Dinge, sondern auch Aufmerksamkeit und persönliche Betreuung. Außerdem kann gemeinsame Zeit die Beziehung zwischen Eltern und Kindern stärken. Zum Beispiel kann eine gemeinsame Mahlzeit am Abend eine gute Gelegenheit sein, miteinander zu sprechen. Natürlich müssen Eltern auch arbeiten, um Geld zu verdienen. Deshalb ist eine gute Balance zwischen Arbeit und Familie besonders wichtig.`,
-    ko:`부모들은 가능한 한 아이들과 충분한 시간을 보내야 한다고 생각합니다. 아이들에게는 물질적인 것뿐만 아니라 관심과 개인적인 돌봄도 필요합니다. 함께 보내는 시간은 부모와 아이의 관계를 강화할 수 있습니다. 물론 부모들도 일을 해야 하므로 일과 가족 사이의 균형이 특히 중요합니다.`
-  },
-  {
-    topic:"Ist es besser, in einer Großstadt oder auf dem Land zu leben?",
-    answer:`Für mich haben beide Möglichkeiten Vor- und Nachteile. In einer Großstadt gibt es normalerweise mehr Arbeitsplätze, Geschäfte und kulturelle Angebote. Auf dem Land ist das Leben dagegen oft ruhiger und die Natur ist näher. Zum Beispiel kann eine Familie auf dem Land mehr Platz haben und schneller in der Natur sein. Welche Wohnform besser ist, hängt deshalb stark von der persönlichen Situation und den eigenen Prioritäten ab.`,
-    ko:`대도시와 시골 모두 장단점이 있습니다. 대도시에는 일반적으로 일자리, 상점, 문화시설이 더 많습니다. 반면 시골에서는 생활이 더 조용하고 자연이 가깝습니다. 어떤 주거 형태가 더 좋은지는 개인적인 상황과 자신의 우선순위에 크게 달려 있습니다.`
-  },
-  {
-    topic:"Sollten ältere Menschen länger arbeiten?",
-    answer:`Ich denke, ältere Menschen sollten länger arbeiten können, wenn sie das selbst möchten und gesundheitlich dazu in der Lage sind. Ein Vorteil ist, dass sie ihre Erfahrung weiterhin nutzen und weitergeben können. Außerdem können sie länger finanziell unabhängig bleiben. Andererseits kann längeres Arbeiten für manche Menschen körperlich oder psychisch belastend sein. Deshalb sollte das meiner Meinung nach eine freiwillige Entscheidung sein und nicht für alle gelten.`,
-    ko:`나이가 많은 사람들이 원하고 건강상 가능하다면 더 오래 일할 수 있어야 한다고 생각합니다. 자신의 경험을 계속 활용하고 다른 사람들에게 전달할 수 있으며, 경제적으로 더 오랫동안 독립할 수도 있습니다. 반면 어떤 사람들에게는 더 오래 일하는 것이 부담이 될 수 있으므로 자발적인 선택이어야 합니다.`
-  },
-  {
-    topic:"Sollte man gebrauchte Produkte häufiger kaufen?",
-    answer:`Ja, ich finde, dass man gebrauchte Produkte häufiger kaufen sollte. Ein großer Vorteil ist, dass sie meistens günstiger sind. Außerdem kann man dadurch Ressourcen sparen und die Umwelt schützen. Zum Beispiel kann man Möbel, Fahrräder oder elektronische Geräte gebraucht kaufen, wenn sie noch in gutem Zustand sind. Natürlich sollte man vor dem Kauf prüfen, ob das Produkt wirklich funktioniert und keine Mängel hat. Insgesamt halte ich den Kauf gebrauchter Produkte für eine sinnvolle Möglichkeit.`,
-    ko:`중고 제품을 더 자주 구매해야 한다고 생각합니다. 대부분 더 저렴하다는 장점이 있고 자원을 절약하고 환경을 보호할 수도 있습니다. 예를 들어 상태가 좋다면 가구, 자전거 또는 전자제품을 중고로 살 수 있습니다. 다만 구매 전에 제품이 제대로 작동하는지 확인해야 합니다.`
-  },
-  {
-    topic:"Ist Online-Shopping besser als Einkaufen im Geschäft?",
-    answer:`Ich denke, dass Online-Shopping vor allem wegen der Zeitersparnis sehr praktisch ist. Man kann Produkte jederzeit bestellen und hat eine große Auswahl. Außerdem kann man Preise leicht miteinander vergleichen. Beim Einkaufen im Geschäft hat man dagegen die Möglichkeit, die Produkte direkt zu sehen und anzuprobieren. Außerdem bekommt man manchmal eine persönliche Beratung. Deshalb würde ich nicht sagen, dass Online-Shopping grundsätzlich besser ist. Es hängt davon ab, was man kaufen möchte.`,
-    ko:`온라인 쇼핑은 특히 시간 절약 측면에서 매우 편리하다고 생각합니다. 언제든지 주문할 수 있고 선택의 폭도 넓으며 가격도 쉽게 비교할 수 있습니다. 반면 매장에서는 제품을 직접 보고 입어볼 수 있고 개인적인 상담도 받을 수 있습니다. 따라서 온라인 쇼핑이 원칙적으로 더 좋다고 말하기보다는 무엇을 구매하는지에 따라 다르다고 생각합니다.`
-  }
-];
-
-function newDisc(){
-  const d=discs[Math.floor(Math.random()*discs.length)];
-  document.getElementById("disc").innerHTML=`
-  <div class="feedback">
-    <span class="badge">20 Themen</span>
-    <h3 style="margin-bottom:8px">${escapeHTML(d.topic)}</h3>
-    <div class="phrase">
-      <b>Aufgabe:</b> Nennen Sie Ihre Meinung, mindestens zwei Gründe und ein konkretes Beispiel. Reagieren Sie anschließend auf eine andere Meinung.
-    </div>
-    <details>
-      <summary>🇩🇪 Beispielantwort anzeigen</summary>
-      <div class="phrase">${escapeHTML(d.answer)}</div>
-    </details>
-    <details>
-      <summary>🇰🇷 한국어 해석 보기</summary>
-      <div class="phrase">${escapeHTML(d.ko)}</div>
-    </details>
-    <div class="row" style="margin-top:8px">
-      <button type="button" class="secondary" onclick="tab('rec');prepareRecording('Teil 2 – ${escapeAttr(d.topic)}')">🎙 Antwort aufnehmen</button>
-      <button type="button" class="secondary" onclick="newDisc()">🎲 다른 주제</button>
-    </div>
-  </div>`;
-}
-
-const plans=[
-  {
-    title:"Ausflug für eine Deutschkursgruppe",
-    ko:"독일어 코스 그룹 소풍/여행",
-    situation:"Sie möchten gemeinsam einen Ausflug für Ihre Deutschkursgruppe organisieren.",
-    points:"Termin · Ziel · Kosten · Anreise · Aktivitäten · Aufgaben",
-    dialogue:[
-      ["A","Ich würde vorschlagen, dass wir einen Tagesausflug für unsere Deutschkursgruppe organisieren. Was hältst du davon?"],
-      ["B","Das finde ich gut. Wohin könnten wir fahren?"],
-      ["A","Wie wäre es mit Heidelberg? Dort können wir die Altstadt besichtigen und haben viele Möglichkeiten für Aktivitäten."],
-      ["B","Heidelberg gefällt mir. Wann sollen wir den Ausflug machen?"],
-      ["A","Ich würde Samstag, den 17. Oktober, vorschlagen. Wir könnten um 9 Uhr losfahren und gegen 18 Uhr zurück sein."],
-      ["B","Das passt für mich. Wie kommen wir am besten dorthin?"],
-      ["A","Wir könnten mit dem Zug fahren. Eine andere Möglichkeit wäre der Bus, aber der Zug ist schneller."],
-      ["B","Wie hoch sind die Kosten? Wir sollten das Budget der Gruppe berücksichtigen."],
-      ["A","Mit dem Gruppenticket kostet die Fahrt ungefähr 15 Euro pro Person. Für Essen und Eintritt sollten wir zusätzlich etwa 20 Euro einplanen."],
-      ["B","Insgesamt etwa 35 Euro pro Person finde ich akzeptabel. Was wollen wir dort unternehmen?"],
-      ["A","Zuerst besichtigen wir die Altstadt und das Schloss. Danach könnten wir gemeinsam in einem Restaurant zu Mittag essen."],
-      ["B","Gute Idee. Ich kümmere mich um das Restaurant. Kannst du die Zugtickets organisieren?"],
-      ["A","Ja, das mache ich. Dann sind die Aufgaben verteilt und wir sind uns einig: Samstag, Heidelberg, etwa 35 Euro pro Person."]
-    ]
-  },
-  {
-    title:"Abschiedsfeier für einen Kollegen",
-    ko:"동료 송별회",
-    situation:"Sie möchten gemeinsam eine Abschiedsfeier für einen Kollegen organisieren.",
-    points:"Ort · Termin · Gäste · Essen · Geschenk · Kosten · Aufgaben",
-    dialogue:[
-      ["A","Wir müssen noch die Abschiedsfeier für unseren Kollegen organisieren. Ich würde Freitag, den 23. Oktober, vorschlagen."],
-      ["B","Freitag passt gut. Wo könnten wir die Feier veranstalten?"],
-      ["A","Wir könnten einen Raum in einem Restaurant reservieren. Dort hätten wir genug Platz und müssten uns nicht um das Essen kümmern."],
-      ["B","Das wäre praktisch, aber wahrscheinlich ziemlich teuer. Wie viele Gäste wollen wir einladen?"],
-      ["A","Ich denke, ungefähr 15 Kollegen. Wir sollten außerdem zwei ehemalige Kollegen einladen, die besonders gut mit ihm befreundet sind."],
-      ["B","Einverstanden. Was wollen wir zum Essen bestellen?"],
-      ["A","Ein Buffet wäre am einfachsten. Wir sollten auch vegetarische Optionen anbieten."],
-      ["B","Gute Idee. Wie viel darf die Feier pro Person kosten?"],
-      ["A","Ich würde maximal 30 Euro pro Person für Raum und Essen einplanen. Für das Geschenk könnten wir zusätzlich jeweils 10 Euro sammeln."],
-      ["B","Das klingt vernünftig. Was könnten wir ihm schenken?"],
-      ["A","Vielleicht einen Gutschein für sein Lieblingsgeschäft und eine Karte, auf der alle unterschreiben."],
-      ["B","Ich kann das Geschenk kaufen und die Kollegen um die 10 Euro bitten. Kannst du das Restaurant reservieren und die Gäste informieren?"],
-      ["A","Ja, gerne. Dann sind Ort, Termin, Gäste, Essen, Geschenk, Kosten und Aufgaben geklärt."]
-    ]
-  },
-  {
-    title:"Wochenendausflug mit Freunden",
-    ko:"친구들과 주말 여행",
-    situation:"Sie möchten mit Freunden einen Wochenendausflug planen.",
-    points:"Ziel · Termin · Verkehrsmittel · Unterkunft · Aktivitäten · Budget",
-    dialogue:[
-      ["A","Wie wäre es, wenn wir am Wochenende vom 24. bis 25. Oktober gemeinsam einen Ausflug machen?"],
-      ["B","Gerne. Hast du schon ein Ziel im Kopf?"],
-      ["A","Ich dachte an Nürnberg. Die Stadt ist interessant und wir können sie mit dem Zug in etwa zwei Stunden erreichen."],
-      ["B","Das klingt gut. Wann würden wir fahren?"],
-      ["A","Wir könnten Samstagmorgen um 8 Uhr losfahren und Sonntag gegen 18 Uhr zurückkommen."],
-      ["B","Wie wollen wir hinfahren? Mit dem Auto oder mit dem Zug?"],
-      ["A","Ich würde den Zug nehmen, weil wir dann nicht fahren müssen und unterwegs entspannen können."],
-      ["B","Einverstanden. Wir brauchen dann aber eine Unterkunft. Hast du etwas Günstiges gefunden?"],
-      ["A","Ja, ich habe eine Ferienwohnung im Zentrum gefunden. Sie kostet 80 Euro pro Person für die Nacht."],
-      ["B","Das ist etwas teuer. Unser Budget sollte höchstens 150 Euro pro Person für die ganze Reise betragen."],
-      ["A","Dann suchen wir eine günstigere Unterkunft. Wenn wir Zug, Unterkunft und Essen zusammen für etwa 140 Euro bekommen, passt es."],
-      ["B","Was wollen wir dort unternehmen?"],
-      ["A","Am Samstag besichtigen wir die Altstadt und ein Museum. Am Sonntag könnten wir einen Spaziergang im Park machen."],
-      ["B","Gut. Ich suche eine Unterkunft innerhalb unseres Budgets, und du kümmerst dich um die Zugverbindungen. Dann steht unser Plan."]
-    ]
-  },
-  {
-    title:"Informationsabend organisieren",
-    ko:"정보 설명회",
-    situation:"Sie sollen gemeinsam einen Informationsabend organisieren.",
-    points:"Termin · Ort · Thema · Referenten · Teilnehmer · Werbung · Aufgaben",
-    dialogue:[
-      ["A","Wir sollen einen Informationsabend organisieren. Ich würde Mittwoch, den 4. November, um 18 Uhr vorschlagen."],
-      ["B","Mittwochabend passt gut. Wo könnten wir die Veranstaltung durchführen?"],
-      ["A","Vielleicht können wir einen Raum in der Volkshochschule nutzen. Dort gibt es auch einen Beamer."],
-      ["B","Das wäre praktisch. Welches Thema wollen wir behandeln?"],
-      ["A","Ich würde das Thema „Leben und Arbeiten in Deutschland“ vorschlagen, weil es für viele Kursteilnehmer interessant ist."],
-      ["B","Gute Idee. Wir brauchen auch Referenten. Kennst du jemanden, der darüber sprechen könnte?"],
-      ["A","Ja. Eine Beraterin vom Jobcenter könnte über Arbeitssuche sprechen. Außerdem könnten wir einen erfahrenen Kursteilnehmer als zweiten Referenten einladen."],
-      ["B","Wie viele Teilnehmer erwarten wir?"],
-      ["A","Ungefähr 30 Personen. Deshalb sollten wir die Anmeldung vorher organisieren."],
-      ["B","Wie machen wir Werbung?"],
-      ["A","Wir schicken eine E-Mail an die Teilnehmer und erstellen zusätzlich einen Flyer. Ich kann den Flyer vorbereiten."],
-      ["B","Dann kümmere ich mich um den Raum und die Referenten. Außerdem erstelle ich die E-Mail-Einladung."],
-      ["A","Perfekt. Damit sind Termin, Ort, Thema, Referenten, Teilnehmer, Werbung und Aufgaben geklärt."]
-    ]
-  },
-  {
-    title:"Sportveranstaltung für eine Gruppe",
-    ko:"단체 스포츠 행사",
-    situation:"Sie möchten eine kleine Sportveranstaltung für Ihre Gruppe planen.",
-    points:"Sportarten · Ort · Termin · Teilnehmer · Ausrüstung · Kosten · Aufgaben",
-    dialogue:[
-      ["A","Ich denke, wir sollten für unsere Gruppe einen Sporttag organisieren. Was hältst du davon?"],
-      ["B","Gute Idee. Welche Sportarten könnten wir anbieten?"],
-      ["A","Ich würde Fußball, Volleyball und Badminton anbieten. So ist für verschiedene Interessen etwas dabei."],
-      ["B","Einverstanden. Wann soll der Sporttag stattfinden?"],
-      ["A","Am Samstag, den 7. November, von 10 bis 16 Uhr."],
-      ["B","Wo können wir ihn veranstalten?"],
-      ["A","Am besten in der Sporthalle der Volkshochschule. Dort können wir auch bei schlechtem Wetter Sport machen."],
-      ["B","Wie viele Teilnehmer erwarten wir?"],
-      ["A","Ungefähr 20 Personen. Wir sollten vorher eine Teilnehmerliste erstellen."],
-      ["B","Welche Ausrüstung brauchen wir?"],
-      ["A","Für Volleyball brauchen wir Netze und Bälle, für Badminton Schläger und Federbälle und für Fußball Bälle und Leibchen."],
-      ["B","Und wie hoch sind die Kosten?"],
-      ["A","Die Hallenmiete kostet 100 Euro. Wenn wir das auf 20 Teilnehmer verteilen, sind das 5 Euro pro Person. Die Ausrüstung können wir teilweise kostenlos vom Verein ausleihen."],
-      ["B","Gut. Ich reserviere die Sporthalle und kümmere mich um die Ausrüstung. Du erstellst die Teilnehmerliste und informierst die Gruppe."],
-      ["A","Genau. Dann sind Sportarten, Ort, Termin, Teilnehmer, Ausrüstung, Kosten und Aufgaben festgelegt."]
-    ]
-  },
-  {
-    title:"Kulturabend organisieren",
-    ko:"문화의 밤",
-    situation:"Sie möchten für Ihre Gruppe einen gemeinsamen Kulturabend organisieren.",
-    points:"Ort · Programm · Essen · Musik · Teilnehmer · Kosten · Aufgaben",
-    dialogue:[
-      ["A","Wie wäre es mit einem gemeinsamen Kulturabend für unsere Gruppe?"],
-      ["B","Das klingt interessant. Wo könnten wir den Abend veranstalten?"],
-      ["A","Wir könnten einen Raum im Gemeindezentrum mieten. Dort gibt es genug Platz für etwa 40 Personen."],
-      ["B","Gut. Was soll das Programm sein?"],
-      ["A","Wir könnten verschiedene Länder vorstellen. Jede Person könnte kurz etwas über ihr Land erzählen und ein typisches Gericht mitbringen."],
-      ["B","Das gefällt mir. Wir sollten auch Musik aus verschiedenen Ländern spielen."],
-      ["A","Ja. Außerdem könnten wir am Ende ein kleines Quiz über die vorgestellten Länder machen."],
-      ["B","Was machen wir mit dem Essen?"],
-      ["A","Jeder Teilnehmer bringt eine typische Speise mit. Getränke kaufen wir gemeinsam."],
-      ["B","Wie viele Teilnehmer erwarten wir und wie viel soll es kosten?"],
-      ["A","Ungefähr 30 bis 40 Personen. Die Raummiete kostet 100 Euro, und für Getränke sollten wir etwa 5 Euro pro Person einplanen."],
-      ["B","Das ist akzeptabel. Ich erstelle die Teilnehmerliste und organisiere die Musik. Kannst du den Raum reservieren?"],
-      ["A","Ja, das mache ich. Dann sind Ort, Programm, Essen, Musik, Teilnehmer, Kosten und Aufgaben geklärt."]
-    ]
-  },
-  {
-    title:"Überraschung für einen Freund",
-    ko:"친구를 위한 깜짝 이벤트",
-    situation:"Sie möchten eine Überraschung für einen Freund organisieren.",
-    points:"Termin · Ort · Gäste · Geschenk · Essen · Überraschung · Aufgaben",
-    dialogue:[
-      ["A","Unser Freund hat am 14. November Geburtstag. Ich würde vorschlagen, dass wir eine Überraschungsparty organisieren."],
-      ["B","Das finde ich super. Wo könnten wir die Party machen?"],
-      ["A","Vielleicht bei mir zu Hause. Dort haben wir genug Platz für ungefähr 15 Personen."],
-      ["B","Das wäre praktisch. Wen wollen wir einladen?"],
-      ["A","Seine engsten Freunde und zwei Kollegen, also insgesamt etwa 15 Gäste."],
-      ["B","Was wollen wir ihm schenken?"],
-      ["A","Wir könnten gemeinsam einen Gutschein für sein Lieblingsrestaurant kaufen. Jeder gibt dafür 10 Euro dazu."],
-      ["B","Gute Idee. Und was machen wir mit dem Essen?"],
-      ["A","Ich bestelle Pizza und Getränke. Dafür sollten wir zusätzlich etwa 8 Euro pro Person einplanen."],
-      ["B","Wie organisieren wir die Überraschung, ohne dass er etwas merkt?"],
-      ["A","Wir sagen ihm, dass wir uns um 19 Uhr bei mir treffen, aber er soll glauben, dass nur wir beide zusammen essen gehen. Die Gäste kommen schon um 18:30 Uhr."],
-      ["B","Perfekt. Ich informiere die Gäste heimlich und sammle das Geld für das Geschenk. Du kümmerst dich um Essen und Getränke."],
-      ["A","Einverstanden. Dann sind Termin, Ort, Gäste, Geschenk, Essen, Überraschung und Aufgaben geklärt."]
-    ]
-  },
-  {
-    title:"Tagesausflug für ältere Teilnehmer",
-    ko:"고령 참가자를 위한 당일 여행",
-    situation:"Sie sollen eine Reise für eine Gruppe älterer Teilnehmer organisieren.",
-    points:"Reiseziel · Dauer · Verkehrsmittel · Unterkunft · Programm · Kosten · Rücksichtnahme",
-    dialogue:[
-      ["A","Wir sollen einen Ausflug für eine Gruppe älterer Teilnehmer organisieren. Ich würde eine möglichst entspannte Reise vorschlagen."],
-      ["B","Da stimme ich dir zu. Welches Reiseziel wäre geeignet?"],
-      ["A","Vielleicht Wiesbaden. Die Stadt ist nicht weit entfernt und bietet eine schöne Altstadt und einen Kurpark."],
-      ["B","Wie lange soll der Ausflug dauern?"],
-      ["A","Es soll ein Tagesausflug sein: von 9 bis ungefähr 18 Uhr. Deshalb brauchen wir keine Unterkunft."],
-      ["B","Wie kommen wir am besten dorthin?"],
-      ["A","Ich würde einen Reisebus nehmen. So müssen die Teilnehmer nicht umsteigen und können bequem sitzen."],
-      ["B","Was wollen wir dort unternehmen?"],
-      ["A","Wir machen eine kurze Stadtführung, besuchen den Kurpark und essen gemeinsam zu Mittag. Zwischen den Aktivitäten planen wir ausreichend Pausen ein."],
-      ["B","Wie viel wird die Reise kosten?"],
-      ["A","Für den Bus rechnen wir mit etwa 20 Euro pro Person. Für Mittagessen und Eintritt sollten wir weitere 15 Euro einplanen, also insgesamt etwa 35 Euro."],
-      ["B","Das klingt angemessen. Wir sollten außerdem darauf achten, dass niemand zu lange laufen muss und dass es genügend Sitzmöglichkeiten gibt."],
-      ["A","Einverstanden. Ich organisiere den Bus und die Stadtführung. Du informierst die Teilnehmer über Programm und Kosten. Damit berücksichtigen wir auch die besonderen Bedürfnisse der Gruppe."]
-    ]
-  },
-  {
-    title:"Gemeinsamer Kochabend",
-    ko:"공동 요리 저녁",
-    situation:"Sie möchten gemeinsam mit Ihrer Gruppe einen Kochabend organisieren.",
-    points:"Ort · Termin · Gerichte · Zutaten · Kosten · Teilnehmer · Aufgaben",
-    dialogue:[
-      ["A","Ich würde vorschlagen, dass wir einen gemeinsamen Kochabend veranstalten. Wie wäre es mit Freitag, dem 20. November?"],
-      ["B","Der Termin passt gut. Wo könnten wir kochen?"],
-      ["A","Vielleicht können wir die große Küche in unserem Kurszentrum benutzen. Dort gibt es genug Arbeitsplätze."],
-      ["B","Welche Gerichte wollen wir zubereiten?"],
-      ["A","Wir könnten Gerichte aus verschiedenen Ländern machen, zum Beispiel Curry, Pasta und einen koreanischen Reisgericht."],
-      ["B","Das klingt gut. Wir sollten vorher klären, ob jemand Allergien hat oder bestimmte Lebensmittel nicht essen darf."],
-      ["A","Ich frage alle Teilnehmer danach. Wie viele Personen erwarten wir?"],
-      ["B","Ungefähr 12 Personen. Dann können wir die Mengen entsprechend planen."],
-      ["A","Für die Zutaten würde ich maximal 15 Euro pro Person einplanen. Insgesamt hätten wir also etwa 180 Euro zur Verfügung."],
-      ["B","Einverstanden. Ich erstelle die Einkaufsliste und kaufe die Zutaten ein."],
-      ["A","Ich reserviere die Küche und informiere die Teilnehmer über den Termin. Außerdem können wir die Kosten am Ende durch zwölf teilen."],
-      ["B","Perfekt. Dann sind Ort, Termin, Gerichte, Zutaten, Kosten, Teilnehmer und Aufgaben klar."]
-    ]
-  },
-  {
-    title:"Familienfest organisieren",
-    ko:"가족 행사",
-    situation:"Sie möchten gemeinsam ein Familienfest organisieren.",
-    points:"Termin · Ort · Kinderprogramm · Essen · Getränke · Kosten · Aufgaben",
-    dialogue:[
-      ["A","Wir möchten ein Familienfest organisieren. Ich würde Samstag, den 28. November, vorschlagen."],
-      ["B","Samstag passt gut. Wo könnten wir das Fest veranstalten?"],
-      ["A","Ich denke, ein Park wäre ideal, weil die Kinder dort viel Platz zum Spielen haben. Bei schlechtem Wetter könnten wir in einen Gemeindesaal ausweichen."],
-      ["B","Das ist sinnvoll. Was wollen wir für die Kinder organisieren?"],
-      ["A","Wir könnten eine Schatzsuche, Ballspiele und einen kleinen Basteltisch vorbereiten."],
-      ["B","Gute Idee. Wie machen wir es mit Essen und Getränken?"],
-      ["A","Ich würde vorschlagen, dass jede Familie etwas zu essen mitbringt. Getränke kaufen wir gemeinsam."],
-      ["B","Wie hoch sollen die Kosten für die Getränke und das Kinderprogramm sein?"],
-      ["A","Wir könnten pro Familie 15 Euro sammeln. Davon bezahlen wir Getränke, Bastelmaterial und kleine Preise für die Kinder."],
-      ["B","Einverstanden. Wie viele Familien erwarten wir?"],
-      ["A","Ungefähr 20 Familien. Ich kümmere mich um die Spiele und das Bastelmaterial."],
-      ["B","Dann informiere ich die Familien über Termin und Ort und erstelle eine Liste für das Essen. Falls das Wetter schlecht ist, reserviere ich den Gemeindesaal."],
-      ["A","Perfekt. Damit sind Termin, Ort, Kinderprogramm, Essen, Getränke, Kosten und Aufgaben geklärt."]
-    ]
-  },
-  {
-    title:"Flohmarkt für einen guten Zweck",
-    ko:"자선 목적의 벼룩시장",
-    situation:"Sie möchten gemeinsam eine kleine Wohltätigkeitsaktion organisieren.",
-    points:"Ort · Termin · Genehmigung · Gegenstände · Werbung · Einnahmen · Aufgaben",
-    dialogue:[
-      ["A","Wir könnten einen Flohmarkt organisieren und die Einnahmen für einen guten Zweck spenden. Wie wäre es mit Samstag, dem 5. Dezember?"],
-      ["B","Das halte ich für eine gute Idee. Wo könnten wir ihn veranstalten?"],
-      ["A","Vielleicht auf dem Schulhof. Dort gibt es genug Platz für die Verkaufsstände."],
-      ["B","Dafür brauchen wir wahrscheinlich eine Genehmigung. Wer kümmert sich darum?"],
-      ["A","Ich frage bei der Schule und beim zuständigen Amt nach und kümmere mich um die Genehmigung."],
-      ["B","Gut. Welche Gegenstände wollen wir verkaufen?"],
-      ["A","Wir können gebrauchte Bücher, Kleidung, Spielzeug und kleine Haushaltsgegenstände sammeln. Alle Sachen sollten noch in gutem Zustand sein."],
-      ["B","Wie machen wir Werbung?"],
-      ["A","Ich erstelle einen Flyer und veröffentliche die Information zusätzlich in unserer WhatsApp-Gruppe und auf der Schulwebsite."],
-      ["B","Und wie verwenden wir die Einnahmen?"],
-      ["A","Alle Einnahmen werden vollständig an eine Kinderhilfsorganisation gespendet. Wir führen eine Liste über die Einnahmen, damit alles transparent bleibt."],
-      ["B","Ich kann die Stände organisieren und die Preise gemeinsam mit den anderen Helfern festlegen."],
-      ["A","Perfekt. Dann kümmere ich mich um Genehmigung und Werbung, und du organisierst die Gegenstände und Stände. Damit sind alle Punkte geklärt."]
-    ]
-  },
-  {
-    title:"Gemeinsamer Lerntag",
-    ko:"공동 학습일",
-    situation:"Sie möchten mit anderen Kursteilnehmern einen gemeinsamen Lerntag organisieren.",
-    points:"Termin · Ort · Lernplan · Pausen · Materialien · Teilnehmer · Aufgaben",
-    dialogue:[
-      ["A","Ich würde vorschlagen, dass wir vor der Prüfung einen gemeinsamen Lerntag organisieren. Wie wäre es mit Samstag, dem 12. Dezember?"],
-      ["B","Das wäre für mich sehr hilfreich. Wo könnten wir lernen?"],
-      ["A","Vielleicht in der Bibliothek. Dort ist es ruhig und wir können einen Gruppenraum reservieren."],
-      ["B","Wie viele Teilnehmer sollen mitmachen?"],
-      ["A","Ich denke, acht bis zehn Kursteilnehmer wären ideal, damit die Gruppe nicht zu groß wird."],
-      ["B","Wie sieht unser Lernplan aus?"],
-      ["A","Wir könnten von 9 bis 11 Uhr Grammatik üben, danach eine halbe Stunde Pause machen und von 11:30 bis 13 Uhr Schreiben trainieren. Nach dem Mittagessen üben wir von 14 bis 16 Uhr Sprechen und Hören."],
-      ["B","Das klingt gut. Wir sollten auch weitere Pausen einplanen, damit wir konzentriert bleiben."],
-      ["A","Ja, nach jeder Einheit machen wir eine kurze Pause. Welche Materialien brauchen wir?"],
-      ["B","Wir brauchen die Kursbücher, Modelltests, Hörtexte und Kopien für die Sprechaufgaben."],
-      ["A","Ich kann die Sprechaufgaben und Modelltests vorbereiten. Kannst du die anderen Lernmaterialien zusammenstellen und den Gruppenraum reservieren?"],
-      ["B","Ja, mache ich. Dann informiere ich auch die Teilnehmer über den Termin und den Lernplan."],
-      ["A","Perfekt. Damit sind Termin, Ort, Lernplan, Pausen, Materialien, Teilnehmer und Aufgaben vollständig geplant."]
-    ]
-  }
-];
-
-function newPlan(){
-  const p=plans[Math.floor(Math.random()*plans.length)];
-  const dialogueHTML=p.dialogue.map((d,i)=>`
-    <div class="phrase" style="border-left-color:${d[0]==="A"?"#111827":"#6366f1"}">
-      <b>${d[0]}:</b> ${escapeHTML(d[1])}
-    </div>`).join("");
-
-  document.getElementById("plan").innerHTML=`
-    <div class="feedback">
-      <span class="badge">THEMA ${plans.indexOf(p)+1} / ${plans.length}</span>
-      <h3 style="margin-bottom:6px">${escapeHTML(p.title)}</h3>
-      <p class="small"><b>🇰🇷 ${escapeHTML(p.ko)}</b></p>
-      <p><b>Situation:</b><br>${escapeHTML(p.situation)}</p>
-      <div class="phrase"><b>Besprechen Sie:</b> ${escapeHTML(p.points)}</div>
-
-      <details open>
-        <summary>🇩🇪 5-Minuten-Musterdialog anzeigen</summary>
-        <div style="margin-top:8px">${dialogueHTML}</div>
-      </details>
-
-      <details>
-        <summary>🇰🇷 핵심 내용 한국어로 보기</summary>
-        <div class="phrase">
-          <b>상황:</b> ${escapeHTML(p.ko)}을/를 함께 계획합니다.<br><br>
-          <b>대화의 핵심:</b> 먼저 한 사람이 제안하고, 상대방이 동의하거나 문제점을 제시합니다.
-          이후 더 저렴하거나 편리한 대안을 제시하고, 마지막에는 날짜·장소·비용·역할 등을 구체적으로 결정합니다.
-        </div>
-        <p class="small">※ 전체 독일어 대화를 한국어로 번역해 암기하기보다, 독일어 문장 구조를 그대로 말하는 연습을 권장합니다.</p>
-      </details>
-
-      <details>
-        <summary>🎯 암기할 핵심 구조</summary>
-        <div class="phrase"><b>1. Vorschlag:</b> Ich würde vorschlagen, dass wir …</div>
-        <div class="phrase"><b>2. Reaktion:</b> Das klingt gut, aber …</div>
-        <div class="phrase"><b>3. Alternative:</b> Stattdessen könnten wir …</div>
-        <div class="phrase"><b>4. Begründung:</b> Das wäre sinnvoll, weil …</div>
-        <div class="phrase"><b>5. Kompromiss:</b> Vielleicht können wir beides miteinander verbinden.</div>
-        <div class="phrase"><b>6. Entscheidung:</b> Dann sind wir uns also einig, dass …</div>
-        <div class="phrase"><b>7. Aufgaben:</b> Ich kümmere mich um … / Du übernimmst …</div>
-      </details>
-
-      <div class="row" style="margin-top:8px">
-        <button type="button" class="secondary" onclick="tab('rec');prepareRecording('Teil 3 – ${escapeAttr(p.title)}')">🎙 Antwort aufnehmen</button>
-        <button type="button" class="secondary" onclick="newPlan()">🎲 다른 주제</button>
-      </div>
-    </div>`;
-}
-
-/* 기존 프로그램과의 호환을 위해 남겨 둔 함수 */
-function translateRough(s){
-  const map = {
-    "Ich würde vorschlagen, dass wir einen Tagesausflug für unsere Deutschkursgruppe organisieren. Was hältst du davon?":"독일어 코스 그룹을 위한 당일 여행을 계획해 보는 게 어떨까? 어떻게 생각해?",
-    "Das finde ich grundsätzlich gut. Aber wohin könnten wir fahren?":"기본적으로 좋은 생각이라고 생각해. 그런데 어디로 갈 수 있을까?",
-    "Wie wäre es mit Heidelberg? Die Stadt ist nicht zu weit entfernt und es gibt dort viel zu sehen.":"하이델베르크는 어때? 너무 멀지 않고 볼 것도 많아.",
-    "Heidelberg klingt gut. Allerdings könnte die Zugfahrt ziemlich teuer sein.":"하이델베르크가 좋을 것 같아. 하지만 기차 요금이 꽤 비쌀 수도 있어.",
-    "Das stimmt. Stattdessen könnten wir mit dem Bus fahren. Das wäre wahrscheinlich günstiger.":"맞아. 대신 버스를 타고 갈 수도 있어. 아마 더 저렴할 거야.",
-    "Einverstanden. Wann sollten wir losfahren?":"좋아. 언제 출발하면 좋을까?",
-    "Ich würde sagen, am Samstag gegen 9 Uhr. Dann haben wir genug Zeit.":"토요일 9시쯤이 좋을 것 같아. 그러면 시간이 충분해.",
-    "Gut. Wir könnten zuerst die Altstadt besichtigen und danach gemeinsam essen gehen.":"좋아. 먼저 구시가지를 둘러보고 그다음 같이 식사하러 가면 좋겠어.",
-    "Das gefällt mir. Ich kümmere mich um die Fahrkarten. Könntest du ein Restaurant reservieren?":"좋아. 내가 기차표를 알아볼게. 너는 식당을 예약해 줄래?",
-    "Ja, gerne. Dann sind wir uns also einig, dass wir am Samstag nach Heidelberg fahren.":"물론이지. 그럼 토요일에 하이델베르크에 가는 것으로 합의하자."
-  };
-  return map[s] || "→ 이 문장의 핵심 의미를 이해하고 독일어로 직접 말해보세요.";
-}
-
-const ps=[
- ["Ich bin der Ansicht, dass …","의견을 분명하게 말하기"],
- ["Meiner Meinung nach …","내 의견을 말하기"],
- ["Ein wichtiger Grund dafür ist, dass …","이유 제시"],
- ["Andererseits darf man nicht vergessen, dass …","반대 측면 제시"],
- ["Ein gutes Beispiel dafür ist …","구체적인 예 제시"],
- ["Ich habe selbst die Erfahrung gemacht, dass …","개인 경험 연결"],
- ["Da stimme ich dir vollkommen zu.","강한 동의"],
- ["Da hast du teilweise recht.","부분적 동의"],
- ["Das kann ich nachvollziehen, aber …","이해 + 반론"],
- ["Ich sehe das etwas anders.","부드러운 반대"],
- ["Wie siehst du das?","상대방 의견 질문"],
- ["Was hältst du davon?","제안에 대한 반응"],
- ["Ich würde vorschlagen, dass wir …","제안"],
- ["Wie wäre es, wenn wir …?","대안 제시"],
- ["Dann sind wir uns also einig, dass …","합의·결론"]
-];
-
-let phraseIndex=0;
-function renderPhraseDrill(){
- const p=ps[phraseIndex];
- document.getElementById("phraseDrill").innerHTML=`
- <div class="card hero">
-  <span class="badge">${phraseIndex+1} / ${ps.length}</span>
-  <h2>${p[0]}</h2>
-  <p class="small">${p[1]}</p>
-  <div class="phrase">🎯 <b>연습:</b> 이 표현을 사용해서 본인 경험에 관한 독일어 문장을 직접 만들어 말해보세요.</div>
-  <textarea id="phraseAnswer" placeholder="독일어 문장을 직접 써보거나, 먼저 말한 뒤 기억나는 내용을 적어보세요."></textarea>
-  <div class="row" style="margin-top:8px">
-   <button type="button" class="primary" onclick="checkPhrase()">✓ 문장 확인</button>
-   <button type="button" class="secondary" onclick="phraseNext()">다음 표현 →</button>
-  </div>
-  <div id="phraseFeedback"></div>
- </div>`;
-}
-function checkPhrase(){
- const v=document.getElementById("phraseAnswer").value.trim();
- const f=document.getElementById("phraseFeedback");
- if(!v){f.innerHTML='<div class="feedback">문장을 하나 만들어 보세요.</div>';return}
- const target=ps[phraseIndex][0].replace("…","").trim();
- const first=target.split(" ")[0];
- f.innerHTML=`<div class="feedback">좋습니다. 핵심 표현 <b>${first}</b>로 시작했는지, 이유·예시가 자연스럽게 연결되는지 소리 내어 다시 확인하세요.<br><br><b>다음 단계:</b> 같은 문장을 보지 않고 다시 말해보세요.</div>`;
- markSession("phrase");
-}
-function phraseNext(){phraseIndex=(phraseIndex+1)%ps.length;renderPhraseDrill()}
-renderPhraseDrill();
-
-let routineStep=0;
-function startRoutine(){
- tab("routine");
- routineStep=0;
- renderRoutine();
-}
-function renderRoutine(){
- const steps=[
-  ["Teil 1","90초 동안 하나의 경험을 구조적으로 말하세요.","t1"],
-  ["Teil 2","의견 → 이유 → 예시 → 상대방에게 질문하세요.","t2"],
-  ["Teil 3","제안 → 반응 → 타협 → 최종 결정까지 말하세요.","t3"]
- ];
- const s=steps[routineStep];
- document.getElementById("routineTitle").textContent=`${routineStep+1}/3 · ${s[0]}`;
- document.getElementById("routineDesc").textContent=s[1];
- document.getElementById("routineBody").innerHTML=`
- <p><b>이번 세션:</b> ${s[1]}</p>
- <div class="row">
-  <button type="button" class="primary" onclick="tab('${s[2]}')">연습 시작</button>
-  <button type="button" class="secondary" onclick="routineNext()">완료하고 다음 →</button>
- </div>`;
-}
-function routineNext(){
- markSession("routine"+routineStep);
- routineStep++;
- if(routineStep>=3){routineStep=0;updateStats();document.getElementById("routineBody").innerHTML='<div class="feedback"><b>🎉 오늘의 3단계 루틴 완료!</b><br>이제 가장 어려웠던 부분을 한 번 더 연습해 보세요.</div>';}
- else renderRoutine();
-}
-
-
-const aiScenarios = {
-  t2: [
-    {
-      topic:"Homeoffice sollte für möglichst viele Arbeitnehmer möglich sein.",
-      opening:"Was halten Sie davon, dass Homeoffice für möglichst viele Arbeitnehmer möglich sein sollte?",
-      prompts:[
-        "Welche Vorteile sehen Sie beim Homeoffice?",
-        "Gibt es auch Nachteile?",
-        "Können Sie ein konkretes Beispiel nennen?",
-        "Wie würden Sie auf jemanden reagieren, der Homeoffice komplett ablehnt?"
-      ]
-    },
-    {
-      topic:"Unternehmen sollten eine Vier-Tage-Woche anbieten.",
-      opening:"Wie stehen Sie zu einer Vier-Tage-Woche?",
-      prompts:[
-        "Was spricht Ihrer Meinung nach dafür?",
-        "Welche Probleme könnten entstehen?",
-        "Haben Sie ein Beispiel aus Ihrem eigenen Umfeld?",
-        "Was wäre ein guter Kompromiss?"
-      ]
-    },
-    {
-      topic:"Städte sollten mehr autofreie Bereiche schaffen.",
-      opening:"Sollten Städte Ihrer Meinung nach mehr autofreie Bereiche schaffen?",
-      prompts:[
-        "Welche Vorteile hätte das?",
-        "Welche Nachteile könnte es für die Menschen geben?",
-        "Wie könnte man die Nachteile reduzieren?",
-        "Wie würden Sie jemanden überzeugen, der dagegen ist?"
-      ]
-    }
+const EXAMS={
+ telcB1:{
+  name:"TELC Deutsch B1",short:"TELC B1",desc:"General German B1 speaking practice.",
+  note:"Official telc information: the oral exam has 3 parts, lasts about 15 minutes and is normally taken by 2 participants with 20 minutes of preparation.",
+  parts:[
+   ["Part 1","Getting to know each other / exchanging information","Practice direct interaction and personal information."],
+   ["Part 2","Speaking about a topic","Express an opinion, give reasons and respond to your partner."],
+   ["Part 3","Planning something together","Make suggestions, react to suggestions and reach a decision."]
   ],
-  t3: [
-    {
-      topic:"Ausflug für eine Deutschkursgruppe organisieren",
-      opening:"Wir sollen gemeinsam einen Ausflug für unsere Deutschkursgruppe organisieren. Wo könnten wir hingehen?",
-      prompts:[
-        "Wann wäre ein geeigneter Termin?",
-        "Wie viel darf der Ausflug kosten?",
-        "Wie organisieren wir die Anreise?",
-        "Was machen wir, wenn einige Teilnehmer nicht mitkommen können?"
-      ]
-    },
-    {
-      topic:"Abschiedsfeier für einen Kollegen organisieren",
-      opening:"Wir möchten gemeinsam eine Abschiedsfeier für einen Kollegen organisieren. Was schlagen Sie vor?",
-      prompts:[
-        "Wo und wann sollten wir die Feier machen?",
-        "Was könnten wir gemeinsam unternehmen?",
-        "Wie viel Geld sollten wir ausgeben?",
-        "Wer übernimmt welche Aufgabe?"
-      ]
-    },
-    {
-      topic:"Informationsabend organisieren",
-      opening:"Wir sollen gemeinsam einen Informationsabend organisieren. Wie könnten wir anfangen?",
-      prompts:[
-        "Wann und wo sollte der Abend stattfinden?",
-        "Welche Informationen brauchen die Teilnehmer?",
-        "Wer übernimmt die einzelnen Aufgaben?",
-        "Wie informieren wir die Teilnehmer?"
-      ]
-    }
+  topics:[
+   ["Part 1","Free time and hobbies","What do you like doing in your free time? Ask your partner about their hobbies and experiences.","Hobbys · Wochenende · Freunde · Erfahrungen","In meiner Freizeit beschäftige ich mich gern mit Sport. Am Wochenende treffe ich oft Freunde, weil wir dann mehr Zeit haben. Und was machen Sie gern?"],
+   ["Part 2","Digital devices","Talk about how people use smartphones in everyday life. Give your opinion and an example.","Vorteile · Nachteile · Zeit · Beispiel","Meiner Meinung nach sind Smartphones im Alltag sehr praktisch. Man kann schnell Informationen finden und mit anderen Menschen Kontakt halten. Andererseits verbringen manche Menschen zu viel Zeit am Handy. Deshalb finde ich eine bewusste Nutzung wichtig."],
+   ["Part 3","A group activity","Plan an activity with your partner. Discuss when, where, how to travel and what everyone should bring.","Termin · Ort · Anreise · Mitbringen · Entscheidung","Wie wäre es, wenn wir uns am Samstag treffen? Ich würde einen Park vorschlagen, weil man dort gut spazieren kann. Wir könnten mit der Straßenbahn fahren. Was halten Sie davon?"]
   ]
+ },
+ telcB2:{
+  name:"TELC Deutsch B2",short:"TELC B2",desc:"General German B2 speaking practice.",
+  note:"Official telc information: the oral exam has 3 parts, lasts about 15 minutes and is normally a pair examination with 20 minutes of preparation.",
+  parts:[
+   ["Part 1","Speaking from experience / topic-based speaking","Structure your ideas clearly and support them with experiences or examples."],
+   ["Part 2","Discussion","Exchange viewpoints, give reasons and respond to your partner's arguments."],
+   ["Part 3","Planning together","Develop a solution, negotiate details and agree on a practical plan."]
+  ],
+  topics:[
+   ["Part 1","Working from home","Explain your experience or position on home office. Discuss advantages, disadvantages and give examples.","Erfahrung · Produktivität · Kommunikation · Beispiel","Meiner Erfahrung nach bietet Homeoffice deutlich mehr Flexibilität. Man spart den Arbeitsweg und kann den Arbeitstag teilweise besser organisieren. Allerdings kann die Kommunikation schwieriger sein. Deshalb halte ich eine Kombination aus Präsenzarbeit und Homeoffice für sinnvoll."],
+   ["Part 2","Digital devices and children","Discuss whether children should spend less time with digital devices. Respond to another opinion.","Meinung · zwei Gründe · Beispiel · Gegenargument","Ich bin der Ansicht, dass Kinder ihre Bildschirmzeit begrenzen sollten. Erstens brauchen sie ausreichend Bewegung, und zweitens sind persönliche Kontakte wichtig. Natürlich können digitale Medien auch beim Lernen helfen. Entscheidend ist deshalb meiner Meinung nach nicht ein komplettes Verbot, sondern ein sinnvoller Rahmen."],
+   ["Part 3","Company event","Plan a company event together. Discuss date, place, transport, food, budget and responsibilities.","Datum · Uhrzeit · Ort · Anreise · Essen · Kosten · Aufgaben","Ich würde zunächst den Termin festlegen. Wie wäre es mit Freitag, dem 18. Juni, ab 18 Uhr? Als Ort könnte ich ein Restaurant in der Innenstadt vorschlagen. Das Budget sollte ungefähr 30 Euro pro Person betragen. Für die Anreise könnten wir die U-Bahn nehmen. Ich kann mich um die Reservierung kümmern. Was könnten Sie übernehmen?"]
+  ]
+ },
+ goetheB1:{
+  name:"Goethe-Zertifikat B1",short:"Goethe B1",desc:"Speaking practice for the Goethe B1 speaking module.",
+  note:"Official Goethe B1 model test: speaking has 3 tasks, about 15 minutes for a pair, with 15 minutes preparation. Task 1 is joint planning, Task 2 is a presentation, Task 3 is discussion about the presentations.",
+  parts:[
+   ["Aufgabe 1","Gemeinsam etwas planen","Make suggestions, react to your partner and decide together."],
+   ["Aufgabe 2","Ein Thema präsentieren","Present a familiar/current topic with introduction, structure, personal experience, situation in your country, pros/cons and conclusion."],
+   ["Aufgabe 3","Über ein Thema sprechen","Give feedback on your partner's presentation and ask a question; respond to feedback and questions."]
+  ],
+  topics:[
+   ["Aufgabe 1","Visit a classmate","Plan a hospital visit and later support for a classmate. Discuss when, how to get there, what to bring and how to help.","Wann · Uhrzeit · Anreise · Geschenk · Hilfe","Wie wäre es, wenn wir ihn am Samstag besuchen? Ich würde gegen 15 Uhr vorschlagen. Wir könnten mit dem Bus fahren und ein kleines Geschenk mitbringen. Danach könnten wir ihm beim Einkaufen helfen. Was meinen Sie?"],
+   ["Aufgabe 2","Children and smartphones","Give a presentation. Include a personal experience, the situation in your home country, advantages/disadvantages and your opinion.","Erfahrung · Heimatland · Vor-/Nachteile · Meinung · Schluss","Heute möchte ich über die Frage sprechen, ob Kinder ein eigenes Smartphone brauchen. Zuerst erzähle ich von meinen Erfahrungen. Danach beschreibe ich die Situation in meinem Heimatland. Ein Vorteil ist, dass Eltern ihre Kinder schnell erreichen können. Ein Nachteil ist die lange Bildschirmzeit. Meiner Meinung nach sollten Eltern klare Regeln vereinbaren. Vielen Dank für Ihre Aufmerksamkeit."],
+   ["Aufgabe 3","React to a presentation","Give brief positive feedback and ask a relevant question about your partner's presentation.","Rückmeldung · Frage · Reaktion","Ihre Präsentation hat mir gut gefallen, besonders das Beispiel aus Ihrem Heimatland. Ich fand interessant, dass Sie über die Vorteile gesprochen haben. Eine Frage habe ich noch: Wie lange sollten Kinder Ihrer Meinung nach täglich ein Smartphone benutzen?"]
+  ]
+ },
+ goetheB2:{
+  name:"Goethe-Zertifikat B2",short:"Goethe B2",desc:"Speaking practice for the Goethe B2 speaking module.",
+  note:"Official Goethe B2 model test: speaking has 2 parts, about 15 minutes, with 15 minutes preparation. Part 1 is a short presentation followed by questions; Part 2 is a discussion.",
+  parts:[
+   ["Teil 1","Kurzvortrag","Choose one of two topics. Structure your presentation with introduction, main part and conclusion; speak for about 4 minutes and answer questions."],
+   ["Teil 2","Diskussion","Exchange viewpoints and arguments on a topic with your partner."]
+  ],
+  topics:[
+   ["Teil 1","Gesund leben","Give a short presentation. Describe several areas, explain one in more detail, and discuss advantages and disadvantages.","Bereiche · genauer erklären · Vor-/Nachteile · Bewertung","Heute möchte ich über das Thema gesundes Leben sprechen. Dazu gehören für mich vor allem Ernährung, Bewegung und ausreichend Schlaf. Einen Bereich möchte ich genauer betrachten: Bewegung. Regelmäßige Bewegung verbessert nicht nur die körperliche Fitness, sondern kann auch Stress reduzieren. Allerdings braucht man dafür Zeit und Motivation. Insgesamt halte ich Bewegung im Alltag für besonders wichtig."],
+   ["Teil 1","Freundschaften pflegen","Present several ways of maintaining friendships, explain one in detail, and evaluate advantages and disadvantages.","Formen · Internet · genauer · Vor-/Nachteile","Freundschaften kann man auf unterschiedliche Weise pflegen, zum Beispiel durch persönliche Treffen, Telefonate oder soziale Netzwerke. Besonders praktisch finde ich Online-Kommunikation, wenn Freunde weit voneinander entfernt wohnen. Andererseits können digitale Kontakte persönliche Treffen nicht vollständig ersetzen. Deshalb halte ich eine Kombination verschiedener Formen für sinnvoll."],
+   ["Teil 2","Digital education","Discuss whether schools should use more digital learning. Present arguments and respond to your partner.","Argumente · Pro/Contra · Beispiel · Reaktion","Ich bin grundsätzlich dafür, digitale Medien stärker im Unterricht einzusetzen. Sie ermöglichen einen schnellen Zugang zu Informationen und können den Unterricht abwechslungsreicher machen. Andererseits besteht die Gefahr, dass Schülerinnen und Schüler zu stark von Geräten abhängig werden. Deshalb sollte digitale Technik meiner Meinung nach gezielt und nicht als Selbstzweck eingesetzt werden."]
+  ]
+ }
 };
 
-let aiMode=null, aiScenario=null, aiStep=0, aiTurns=0;
-let recognition=null;
 
-function startAI(mode){
-  aiMode=mode;
-  const list=aiScenarios[mode];
-  aiScenario=list[Math.floor(Math.random()*list.length)];
-  aiStep=0; aiTurns=0;
-  tab("ai");
-  document.getElementById("aiScenario").innerHTML =
-    `<b>${mode==="t2"?"Teil 2 · Diskussion":"Teil 3 · Gemeinsam planen"}</b><br>${aiScenario.topic}`;
-  document.getElementById("aiChat").innerHTML="";
-  document.getElementById("aiFeedback").classList.add("hidden");
-  addAIMessage("partner",aiScenario.opening);
-  setAIPrompt(aiScenario.opening);
-}
+const WRITING={
+ telcB1:{
+  name:"TELC Deutsch B1",desc:"Writing practice for TELC B1.",
+  note:"Writing tasks should always be checked against the current official telc exam information.",
+  tasks:[
+   ["Teil 1","Eine E-Mail schreiben","You want to organize a weekend activity with a friend. Write an e-mail and cover all four points.","Anrede · Grund des Schreibens · Vorschlag · Termin/Ort · Schluss",
+`Liebe Anna,
 
-function addAIMessage(who,text){
-  const chat=document.getElementById("aiChat");
-  const div=document.createElement("div");
-  div.className="phrase";
-  div.style.borderLeftColor=who==="partner" ? "#6366f1" : "#16a34a";
-  div.innerHTML=`<b>${who==="partner"?"👤 Partner":"🗣 Sie"}:</b><br>${escapeHTML(text)}`;
-  chat.appendChild(div);
-  chat.scrollIntoView({behavior:"smooth",block:"nearest"});
-}
+wie geht es dir? Ich möchte am Wochenende etwas mit dir unternehmen. Wie wäre es, wenn wir am Samstag gemeinsam einen Ausflug machen? Wir könnten in den Stadtpark gehen und dort spazieren. Hast du am Nachmittag Zeit?
 
-function setAIPrompt(){
-  const p=aiScenario.prompts[aiStep];
-  if(!p){
-    finishAI();
-    return;
-  }
-  document.getElementById("aiPrompt").innerHTML =
-    `<b>Partner:</b> ${escapeHTML(p)}`;
-  document.getElementById("aiInputArea").classList.remove("hidden");
-  document.getElementById("aiText").focus();
-}
+Ich freue mich auf deine Antwort.
 
-function submitAIText(){
-  const el=document.getElementById("aiText");
-  const text=el.value.trim();
-  if(!text)return;
-  addAIMessage("user",text);
-  el.value="";
-  aiTurns++;
-  const response=generatePartnerResponse(text,aiMode,aiStep);
-  setTimeout(()=>{
-    addAIMessage("partner",response);
-    aiStep++;
-    setAIPrompt();
-  },250);
-}
+Viele Grüße
+Haseung`,
+"Start with a friendly greeting, explain why you are writing, cover every point and finish appropriately.",
+["Liebe/Lieber ...","Ich schreibe dir, weil ...","Wie wäre es, wenn ...?","Hast du Zeit?","Ich freue mich auf deine Antwort.","Viele Grüße"]],
+   ["Teil 2","Eine kurze Nachricht schreiben","You cannot attend an appointment. Write a short message, explain why and suggest a new date.","Anrede · Grund · Entschuldigung · neuer Termin · Schluss",
+`Sehr geehrte Frau Müller,
 
-function generatePartnerResponse(text,mode,step){
-  const lower=text.toLowerCase();
-  const hasOpinion=/meinung|ansicht|finde|denke|glaube|meiner/i.test(lower);
-  const hasReason=/weil|grund|deshalb|daher|denn|dadurch/i.test(lower);
-  const hasExample=/beispiel|erfahrung|zum beispiel|bei mir|in meinem/i.test(lower);
-  const hasCounter=/aber|andererseits|jedoch|allerdings/i.test(lower);
+leider kann ich am Montag nicht zu unserem Termin kommen, weil ich einen wichtigen Termin habe. Das tut mir leid. Wäre es möglich, dass wir uns stattdessen am Mittwoch um 15 Uhr treffen?
 
-  if(mode==="t2"){
-    if(step===0) return hasOpinion
-      ? "Das ist interessant. Können Sie Ihre Meinung mit einem konkreten Grund erklären?"
-      : "Verstehe. Können Sie Ihre persönliche Meinung dazu etwas genauer erklären?";
-    if(step===1) return hasReason
-      ? "Das kann ich nachvollziehen. Können Sie dazu ein konkretes Beispiel nennen?"
-      : "Welchen konkreten Grund gibt es dafür? Versuchen Sie, Ihre Aussage zu begründen.";
-    if(step===2) return hasExample
-      ? "Danke. Und wie würden Sie auf eine Person reagieren, die eine andere Meinung hat?"
-      : "Haben Sie ein konkretes Beispiel aus Ihrem Alltag oder Umfeld?";
-    return hasCounter
-      ? "Das ist ein interessanter Einwand. Wie könnten wir beide Positionen miteinander verbinden?"
-      : "Nehmen wir an, ich bin anderer Meinung. Wie würden Sie mich von Ihrer Position überzeugen?";
-  }
+Vielen Dank für Ihr Verständnis.
 
-  if(step===0) return "Das klingt interessant. Wann würden Sie das vorschlagen?";
-  if(step===1) return "Einverstanden. Und wie viel Geld sollten wir ungefähr dafür einplanen?";
-  if(step===2) return "Gut. Wie könnten wir die Aufgaben untereinander verteilen?";
-  return "Ich habe einen etwas anderen Vorschlag. Können wir vielleicht einen Kompromiss finden?";
-}
+Mit freundlichen Grüßen
+Haseung`,
+"Use a clear reason, an alternative and an appropriate formal closing.",
+["Leider kann ich ...","weil ...","Das tut mir leid.","Wäre es möglich, dass ...?","Vielen Dank für Ihr Verständnis.","Mit freundlichen Grüßen"]]
+  ]
+ },
+ telcB2:{
+  name:"TELC Deutsch B2",desc:"Writing practice for TELC B2.",
+  note:"Writing tasks and scoring criteria can change. Use the current official telc materials for the actual exam.",
+  tasks:[
+   ["Teil 1","Beschwerde schreiben","You attended a course or used a service and were dissatisfied. Write a formal complaint and explain the problems and what you expect.","Anrede · Anlass · Probleme · Beispiele · Forderung · Schluss",
+`Sehr geehrte Damen und Herren,
 
-function finishAI(){
-  document.getElementById("aiInputArea").classList.add("hidden");
-  document.getElementById("aiFeedback").classList.remove("hidden");
-  const body=document.getElementById("aiFeedbackBody");
-  const msgs=[...document.querySelectorAll("#aiChat .phrase")].filter(x=>x.innerText.includes("🗣 Sie:"));
-  const all=msgs.map(x=>x.innerText).join(" ");
-  const words=all.trim()?all.trim().split(/\s+/).length:0;
-  const b2=[
-    /weil|deshalb|daher|denn/i.test(all),
-    /einerseits|andererseits|jedoch|allerdings/i.test(all),
-    /beispiel|erfahrung/i.test(all),
-    /meiner meinung|ich bin der meinung|ich bin der ansicht/i.test(all)
-  ].filter(Boolean).length;
-  body.innerHTML=`
-    <div class="statgrid">
-      <div class="stat"><b>${aiTurns}</b><span>답변 횟수</span></div>
-      <div class="stat"><b>${words}</b><span>단어 수</span></div>
-      <div class="stat"><b>${b2}/4</b><span>B2 구조 요소</span></div>
-    </div>
-    <div class="feedback" style="margin-top:10px">
-      <b>스스로 점검하세요</b><br>
-      ${b2>=3?"✓ 의견·이유·예시·연결 표현을 비교적 잘 사용했습니다.":"→ 의견, 이유, 예시, 반대 의견 연결 중 빠진 요소를 한 번 더 연습하세요."}<br>
-      → 같은 주제로 한 번 더 말하면서 문장을 더 길게 연결해 보세요.
-    </div>`;
-  markSession("ai");
-}
+ich wende mich an Sie, weil ich mit dem von mir besuchten Sprachkurs leider nicht zufrieden bin. Bereits in den ersten Wochen ist mir aufgefallen, dass die Kursorganisation nicht meinen Erwartungen entspricht.
 
-function startSpeech(){
-  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!SR){
-    document.getElementById("speechStatus").textContent="이 브라우저에서는 음성 인식을 지원하지 않습니다. Chrome/Edge 등 지원 브라우저를 사용하세요.";
-    return;
-  }
-  if(recognition) recognition.stop();
-  recognition=new SR();
-  recognition.lang="de-DE";
-  recognition.interimResults=true;
-  recognition.continuous=false;
-  const status=document.getElementById("speechStatus");
-  const btn=document.getElementById("speechBtn");
-  btn.textContent="■ 듣는 중…";
-  status.textContent="독일어로 말하세요.";
-  let finalText="";
-  recognition.onresult=e=>{
-    let interim="";
-    for(let i=e.resultIndex;i<e.results.length;i++){
-      const t=e.results[i][0].transcript;
-      if(e.results[i].isFinal) finalText+=t;
-      else interim+=t;
-    }
-    document.getElementById("aiText").value=(finalText+" "+interim).trim();
-  };
-  recognition.onerror=()=>{status.textContent="음성을 인식하지 못했습니다. 다시 시도하세요.";btn.textContent="🎙 말해서 답하기"};
-  recognition.onend=()=>{
-    btn.textContent="🎙 말해서 답하기";
-    if(finalText.trim()) status.textContent="인식 완료. Antwort senden을 눌러 보내세요.";
-  };
-  recognition.start();
-}
+Besonders problematisch war, dass der Unterricht mehrmals kurzfristig ausgefallen ist. Außerdem hatten wir nur sehr wenige Möglichkeiten, selbst zu sprechen.
 
-function escapeHTML(s){
- return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
-}
+Daher möchte ich Sie bitten, mir mitzuteilen, wie Sie dieses Problem lösen möchten. Ich würde mich über eine angemessene Lösung freuen.
 
-let recorder=null,recordChunks=[],recordingTitle="자유 말하기";
-let recordings=JSON.parse(localStorage.getItem("telcRecordings")||"[]");
+Mit freundlichen Grüßen
+Haseung`,
+"Structure the complaint logically: Anlass → konkrete Probleme → examples → expected solution.",
+["Ich wende mich an Sie, weil ...","Besonders problematisch war, dass ...","Darüber hinaus ...","Daher möchte ich Sie bitten, ...","Ich würde mich über ... freuen.","Mit freundlichen Grüßen"]],
+   ["Teil 2","Meinungsäußerung","Write a structured opinion on whether children should spend less time with digital devices. Give reasons and an example.","Einleitung · Meinung · Grund 1 · Grund 2 · Beispiel · Gegenargument · Schluss",
+`Immer häufiger wird darüber diskutiert, wie viel Zeit Kinder mit digitalen Geräten verbringen sollten. Meiner Ansicht nach ist es sinnvoll, die Bildschirmzeit zu begrenzen.
 
-function prepareRecording(title){recordingTitle=title||"자유 말하기";updateRecordStatus("준비됨: "+recordingTitle)}
-function updateRecordStatus(t){document.getElementById("recordStatus").textContent=t}
-async function toggleRecord(){
- const btn=document.getElementById("recordBtn");
- if(recorder && recorder.state==="recording"){
-  recorder.stop(); return;
+Ein wichtiger Grund dafür ist, dass Kinder ausreichend Bewegung brauchen. Außerdem sind persönliche Kontakte für ihre Entwicklung von großer Bedeutung. Ein Beispiel dafür ist die gemeinsame Freizeit mit Freunden, bei der Kinder direkt miteinander kommunizieren.
+
+Natürlich haben digitale Medien auch Vorteile, zum Beispiel beim Lernen. Trotzdem halte ich klare Regeln für sinnvoll. Entscheidend ist nicht ein vollständiges Verbot, sondern ein ausgewogenes Verhältnis.
+
+Zusammenfassend bin ich der Meinung, dass Kinder digitale Medien bewusst und zeitlich begrenzt nutzen sollten.`,
+"Use a clear position, connected arguments, an example and a brief consideration of the opposite side.",
+["Immer häufiger wird darüber diskutiert, ob ...","Meiner Ansicht nach ...","Ein wichtiger Grund dafür ist, dass ...","Außerdem ...","Natürlich ...","Trotzdem ...","Zusammenfassend bin ich der Meinung, dass ..."]]
+  ]
+ },
+ goetheB1:{
+  name:"Goethe-Zertifikat B1",desc:"Writing practice for the Goethe B1 writing module.",
+  note:"The exact task format and time should be checked in the current Goethe model test.",
+  tasks:[
+   ["Aufgabe 1","Eine persönliche E-Mail","Write an e-mail to a friend. Explain a situation, give information and make a suggestion.","Anrede · Situation · Informationen · Vorschlag · Schluss",
+`Liebe Maria,
+
+vielen Dank für deine Nachricht. Du hast gefragt, was ich am Wochenende machen möchte. Ich würde gern mit dir einen Ausflug machen. Wenn das Wetter schön ist, könnten wir an den See fahren und dort spazieren gehen.
+
+Hast du am Samstag Zeit? Wir könnten uns um 10 Uhr am Bahnhof treffen.
+
+Ich freue mich auf dich!
+
+Viele Grüße
+Haseung`,
+"Keep the message personal and make sure all requested points are covered.",
+["Vielen Dank für deine Nachricht.","Du hast gefragt, ob ...","Ich würde gern ...","Wenn ..., könnten wir ...","Hast du Zeit?","Viele Grüße"]],
+   ["Aufgabe 2","Eine formelle Nachricht","Write a short formal message about a problem or request. Explain the situation and ask for a solution.","Anrede · Situation · Problem · Bitte · Schluss",
+`Sehr geehrte Damen und Herren,
+
+ich schreibe Ihnen, weil ich ein Problem mit meiner Anmeldung habe. Ich habe mich bereits vor zwei Wochen für den Kurs angemeldet, aber bisher keine Bestätigung erhalten.
+
+Könnten Sie bitte überprüfen, ob meine Anmeldung bei Ihnen angekommen ist? Über eine kurze Rückmeldung würde ich mich sehr freuen.
+
+Mit freundlichen Grüßen
+Haseung`,
+"Use formal language and make your request explicit.",
+["Ich schreibe Ihnen, weil ...","Bisher habe ich ... nicht erhalten.","Könnten Sie bitte ...?","Über eine Rückmeldung würde ich mich freuen.","Mit freundlichen Grüßen"]]
+  ]
+ },
+ goetheB2:{
+  name:"Goethe-Zertifikat B2",desc:"Writing practice for the Goethe B2 writing module.",
+  note:"Use the current official Goethe model test to verify the exact current task format and time.",
+  tasks:[
+   ["Teil 1","Forumsbeitrag / Stellungnahme","Write a structured contribution to a discussion. State your opinion, give reasons and examples, and address another viewpoint.","Einleitung · Meinung · Argumente · Beispiel · Gegenposition · Schluss",
+`Immer wieder wird darüber diskutiert, ob Schulen digitale Medien stärker einsetzen sollten. Meiner Ansicht nach bieten digitale Medien im Unterricht viele Möglichkeiten, wenn sie gezielt eingesetzt werden.
+
+Ein wesentlicher Vorteil besteht darin, dass Schülerinnen und Schüler schnell auf unterschiedliche Informationen zugreifen können. Außerdem lässt sich der Unterricht abwechslungsreicher gestalten. Beispielsweise können Lernende interaktive Übungen nutzen und direkt Rückmeldungen erhalten.
+
+Allerdings darf man nicht vergessen, dass digitale Geräte auch ablenken können. Deshalb halte ich es für wichtig, klare Regeln festzulegen und digitale Medien nicht bei jeder Unterrichtsphase einzusetzen.
+
+Insgesamt bin ich der Meinung, dass digitale Medien eine sinnvolle Ergänzung des Unterrichts sein können, aber den persönlichen Austausch nicht ersetzen sollten.`,
+"Build paragraphs around one function each: introduction, position, arguments, counterargument and conclusion.",
+["Immer wieder wird darüber diskutiert, ob ...","Meiner Ansicht nach ...","Ein wesentlicher Vorteil besteht darin, dass ...","Beispielsweise ...","Allerdings darf man nicht vergessen, dass ...","Deshalb halte ich es für wichtig, ...","Insgesamt bin ich der Meinung, dass ..."]],
+   ["Teil 2","Formelle E-Mail","Write a formal e-mail in response to a situation. Explain the issue, justify your position and propose a solution.","Anrede · Anlass · Begründung · Lösungsvorschlag · Schluss",
+`Sehr geehrte Damen und Herren,
+
+bezugnehmend auf Ihre Mitteilung möchte ich mich zu dem geplanten Termin äußern. Leider ist es mir nicht möglich, an diesem Termin teilzunehmen, da ich bereits eine wichtige berufliche Verpflichtung habe.
+
+Ich möchte Sie daher bitten, mir einen alternativen Termin anzubieten. Besonders passend wäre für mich ein Termin am folgenden Mittwoch oder Donnerstag. Ich hoffe, dass sich eine für beide Seiten geeignete Lösung finden lässt.
+
+Vielen Dank für Ihr Verständnis.
+
+Mit freundlichen Grüßen
+Haseung`,
+"Formal writing benefits from precise connectors, clear justification and a concrete proposal.",
+["Bezugnehmend auf ...","Leider ist es mir nicht möglich, ...","da ...","Ich möchte Sie daher bitten, ...","Besonders passend wäre für mich ...","Ich hoffe, dass ...","Vielen Dank für Ihr Verständnis."]]
+  ]
  }
- if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
-  updateRecordStatus("이 브라우저에서는 녹음을 지원하지 않습니다. Safari/Chrome의 HTTPS 페이지에서 사용하세요.");
-  return;
- }
+};
+
+const PHRASES={
+"All exams":[
+["Meiner Meinung nach ...","In my opinion ..."],
+["Ich bin der Ansicht, dass ...","I am of the opinion that ..."],
+["Ein wichtiger Punkt ist ...","An important point is ..."],
+["Einerseits ..., andererseits ...","On the one hand ..., on the other hand ..."],
+["Zum Beispiel ...","For example ..."],
+["Das sehe ich ähnlich.","I see it similarly / I agree."],
+["Da bin ich anderer Meinung.","I have a different opinion."],
+["Das klingt interessant.","That sounds interesting."],
+["Was halten Sie davon?","What do you think about that?"],
+["Wie wäre es, wenn ...?","How about if ...?"],
+["Ich würde vorschlagen, dass ...","I would suggest that ..."],
+["Könnten wir uns darauf einigen, dass ...?","Could we agree that ...?"],
+["Ich verstehe Ihren Punkt, aber ...","I understand your point, but ..."],
+["Zusammenfassend lässt sich sagen, dass ...","In summary, it can be said that ..."],
+["Vielen Dank für Ihre Aufmerksamkeit.","Thank you for your attention."]
+]};
+
+let currentExam=null,currentTopic=null,currentWritingExam=null,currentWritingTask=null,seconds=90,timerId=null,mediaRecorder=null,chunks=[];
+const $=id=>document.getElementById(id);
+function show(id){
+ document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+ $(id).classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+ document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));
+ if(id==='home')$('navHome').classList.add('active');
+ if(id==='writing')$('navWriting').classList.add('active');
+  if(id==='writingExam')$('navWriting').classList.add('active');
+  if(id==='writingPractice')$('navWriting').classList.add('active');
+  if(id==='phrases')$('navPhrases').classList.add('active');
+ if(id==='routine')$('navRoutine').classList.add('active');
+}
+function renderExams(){
+ $('examGrid').innerHTML=Object.entries(EXAMS).map(([k,e])=>`
+ <button class="exam" onclick="openExam('${k}')"><strong>${e.short}</strong><span>${e.desc}</span><span class="badge">Speaking</span></button>`).join('');
+}
+function openExam(k){
+ currentExam=k; const e=EXAMS[k];
+ $('examTitle').textContent=e.name;$('examDesc').textContent=e.desc;$('examNote').textContent=e.note;
+ $('parts').innerHTML=e.parts.map(p=>`<div class="card"><div class="row"><strong>${p[0]}</strong><span class="small">${p[1]}</span></div><div class="small" style="margin-top:7px">${p[2]}</div></div>`).join('');
+ $('topicCards').innerHTML=e.topics.map((t,i)=>`<button class="card" style="text-align:left" onclick="openPractice(${i})"><div class="row"><strong>${t[0]}</strong><span class="badge">Practice</span></div><div style="margin-top:7px">${t[1]}</div><div class="small" style="margin-top:6px">${t[2]}</div></button>`).join('');
+ show('exam');
+}
+function openPractice(i){
+ currentTopic=EXAMS[currentExam].topics[i];
+ $('practiceTitle').textContent=currentTopic[1];
+ $('practicePart').textContent=currentTopic[0]+' · '+EXAMS[currentExam].name;
+ $('task').textContent=currentTopic[1];
+ $('taskEn').textContent=currentTopic[2];
+ $('points').innerHTML=currentTopic[3].split('·').map(x=>`<span class="badge" style="margin:3px">${x.trim()}</span>`).join('');
+ $('model').textContent=currentTopic[4];
+ $('modelEn').textContent='Use this as a structure, not a script. Build your own answer.';
+ $('doneMsg').style.display='none';resetTimer();$('audio').style.display='none';$('audio').src='';
+ show('practice');
+}
+function updateTimer(){ $('timer').textContent=String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0');}
+function resetTimer(){clearInterval(timerId);seconds=90;updateTimer();}
+function startTimer(){clearInterval(timerId);timerId=setInterval(()=>{seconds--;updateTimer();if(seconds<=0){clearInterval(timerId);seconds=0;updateTimer();}},1000);}
+$('resetTimer').onclick=()=>resetTimer();
+$('timer').onclick=()=>startTimer();
+$('startRec').onclick=async()=>{
  try{
   const stream=await navigator.mediaDevices.getUserMedia({audio:true});
-  recordChunks=[];
-  recorder=new MediaRecorder(stream);
-  recorder.ondataavailable=e=>{if(e.data.size)recordChunks.push(e.data)}
-  recorder.onstop=()=>{
-   stream.getTracks().forEach(t=>t.stop());
-   const blob=new Blob(recordChunks,{type:recorder.mimeType||"audio/webm"});
-   const url=URL.createObjectURL(blob);
-   recordings.unshift({title:recordingTitle,date:new Date().toLocaleString(),url:url});
-   // Keep current-session URLs usable; metadata is persisted, blobs are not.
-   localStorage.setItem("telcRecordingMeta",JSON.stringify(recordings.map(x=>({title:x.title,date:x.date}))));
-   document.getElementById("statRecordings").textContent=String(Number(document.getElementById("statRecordings").textContent||0)+1);
-   renderRecordings();
-   updateRecordStatus("녹음 완료");
-   btn.textContent="● 녹음 시작";
-  };
-  recorder.start();
-  btn.textContent="■ 녹음 중지";
-  updateRecordStatus("녹음 중…");
- }catch(e){updateRecordStatus("마이크 사용이 허용되지 않았습니다. 브라우저 설정에서 마이크 권한을 확인하세요.")}
+  chunks=[];mediaRecorder=new MediaRecorder(stream);
+  mediaRecorder.ondataavailable=e=>chunks.push(e.data);
+  mediaRecorder.onstop=()=>{const blob=new Blob(chunks,{type:'audio/webm'});$('audio').src=URL.createObjectURL(blob);$('audio').style.display='block';stream.getTracks().forEach(t=>t.stop());};
+  mediaRecorder.start();$('startRec').disabled=true;$('stopRec').disabled=false;startTimer();
+ }catch(e){alert('Microphone access is required for recording. Please allow microphone access in your browser.');}
+};
+$('stopRec').onclick=()=>{if(mediaRecorder&&mediaRecorder.state!=='inactive')mediaRecorder.stop();$('startRec').disabled=false;$('stopRec').disabled=true;};
+function markDone(){
+ let n=Number(localStorage.getItem('speakingSessions')||0)+1;localStorage.setItem('speakingSessions',n);
+ $('sessions').textContent=n;$('progressBar').style.width=Math.min(100,n/20*100)+'%';$('doneMsg').style.display='block';
 }
-function renderRecordings(){
- const box=document.getElementById("recordings");
- box.innerHTML=recordings.slice(0,10).map((r,i)=>`
- <div class="card">
-  <b>${r.title}</b><div class="small">${r.date}</div>
-  ${r.url?`<audio controls style="width:100%;margin-top:8px" src="${r.url}"></audio>`:'<p class="small">이전 세션의 녹음은 브라우저를 새로 열면 재생할 수 없습니다.</p>'}
- </div>`).join("");
+function renderPhrases(){
+ $('phraseList').innerHTML=PHRASES["All exams"].map(p=>`<div class="phrase"><strong>${p[0]}</strong><div class="small">${p[1]}</div></div>`).join('');
 }
-renderRecordings();
 
-function markSession(kind){
- let d=JSON.parse(localStorage.getItem("telcStats")||'{"sessions":0,"days":0,"last":"","done":0}');
- const today=new Date().toISOString().slice(0,10);
- d.sessions++;
- if(d.last!==today){
-   const prev=new Date(d.last||today);
-   const now=new Date(today);
-   const diff=Math.round((now-prev)/86400000);
-   d.days=(diff===1)?(d.days+1):1;
-   d.last=today;
- }
- d.done=Math.min(3,(d.done||0)+1);
- localStorage.setItem("telcStats",JSON.stringify(d));
- updateStats();
+function renderWritingExams(){
+  $('writingExamGrid').innerHTML=Object.entries(WRITING).map(([k,e])=>`
+    <button class="exam" onclick="openWritingExam('${k}')">
+      <strong>${e.name}</strong><span>${e.desc}</span><span class="badge">Schreiben</span>
+    </button>`).join('');
 }
-function updateStats(){
- let d=JSON.parse(localStorage.getItem("telcStats")||'{"sessions":0,"days":0,"last":"","done":0}');
- document.getElementById("statSessions").textContent=d.sessions||0;
- document.getElementById("statDays").textContent=d.days||0;
- document.getElementById("statRecordings").textContent=recordings.length||0;
- const done=Math.min(3,d.done||0);
- document.getElementById("dailyProgress").style.width=(done/3*100)+"%";
- document.getElementById("dailyText").textContent=`오늘 ${done} / 3 세션 완료`;
+
+function openWritingExam(k){
+  currentWritingExam=k;
+  const e=WRITING[k];
+  $('writingExamTitle').textContent=e.name;
+  $('writingExamDesc').textContent=e.desc;
+  $('writingExamNote').textContent=e.note;
+  $('writingTasks').innerHTML=e.tasks.map((t,i)=>`
+    <button class="card" style="text-align:left" onclick="openWritingPractice(${i})">
+      <div class="row"><strong>${t[0]}</strong><span class="badge">Practice</span></div>
+      <div style="margin-top:7px">${t[1]}</div>
+      <div class="small" style="margin-top:6px">${t[2]}</div>
+    </button>`).join('');
+  show('writingExam');
 }
-updateStats();
+
+function openWritingPractice(i){
+  currentWritingTask=WRITING[currentWritingExam].tasks[i];
+  const t=currentWritingTask;
+  $('writingPracticeTitle').textContent=t[1];
+  $('writingPracticePart').textContent=t[0]+' · '+WRITING[currentWritingExam].name;
+  $('writingTask').textContent=t[1];
+  $('writingTaskEn').textContent=t[2];
+  $('writingPoints').innerHTML=t[3].split('·').map(x=>`<span class="badge" style="margin:3px">${x.trim()}</span>`).join('');
+  $('writingModel').textContent=t[4];
+  $('writingModelEn').textContent=t[5];
+  $('writingStructure').innerHTML=t[6].map(x=>`<div class="structure-item"><strong>${x}</strong></div>`).join('');
+  $('writingInput').value='';
+  updateWordCount();
+  $('writingDoneMsg').style.display='none';
+  show('writingPractice');
+}
+
+function updateWordCount(){
+  const text=$('writingInput').value.trim();
+  const count=text?text.split(/\s+/).length:0;
+  $('wordCount').textContent=count+' Wörter';
+}
+function clearWriting(){$('writingInput').value='';updateWordCount();}
+function markWritingDone(){
+  let n=Number(localStorage.getItem('writingSessions')||0)+1;
+  localStorage.setItem('writingSessions',n);
+  $('writingDoneMsg').style.display='block';
+}
+$('writingInput').addEventListener('input',updateWordCount);
+
+function init(){renderExams();renderWritingExams();renderPhrases();$('sessions').textContent=localStorage.getItem('speakingSessions')||0;$('progressBar').style.width=Math.min(100,(Number(localStorage.getItem('speakingSessions')||0))/20*100)+'%';}
+init();
 </script>
 <script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js?v=20261002-teil3-2").catch(()=>{}));
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
 }
 </script>
 </body>
