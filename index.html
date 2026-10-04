@@ -13,6 +13,28 @@
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
 button{font:inherit;border:0;cursor:pointer}.app{max-width:760px;margin:auto;min-height:100vh}.top{background:var(--accent2);color:white;padding:22px 18px 18px;position:sticky;top:0;z-index:10}.brand{font-weight:800;font-size:20px}.sub{opacity:.72;font-size:12px;margin-top:4px}.screen{display:none;padding:18px}.screen.active{display:block}.hero{padding:18px 0 10px}.hero h1{font-size:32px;line-height:1.08;margin:0 0 10px}.hero p{color:var(--muted);line-height:1.5}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.exam{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow);text-align:left;min-height:145px}.exam strong{display:block;font-size:19px}.exam span{display:block;color:var(--muted);font-size:13px;margin-top:7px;line-height:1.4}.badge{display:inline-block;margin-top:12px;background:#eef2ff;color:#3730a3;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:700}.section-title{font-size:14px;font-weight:800;margin:22px 0 10px}.cards{display:grid;gap:10px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px;box-shadow:0 5px 18px rgba(15,23,42,.05)}.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.small{font-size:12px;color:var(--muted)}.btn{background:var(--accent);color:#fff;border-radius:12px;padding:10px 13px;font-weight:700}.btn.secondary{background:#eef2f7;color:var(--ink)}.btn.dark{background:var(--accent2)}.btn.full{width:100%;margin-top:10px}.back{background:transparent;color:inherit;padding:0;font-size:13px;opacity:.8}.pillbar{display:flex;gap:8px;overflow:auto;padding:5px 0 12px}.pill{white-space:nowrap;background:#fff;border:1px solid var(--line);padding:8px 12px;border-radius:999px;color:var(--muted)}.pill.active{background:var(--accent);border-color:var(--accent);color:#fff}.task{font-size:17px;line-height:1.5;font-weight:700}.en{color:var(--muted);font-size:13px;line-height:1.45;margin-top:8px}.de{font-size:16px;line-height:1.6;background:#f8fafc;border-radius:12px;padding:12px;margin-top:12px}.phrase{padding:11px 0;border-bottom:1px solid var(--line)}.phrase:last-child{border-bottom:0}.timer{text-align:center;font-size:52px;font-weight:800;letter-spacing:2px;margin:15px 0}.timerbox{background:#0f172a;color:#fff;border-radius:20px;padding:18px}.progress{height:8px;background:#e7ebf1;border-radius:10px;overflow:hidden}.progress>i{display:block;height:100%;background:var(--accent);width:0}.nav{position:sticky;bottom:0;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;padding:8px;gap:5px;z-index:9}.nav button{flex:1;background:transparent;color:var(--muted);padding:7px 4px;font-size:10.5px;line-height:1.15}.nav button.active{color:var(--accent);font-weight:800}.navIcon{display:inline-flex;align-items:center;justify-content:center;height:24px;font-size:22px;line-height:1}.navIcon svg{width:22px;height:22px;display:block}.recording{display:flex;gap:8px;flex-wrap:wrap}.note{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:12px;padding:12px;font-size:12px;line-height:1.5}.success{background:#ecfdf5;border:1px solid #bbf7d0;color:#166534;border-radius:12px;padding:12px;font-size:12px}.locked{opacity:.7;position:relative}.lock{position:absolute;right:14px;top:14px}.price{font-size:25px;font-weight:900}.footer{color:var(--muted);font-size:11px;line-height:1.5;padding:25px 2px 90px}
 @media(max-width:520px){.grid{grid-template-columns:1fr}.hero h1{font-size:28px}.screen{padding:15px}}
+
+/* ===== Dialogue visibility upgrade ===== */
+.dialogue-wrap{margin-top:12px}
+.dialogue-intro{background:#eef5ff;border:1px solid #cfe0ff;color:#1e3a8a;border-radius:14px;padding:12px;font-size:13px;line-height:1.55;margin-bottom:12px}
+.dialogue-step{border:1px solid var(--line);border-radius:16px;margin:12px 0;overflow:hidden;background:#fff;box-shadow:0 5px 16px rgba(15,23,42,.05)}
+.dialogue-step-head{display:flex;justify-content:space-between;align-items:center;padding:11px 13px;background:#f8fafc;border-bottom:1px solid var(--line);font-weight:800}
+.dialogue-step-head .step-no{color:var(--accent);font-size:12px}
+.bubble{padding:13px 14px;margin:10px 12px;border-radius:14px;line-height:1.65;font-size:15px}
+.bubble-a{background:#eef5ff;border:1px solid #cfe0ff;margin-right:34px}
+.bubble-b{background:#f3f4f6;border:1px solid #e5e7eb;margin-left:34px}
+.bubble-label{font-size:11px;font-weight:900;letter-spacing:.04em;margin-bottom:5px;color:var(--muted)}
+.dialogue-ko{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.45}
+.dialogue-prompt{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:12px;padding:11px 12px;margin:10px 12px;font-size:13px;line-height:1.5}
+.point-check{display:flex;align-items:flex-start;gap:9px;padding:10px 12px;border-top:1px solid var(--line);font-size:13px}
+.point-check input{width:18px;height:18px;accent-color:var(--accent);margin-top:1px}
+.point-check.done{background:#ecfdf5;color:#166534}
+.dialogue-summary{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:13px;margin-top:12px}
+.dialogue-summary strong{display:block;margin-bottom:6px}
+@media(max-width:520px){
+  .bubble{font-size:14px;margin-left:8px;margin-right:8px}
+  .dialogue-step-head{font-size:14px}
+}
 </style>
 </head>
 <body>
@@ -100,19 +122,20 @@ button{font:inherit;border:0;cursor:pointer}.app{max-width:760px;margin:auto;min
     <div class="section-title">핵심 포인트</div>
     <div id="points"></div>
     <div id="discussionBox" style="display:none">
-      <div class="section-title">🗣️ 파트너 의견에 반응하기</div>
-      <div class="de" id="partnerPrompt"></div>
-      <div class="small" style="margin-top:8px">파트너가 이렇게 말했다고 가정하고, 동의·부분 동의·반대 중 하나를 선택해 반응한 뒤 다시 질문하세요.</div>
-      <div class="section-title">내 차례 체크리스트</div>
-      <div class="cards">
-        <div class="card" style="box-shadow:none"><strong>1. 반응</strong><div class="small">Das sehe ich ähnlich. / Da bin ich anderer Meinung.</div></div>
-        <div class="card" style="box-shadow:none"><strong>2. 이유·예시</strong><div class="small">근거를 하나 덧붙이고 짧은 예를 제시합니다.</div></div>
-        <div class="card" style="box-shadow:none"><strong>3. 다시 질문</strong><div class="small">Was meinen Sie dazu? / Wie sehen Sie das?</div></div>
-      </div>
+      <div class="section-title">🗣️ Teil 2 · 실제 대화 흐름</div>
+      <div class="dialogue-wrap" id="part2Dialogue"></div>
     </div>
-    <div class="section-title">시험에서 사용할 수 있는 답변 예시</div>
-    <div class="de" id="model"></div>
-    <div class="en" id="modelKo"></div>
+
+    <div id="planningBox" style="display:none">
+      <div class="section-title">🤝 Teil 3 · 모든 항목을 빠짐없이 협의하기</div>
+      <div class="dialogue-wrap" id="part3Dialogue"></div>
+    </div>
+
+    <div id="modelBox">
+      <div class="section-title">시험에서 사용할 수 있는 답변 예시</div>
+      <div class="de" id="model"></div>
+      <div class="en" id="modelKo"></div>
+    </div>
   </div>
 
   <button class="btn full" id="randomAgain">🎲 다른 주제 뽑기</button>
@@ -342,15 +365,28 @@ function randomPractice(part){
   renderPractice();
 }
 
+const PART3_DIALOGUES = {"Betriebsausflug":{"Termin":["Wie wäre es mit Freitag, dem 16. Oktober, von 9 bis 17 Uhr?","Freitag passt mir gut, aber ich würde lieber etwas früher zurückkommen. Können wir von 9 bis 16 Uhr planen?","Ja, 9 bis 16 Uhr ist ein guter Kompromiss."],"Ort":["Als Ziel würde ich den Taunus vorschlagen. Dort könnten wir wandern und gemeinsam essen.","Der Taunus gefällt mir. Ich würde aber einen Ort mit einem Restaurant in der Nähe wählen.","Einverstanden. Dann nehmen wir einen Naturpark im Taunus mit einem Restaurant in der Nähe."],"Anreise":["Wir könnten gemeinsam mit einem Reisebus fahren. Dann müssen wir nicht umsteigen.","Ein Bus wäre bequem, aber wir sollten die Kosten niedrig halten.","Dann vergleichen wir die Buskosten und buchen ihn, wenn es nicht zu teuer ist."],"Essen":["Für das Mittagessen würde ich ein Restaurant mit deutscher und vegetarischer Küche reservieren.","Das klingt gut. Wichtig wäre mir, dass auch vegetarische und vegane Gerichte angeboten werden.","Dann reservieren wir ein Restaurant mit beiden Optionen."],"Budget":["Ich denke, 30 Euro pro Person sollten für Fahrt und Mittagessen reichen.","30 Euro finde ich etwas knapp. 35 Euro wären realistischer.","Gut, dann planen wir maximal 35 Euro pro Person ein."],"Aufgaben":["Ich kann den Bus und das Restaurant reservieren. Könnten Sie die Teilnehmerliste übernehmen?","Ja, das kann ich machen. Ich informiere auch die Kollegen über den Ablauf.","Perfekt. Dann teilen wir die Aufgaben so auf."]},"Familienfest":{"Termin":["Wie wäre es mit Samstag, dem 17. Oktober, ab 15 Uhr?","Samstag passt gut. Ich würde aber erst um 15:30 Uhr beginnen, damit alle genug Zeit haben.","Einverstanden. Wir beginnen um 15:30 Uhr und feiern bis etwa 19 Uhr."],"Ort":["Ich würde das Familienfest im Stadtpark veranstalten.","Im Park wäre es schön, aber bei schlechtem Wetter hätten wir ein Problem.","Dann reservieren wir zusätzlich einen kleinen Gemeinderaum als Alternative."],"Gäste":["Wir könnten ungefähr 30 Familienmitglieder einladen.","30 Personen sind vielleicht zu viele. Ich würde auf die engere Familie beschränken.","Gut, dann laden wir ungefähr 20 bis 25 Personen ein."],"Essen":["Ich schlage ein gemeinsames Buffet vor, bei dem jeder etwas mitbringt.","Das ist günstig, aber wir sollten vermeiden, dass alle dasselbe mitbringen.","Dann erstellen wir vorher eine Liste und teilen die Gerichte auf."],"Aufgaben":["Ich kümmere mich um Getränke und Geschirr. Können Sie die Einladungen verschicken?","Ja, das mache ich. Außerdem kann ich die Kinderaktivitäten vorbereiten.","Sehr gut. Dann sind die wichtigsten Aufgaben verteilt."]},"Schulveranstaltung":{"Programm":["Wir könnten um 14 Uhr mit einem kurzen Begrüßungsspiel beginnen und danach Workshops anbieten.","Die Idee gefällt mir. Ich würde zusätzlich eine kleine Aufführung am Ende einplanen.","Dann machen wir Spiele, Workshops und um 16:30 Uhr eine kurze Aufführung."],"Ort":["Für die Veranstaltung wäre die Aula der Schule ideal.","Die Aula ist gut, aber für die Sportaktivitäten brauchen wir mehr Platz.","Dann nutzen wir Aula und Schulhof gemeinsam."],"Zeit":["Ich würde die Veranstaltung von 14 bis 17 Uhr planen.","Drei Stunden finde ich passend. Die Kinder brauchen aber zwischendurch eine Pause.","Dann machen wir gegen 15:30 Uhr eine kurze Pause."],"Essen":["Wir könnten Kaffee, Saft und kleine Snacks anbieten.","Das reicht. Ein großes Essen wäre für eine Schulveranstaltung zu aufwendig.","Dann organisieren wir nur Getränke, Obst und kleine Snacks."],"Helfer":["Wir brauchen mindestens sechs Eltern als Helfer.","Sechs sollten reichen. Zwei könnten am Eingang helfen und vier bei den Aktivitäten.","Genau so teilen wir die Helfer ein."]},"Spendenaktion":{"Ziel":["Ich würde Geld für eine lokale Kinderhilfsorganisation sammeln.","Das finde ich sinnvoll. Wir sollten vorher ein konkretes Spendenziel festlegen.","Dann setzen wir uns das Ziel, mindestens 1.000 Euro zu sammeln."],"Termin":["Wie wäre es mit Samstag, dem 24. Oktober?","Der Termin passt. Wir sollten aber möglichst früh am Vormittag beginnen.","Dann starten wir um 10 Uhr und enden gegen 15 Uhr."],"Werbung":["Wir könnten zwei Wochen vorher Flyer verteilen und online Werbung machen.","Online-Werbung ist gut. Zusätzlich könnten wir lokale Geschäfte fragen, ob sie einen Flyer aufhängen.","Ja, das machen wir. So erreichen wir mehr Menschen."],"Ort":["Der Marktplatz wäre für die Aktion gut geeignet.","Dort gibt es viele Passanten. Wir müssen aber vorher eine Genehmigung beantragen.","Dann kümmern wir uns zuerst um die Genehmigung für den Marktplatz."],"Aufgaben":["Ich kann die Flyer gestalten. Könnten Sie den Kontakt zur Organisation übernehmen?","Ja. Außerdem kann ich die Genehmigung für den Stand beantragen.","Perfekt. Dann teilen wir diese Aufgaben zwischen uns auf."]},"Sporttag":{"Sportarten":["Ich würde Fußball, Volleyball und einen kleinen Lauf anbieten.","Das ist abwechslungsreich. Für ältere Teilnehmer wäre aber eine leichtere Aktivität sinnvoll.","Dann ergänzen wir eine Walking-Gruppe."],"Ort":["Ein Sportplatz mit einer kleinen Halle wäre ideal.","Die Kombination wäre perfekt, weil wir bei Regen nach drinnen gehen können.","Dann reservieren wir die Sportanlage."],"Zeit":["Ich würde um 9:30 Uhr beginnen und gegen 15 Uhr aufhören.","Das passt. Wir sollten aber eine längere Mittagspause einplanen.","Dann machen wir von 12 bis 13 Uhr Mittagspause."],"Material":["Wir brauchen Bälle, Hütchen, Westen und Erste-Hilfe-Material.","Ich kann die Sportgeräte aus dem Verein organisieren.","Sehr gut. Ich kümmere mich zusätzlich um das Erste-Hilfe-Material."],"Sicherheit":["Wir sollten vor Beginn die Regeln erklären und eine Erste-Hilfe-Station einrichten.","Einverstanden. Außerdem sollte immer jemand für Notfälle erreichbar sein.","Dann bestimmen wir einen Verantwortlichen für die Sicherheit."]},"Kulturabend":{"Programm":["Wir könnten um 18 Uhr mit kurzen Präsentationen aus verschiedenen Ländern beginnen.","Danach wäre Musik schön. Ich würde auch eine kleine Quizrunde einbauen.","Gut, dann planen wir Präsentationen, Musik und ein Quiz."],"Musik":["Wir sollten internationale Musik aus verschiedenen Ländern spielen.","Das gefällt mir. Die Musik sollte aber nicht zu laut sein, damit man sich noch unterhalten kann.","Dann verwenden wir eine abwechslungsreiche, aber eher ruhige Playlist."],"Essen":["Jede Person könnte eine typische Speise aus ihrem Land mitbringen.","Das wäre interessant. Wir sollten aber Allergien und vegetarische Ernährung berücksichtigen.","Dann fragen wir vorher nach Allergien und kennzeichnen die Speisen."],"Raum":["Ich würde den großen Mehrzweckraum reservieren.","Der Raum ist groß genug und hat eine kleine Bühne.","Dann reservieren wir den Mehrzweckraum für den Abend."],"Werbung":["Wir könnten zwei Wochen vorher digitale Einladungen verschicken.","Zusätzlich könnten wir einen Aushang machen.","Gut, dann nutzen wir E-Mail und einen Aushang."]},"Wochenendausflug":{"Ziel":["Ich würde gern nach Heidelberg fahren.","Heidelberg ist schön, aber am Wochenende könnte es sehr voll sein.","Das stimmt. Dann fahren wir früh los und reservieren die wichtigsten Aktivitäten."],"Transport":["Ich würde mit dem Zug fahren. Das ist entspannter als mit dem Auto.","Mit dem Zug bin ich einverstanden, wenn wir eine günstige Gruppenkarte bekommen.","Dann prüfen wir die Gruppenangebote der Bahn."],"Unterkunft":["Wir könnten eine Jugendherberge oder ein günstiges Hotel nehmen.","Eine Jugendherberge wäre günstiger, aber ich hätte lieber ein Hotel mit Frühstück.","Dann suchen wir ein günstiges Hotel mit Frühstück."],"Aktivitäten":["Am Samstag könnten wir die Altstadt besichtigen und am Sonntag wandern.","Das klingt gut. Die Wanderung sollte aber nicht zu lang sein.","Dann planen wir eine leichte Wanderung von etwa zwei Stunden."],"Kosten":["Ich würde insgesamt höchstens 150 Euro pro Person ausgeben.","Das sollte für Zug, Unterkunft und Essen reichen, wenn wir früh buchen.","Einverstanden. Unser Budget liegt bei maximal 150 Euro."]},"Umzug eines Freundes":{"Termin":["Wie wäre es mit Samstag, dem 10. Oktober, ab 9 Uhr?","Samstag passt. Um 9 Uhr können wir anfangen.","Gut, dann treffen wir uns um 9 Uhr vor der alten Wohnung."],"Helfer":["Wir sollten mindestens vier Helfer organisieren.","Vier Personen reichen wahrscheinlich. Ich frage noch zwei Freunde.","Perfekt. Dann haben wir genug Leute, falls jemand ausfällt."],"Transporter":["Ich kann einen Transporter für den ganzen Tag mieten.","Sehr gut. Wir sollten einen ausreichend großen Transporter nehmen.","Dann reserviere ich einen Transporter mit großem Laderaum."],"Kartons":["Wir brauchen ungefähr 30 stabile Kartons.","Ich habe noch einige Kartons zu Hause und kann sie mitbringen.","Super. Dann kaufen wir nur die fehlenden Kartons."],"Essen":["Für das Mittagessen könnten wir Pizza bestellen.","Das ist unkompliziert. Wir sollten vorher fragen, wer vegetarische Pizza möchte.","Dann bestellen wir verschiedene Sorten für alle."]},"Willkommensparty":{"Termin":["Wie wäre es mit Freitag nach der Arbeit, gegen 18 Uhr?","Freitag passt gut. Ich würde aber nicht zu spät anfangen.","Dann beginnen wir um 18 Uhr und bleiben ungefähr zwei Stunden."],"Ort":["Ich würde ein Restaurant in der Nähe des Büros vorschlagen.","Das ist praktisch. Es sollte aber nicht zu teuer sein.","Dann wählen wir ein Restaurant mit einem günstigen Menü."],"Gäste":["Wir könnten das ganze Team einladen.","Das wären fast 20 Personen. Vielleicht sollten wir nur unser direktes Team einladen.","Einverstanden. Dann laden wir etwa zehn Kollegen ein."],"Geschenk":["Wir könnten einen Gutschein für ein Restaurant schenken.","Ein Gutschein ist praktisch, aber vielleicht etwas unpersönlich.","Dann kaufen wir zusätzlich eine kleine Karte, auf der alle unterschreiben."],"Essen":["Wir sollten vorher nach Allergien und vegetarischen Wünschen fragen.","Gute Idee. Dann können wir das Restaurant entsprechend informieren.","Dann frage ich die Kollegen vor der Reservierung."]},"Sprachlerngruppe":{"Tag":["Ich würde Donnerstagabend vorschlagen.","Donnerstag passt mir. Ab 18:30 Uhr hätte ich Zeit.","Dann treffen wir uns jeden Donnerstag um 18:30 Uhr."],"Ort":["Die Stadtbibliothek wäre ein ruhiger Ort.","Das wäre ideal. Wir brauchen aber einen Raum, in dem wir laut sprechen dürfen.","Dann reservieren wir einen Gruppenraum in der Bibliothek."],"Häufigkeit":["Ich denke, einmal pro Woche ist realistisch.","Einmal pro Woche reicht mir auch.","Dann bleibt es bei einem festen Termin pro Woche."],"Material":["Wir könnten ein B2-Lehrbuch und aktuelle Zeitungsartikel verwenden.","Das gefällt mir. Jeder könnte zusätzlich eigene Materialien mitbringen.","Dann nutzen wir beides und teilen interessante Materialien in der Gruppe."],"Regeln":["Wir sollten vereinbaren, dass möglichst nur Deutsch gesprochen wird.","Das finde ich wichtig. Fehler sollten aber erlaubt sein.","Einverstanden. Wir sprechen Deutsch und korrigieren uns freundlich."]},"Gesundheitstag im Unternehmen":{"Vorträge":["Wir könnten morgens einen Vortrag über gesunde Ernährung anbieten.","Das ist sinnvoll. Zusätzlich wäre ein kurzer Vortrag über Stressmanagement hilfreich.","Dann planen wir beide Vorträge mit jeweils 30 Minuten."],"Sport":["Nach den Vorträgen könnten wir eine kurze Rückenschule anbieten.","Das wäre besser als ein anstrengendes Training, an dem nicht jeder teilnehmen kann.","Einverstanden. Wir organisieren eine leichte Rückenschule."],"Essen":["Zum Mittagessen sollten wir gesunde Gerichte anbieten.","Es sollte auch vegetarische Optionen geben.","Dann bestellen wir ein ausgewogenes Buffet mit vegetarischen Gerichten."],"Experten":["Wir könnten eine Ernährungsberaterin und einen Physiotherapeuten einladen.","Zwei Experten sind gut. Wir müssen aber prüfen, ob das Budget reicht.","Dann fragen wir beide nach ihren Kosten und entscheiden danach."],"Kosten":["Ich würde maximal 25 Euro pro Mitarbeiter einplanen.","25 Euro klingt realistisch, wenn das Unternehmen einen Teil übernimmt.","Dann setzen wir 25 Euro als Richtwert fest."]},"Kindergeburtstag":{"Ort":["Wenn das Wetter gut ist, könnten wir im Park feiern.","Der Park ist schön, aber wir brauchen einen Plan für Regen.","Dann reservieren wir zusätzlich einen Raum als Schlechtwetter-Alternative."],"Spiele":["Wir könnten eine Schatzsuche und verschiedene Ballspiele vorbereiten.","Eine Schatzsuche gefällt den Kindern bestimmt. Für kleinere Kinder sollten die Aufgaben einfach sein.","Dann machen wir eine altersgerechte Schatzsuche und zwei einfache Spiele."],"Essen":["Ich würde Kuchen, Obst und kleine Snacks anbieten.","Das klingt gut. Wir sollten auch Getränke ohne viel Zucker anbieten.","Dann gibt es Wasser, Saft, Obst und Kuchen."],"Gäste":["Ich würde etwa zwölf Kinder einladen.","Zwölf sind genug. Mehr Kinder wären für die Organisation schwierig.","Dann bleibt es bei zwölf Gästen."],"Geschenk":["Wir könnten jedem Kind eine kleine Tüte mit einem Geschenk geben.","Das ist eine gute Idee, aber die Geschenke sollten nicht zu teuer sein.","Dann legen wir ein Limit von fünf Euro pro Kind fest."]},"Firmenjubiläum":{"Ort":["Für das Jubiläum würde ich einen Veranstaltungsraum in der Nähe des Büros mieten.","Der Raum sollte groß genug für etwa 100 Personen sein.","Dann suchen wir einen Raum für mindestens 100 Gäste."],"Gäste":["Wir sollten Mitarbeiter, wichtige Kunden und ehemalige Mitarbeiter einladen.","Das wären viele Personen. Wir müssen eine genaue Gästeliste erstellen.","Dann erstellen wir zuerst eine Gästeliste und begrenzen sie auf 100 Personen."],"Programm":["Ich schlage kurze Reden, eine Präsentation zur Firmengeschichte und Musik vor.","Die Präsentation ist gut. Die Reden sollten aber nicht zu lang sein.","Dann planen wir maximal drei kurze Reden und eine Präsentation."],"Budget":["Ich denke, wir sollten höchstens 5.000 Euro ausgeben.","Das könnte für Raum, Essen und Technik knapp sein.","Dann setzen wir 6.000 Euro als maximales Budget fest."],"Einladung":["Die Einladungen sollten mindestens vier Wochen vorher verschickt werden.","Einverstanden. Für die Kunden könnten wir zusätzlich eine gedruckte Einladung schicken.","Dann verschicken wir E-Mails und für wichtige Gäste gedruckte Einladungen."]},"Bibliotheksprojekt":{"Zielgruppe":["Ich würde einen Lesetag für Kinder zwischen sechs und zwölf Jahren organisieren.","Das ist eine gute Zielgruppe. Wir sollten aber auch Eltern ansprechen.","Dann richten wir die Werbung an Kinder und ihre Eltern."],"Bücher":["Wir sollten spannende Kinderbücher und einige Sachbücher auswählen.","Eine Mischung wäre gut. Außerdem könnten die Kinder selbst Bücher auswählen.","Dann stellen wir eine Auswahl bereit und lassen Raum für eigene Wünsche."],"Ort":["Der große Lesesaal wäre für die Veranstaltung geeignet.","Dort gibt es genügend Platz. Für kleinere Gruppen könnten wir Nebenräume nutzen.","Dann reservieren wir den Lesesaal und zwei Nebenräume."],"Werbung":["Wir könnten Schulen informieren und Flyer in der Bibliothek verteilen.","Zusätzlich sollten wir die Veranstaltung auf der Website ankündigen.","Dann nutzen wir Schulen, Flyer und die Website."],"Helfer":["Wir brauchen mindestens fünf Vorleser und zwei Personen für die Organisation.","Sieben Helfer sollten reichen. Ich kann zwei Vorleser organisieren.","Dann kümmere ich mich um die übrigen Helfer."]},"Nachbarschaftsfest":{"Ort":["Ich würde das Fest im Innenhof unserer Wohnanlage veranstalten.","Der Innenhof ist praktisch. Wir sollten aber prüfen, ob genug Platz für alle ist.","Dann rechnen wir mit etwa 40 Personen und prüfen den Platz."],"Musik":["Wir könnten leise Hintergrundmusik und später etwas Tanzmusik anbieten.","Das ist gut, aber wir müssen die Ruhezeiten beachten.","Dann beenden wir die Musik spätestens um 21 Uhr."],"Essen":["Ein gemeinsames Buffet wäre am einfachsten.","Jeder könnte etwas mitbringen. Wir sollten aber eine Liste führen.","Dann erstellen wir eine Liste für Salate, Hauptgerichte und Desserts."],"Spiele":["Für Kinder könnten wir Dosenwerfen und eine kleine Schatzsuche vorbereiten.","Das gefällt mir. Für Erwachsene könnten wir ein Quiz anbieten.","Dann organisieren wir Spiele für Kinder und ein Quiz für Erwachsene."],"Genehmigung":["Wir sollten zuerst die Hausverwaltung fragen, ob wir den Innenhof nutzen dürfen.","Ja, und wegen der Musik sollten wir ebenfalls die Regeln prüfen.","Dann holen wir die Genehmigung ein, bevor wir die Nachbarn einladen."]},"Umweltaktion":{"Aktion":["Ich schlage eine Müllsammelaktion im Stadtpark vor.","Das ist konkret und leicht zu organisieren. Wir könnten zusätzlich über Müllvermeidung informieren.","Dann verbinden wir die Sammlung mit kurzen Informationen."],"Ort":["Der Stadtpark wäre geeignet, weil dort viel Müll liegt.","Einverstanden. Wir sollten vorher einen bestimmten Bereich festlegen.","Dann sammeln wir im nördlichen Teil des Parks."],"Material":["Wir brauchen Handschuhe, Müllsäcke und Greifzangen.","Ich kann Handschuhe und Säcke besorgen. Greifzangen können wir beim Umweltamt ausleihen.","Sehr gut. Dann teilen wir die Beschaffung so auf."],"Teilnehmer":["Ich würde mit etwa 20 Teilnehmern rechnen.","20 sind realistisch. Wir könnten auch Familien einladen.","Dann planen wir mit ungefähr 20 bis 25 Personen."],"Entsorgung":["Wir müssen vorher klären, wo der gesammelte Müll abgegeben wird.","Das Umweltamt kann uns vielleicht einen Container bereitstellen.","Dann kontaktieren wir das Umweltamt vor der Aktion."]},"Fahrradausflug":{"Route":["Ich würde eine Strecke am Main entlang wählen, ungefähr 30 Kilometer.","30 Kilometer sind für einige Teilnehmer vielleicht zu viel.","Dann wählen wir eine kürzere Strecke von etwa 20 Kilometern."],"Termin":["Samstagvormittag wäre für mich ideal.","Samstag passt. Wir sollten aber die Wettervorhersage einige Tage vorher prüfen.","Dann legen wir Samstag fest und überprüfen das Wetter am Donnerstag."],"Sicherheit":["Alle sollten einen Helm tragen und ihre Fahrräder vorher kontrollieren.","Einverstanden. Außerdem sollten wir ein Handy für Notfälle dabeihaben.","Dann nehmen wir zusätzlich ein Erste-Hilfe-Set und ein Handy mit."],"Essen":["Wir könnten unterwegs an einem See ein Picknick machen.","Das klingt gut. Jeder könnte sein eigenes Essen mitbringen.","Dann machen wir eine Pause am See und bringen Essen selbst mit."],"Wetter":["Bei starkem Regen sollten wir den Ausflug verschieben.","Ja. Wir brauchen deshalb einen Ersatztermin.","Dann nehmen wir den folgenden Samstag als Ersatztermin."]},"Kochabend":{"Gericht":["Wir könnten Gerichte aus Italien, Spanien und Korea kochen.","Das wäre abwechslungsreich. Wir sollten aber nicht zu viele Gerichte machen.","Dann wählen wir drei Hauptgerichte und einen Nachtisch."],"Zutaten":["Ich kann die Zutaten für das italienische Gericht besorgen.","Gut. Ich kümmere mich um die Zutaten für das koreanische Gericht.","Dann teilen wir die Einkaufsliste zwischen uns auf."],"Ort":["Meine Küche ist für sechs Personen groß genug.","Wir sind aber vielleicht acht Personen. Ein größerer Raum wäre besser.","Dann können wir den Gemeinschaftsraum im Haus nutzen."],"Kosten":["Ich würde maximal 15 Euro pro Person ausgeben.","15 Euro sind in Ordnung, wenn wir gemeinsam einkaufen.","Dann setzen wir 15 Euro als Limit fest."],"Aufgaben":["Ich übernehme das Hauptgericht. Können Sie den Nachtisch vorbereiten?","Ja, das mache ich. Zwei weitere Personen können beim Aufräumen helfen.","Dann teilen wir Kochen und Aufräumen entsprechend auf."]},"Informationsveranstaltung":{"Themen":["Wir sollten zuerst die wichtigsten Informationen über die Gruppe erklären.","Danach könnten wir noch etwas über Termine und Regeln sagen.","Dann behandeln wir Organisation, Termine und Regeln."],"Referenten":["Ich könnte den organisatorischen Teil übernehmen.","Gut. Für den fachlichen Teil könnten wir ein erfahrenes Mitglied einladen.","Dann haben wir zwei kurze Referenten."],"Ort":["Wir brauchen einen Raum mit Sitzplätzen für etwa 30 Personen.","Ein Seminarraum mit Beamer wäre ideal.","Dann reservieren wir den Seminarraum."],"Technik":["Wir brauchen einen Beamer, einen Laptop und ein Mikrofon.","Der Raum hat bereits einen Beamer. Einen Laptop können wir mitbringen.","Dann prüfen wir vor Beginn, ob alles funktioniert."],"Einladung":["Ich würde die neuen Mitglieder zwei Wochen vorher per E-Mail einladen.","Wir sollten auch eine Anmeldefrist nennen.","Dann verschicken wir die Einladung mit einer Anmeldung bis eine Woche vorher."]},"Gemeinsamer Lerntag":{"Ort":["Ich würde einen Gruppenraum in der Bibliothek wählen.","Das ist ruhig und kostenlos. Wir sollten ihn aber früh reservieren.","Dann reserviere ich den Raum für Samstag."],"Lernplan":["Wir könnten morgens mit Grammatik beginnen und danach Lesen und Hören üben.","Ich würde zuerst das schwierigste Thema machen, solange wir noch konzentriert sind.","Dann beginnen wir mit dem schwierigsten Prüfungsteil."],"Pausen":["Nach jeweils 90 Minuten sollten wir eine kurze Pause machen.","Zusätzlich brauchen wir eine längere Mittagspause.","Dann machen wir kurze Pausen und eine Stunde Mittagspause."],"Material":["Jeder sollte seine eigenen Unterlagen und alte Prüfungen mitbringen.","Wir könnten außerdem gemeinsam eine Liste wichtiger Redemittel erstellen.","Dann bringt jeder Material mit und wir erstellen gemeinsam die Redemittelliste."],"Verpflegung":["Wir könnten Getränke, Obst und Sandwiches mitbringen.","Das ist einfach. Jeder kann etwas Kleines mitbringen.","Dann teilen wir die Verpflegung vorher untereinander auf."]}};
+
 function renderPractice(){
   const t = currentTopic;
   $('practiceTitle').textContent = t[0];
   $('practicePart').textContent = `TELC Deutsch B2 · ${currentPart === 1 ? 'Teil 1' : currentPart === 2 ? 'Teil 2 · Diskussion' : 'Teil 3 · Gemeinsam planen'}`;
   $('task').textContent = t[1];
   $('taskKo').textContent = t[2];
-  $('points').innerHTML = t[3].split('·').map(x=>`<span class="badge" style="margin:3px">${x.trim()}</span>`).join('');
+
+  const pointList = t[3].split('·').map(x=>x.trim()).filter(Boolean);
+  $('points').innerHTML = pointList.map((x,i)=>`<span class="badge" style="margin:3px">${i+1}. ${x}</span>`).join('');
+
   $('discussionBox').style.display = currentPart === 2 ? 'block' : 'none';
-  $('timerLabel').textContent = currentPart === 2 ? '내 발화 연습 타이머 · 한 차례 발언' : '말하기 타이머';
+  $('planningBox').style.display = currentPart === 3 ? 'block' : 'none';
+  $('modelBox').style.display = currentPart === 1 || currentPart === 2 ? 'block' : 'none';
+
+  $('timerLabel').textContent = currentPart === 2
+    ? '내 발화 연습 타이머 · 한 차례 발언'
+    : currentPart === 3
+      ? 'Teil 3 대화 연습 타이머'
+      : '말하기 타이머';
+
   if(currentPart === 2){
     const partner = {
       'Kinder und digitale Geräte':'Ich finde, dass Kinder digitale Geräte ruhig länger nutzen dürfen, solange sie damit auch etwas lernen.',
@@ -374,22 +410,136 @@ function renderPractice(){
       'Lernen mit Apps':'Ich denke, Lern-Apps können den Unterricht inzwischen fast vollständig ersetzen.',
       'Arbeitszeit flexibel gestalten':'Zu flexible Arbeitszeiten können die Zusammenarbeit im Team erschweren.'
     };
-    $('partnerPrompt').textContent = partner[t[0]] || 'Ich sehe das etwas anders. Was meinen Sie dazu?';
+
+    const p = partner[t[0]] || 'Ich sehe das etwas anders. Was meinen Sie dazu?';
+
+    $('part2Dialogue').innerHTML = `
+      <div class="dialogue-intro">
+        <strong>핵심:</strong> 긴 독백을 외우는 것이 아니라
+        <b>상대 의견 → 내 반응 → 이유/예시 → 다시 질문</b>의 순서로 대화합니다.
+      </div>
+
+      <div class="dialogue-step">
+        <div class="dialogue-step-head"><span>① 상대방의 의견 듣기</span><span class="step-no">PARTNER</span></div>
+        <div class="bubble bubble-b">
+          <div class="bubble-label">B · PARTNER</div>
+          ${p}
+        </div>
+      </div>
+
+      <div class="dialogue-step">
+        <div class="dialogue-step-head"><span>② 내 의견에 반응하기</span><span class="step-no">DU</span></div>
+        <div class="bubble bubble-a">
+          <div class="bubble-label">A · DU</div>
+          ${t[4]}
+          <div class="dialogue-ko">상대방 의견에 반응한 뒤 근거 1~2개와 짧은 예시를 덧붙입니다.</div>
+        </div>
+      </div>
+
+      <div class="dialogue-step">
+        <div class="dialogue-step-head"><span>③ 다시 상대방에게 질문하기</span><span class="step-no">DU → PARTNER</span></div>
+        <div class="bubble bubble-a">
+          <div class="bubble-label">A · DU</div>
+          Ich verstehe Ihren Punkt, aber ich würde trotzdem meine Position beibehalten.
+          <b>Was meinen Sie dazu? / Wie sehen Sie das?</b>
+        </div>
+        <div class="bubble bubble-b">
+          <div class="bubble-label">B · PARTNER</div>
+          Das ist ein interessanter Punkt. Ich kann Ihre Argumentation nachvollziehen.
+        </div>
+      </div>
+
+      <div class="dialogue-prompt">
+        🎯 <strong>실전 체크:</strong>
+        동의 / 부분 동의 / 반대 중 하나를 선택하고,
+        <b>이유 → 예시 → 상대방에게 질문</b>까지 연결하세요.
+      </div>
+    `;
   }
+
+  if(currentPart === 3){
+    const dialogues = PART3_DIALOGUES[t[0]];
+    const pointList = t[3].split('·').map(x=>x.trim()).filter(Boolean);
+
+    if(!dialogues){
+      $('part3Dialogue').innerHTML = '<div class="note">이 주제의 상세 대화 데이터가 없습니다.</div>';
+    } else {
+      $('part3Dialogue').innerHTML = `
+        <div class="dialogue-intro">
+          <strong>실전 방식:</strong> 각 포인트를 하나씩 해결합니다.
+          <b>제안 → 상대방 반응/조건 변경 → 내 조정 → 최종 합의</b>까지 말하고 다음 항목으로 넘어가세요.
+        </div>
+        ${pointList.map((key,i)=>{
+          const d = dialogues[key];
+          if(!d) return '';
+          return `
+            <div class="dialogue-step">
+              <div class="dialogue-step-head">
+                <span>${i+1}. ${key}</span>
+                <span class="step-no">${pointList.length}개 중 ${i+1}</span>
+              </div>
+              <div class="bubble bubble-a">
+                <div class="bubble-label">A · DU — 제안</div>
+                ${d[0]}
+              </div>
+              <div class="bubble bubble-b">
+                <div class="bubble-label">B · PARTNER — 반응</div>
+                ${d[1]}
+              </div>
+              <div class="bubble bubble-a">
+                <div class="bubble-label">A · DU — 조정 및 합의</div>
+                ${d[2]}
+              </div>
+              <label class="point-check">
+                <input type="checkbox" onchange="updatePlanProgress()">
+                <span><b>${key}</b>을 결정하고 다음 항목으로 넘어가기</span>
+              </label>
+            </div>`;
+        }).join('')}
+        <div class="dialogue-summary">
+          <strong>📋 전체 포인트 진행률</strong>
+          <div class="progress"><i id="planProgressBar"></i></div>
+          <div class="small" id="planProgressText" style="margin-top:7px">0 / ${pointList.length} 항목 완료</div>
+        </div>
+        <div class="dialogue-prompt">
+          🎯 <strong>마지막:</strong> 모든 항목을 정한 뒤
+          <b>„Dann machen wir es so. / Dann sind wir uns einig.“</b>처럼 전체 결론을 말해보세요.
+        </div>
+      `;
+    }
+  }
+
   $('model').textContent = currentPart === 2
     ? 'A: ' + t[4] + '\n\nB: Das ist ein interessanter Punkt. Ich sehe das teilweise anders. [Gegenargument]. Was meinen Sie dazu?\n\nA: Da haben Sie recht. Allerdings [eigene Ergänzung]. Insgesamt würde ich sagen, dass [Fazit].'
     : t[4];
+
   $('modelKo').textContent = currentPart === 2
-    ? '핵심: 내 의견을 길게 발표하는 것이 아니라, 상대방의 의견을 듣고 반응 → 근거/예시 → 다시 질문의 흐름을 만드는 연습입니다.'
+    ? '핵심: 상대방의 의견을 듣고 반응 → 근거/예시 → 다시 질문의 흐름을 만듭니다.'
     : currentPart === 3
-      ? '핵심은 제안 → 상대방 반응 → 조건 조정 → 최종 결정의 흐름입니다.'
+      ? '각 포인트를 하나씩 처리한 뒤 마지막에 전체 계획을 짧게 정리하세요.'
       : '모범답안을 그대로 암기하기보다 자신의 경험과 표현으로 바꿔 말하세요.';
+
   $('doneMsg').style.display='none';
+  if(currentPart === 3){
+    setTimeout(updatePlanProgress, 0);
+  }
   resetTimer();
   $('audio').style.display='none';
   $('audio').src='';
   show('practice');
 }
+
+function updatePlanProgress(){
+  const checks = document.querySelectorAll('#part3Dialogue .point-check input');
+  const done = [...checks].filter(x=>x.checked).length;
+  const total = checks.length || 1;
+  const bar = $('planProgressBar');
+  if(bar) bar.style.width = (done/total*100)+'%';
+  const txt = $('planProgressText');
+  if(txt) txt.textContent = `${done} / ${checks.length} 항목 완료`;
+  checks.forEach(x=>x.closest('.point-check').classList.toggle('done',x.checked));
+}
+
 
 $('randomAgain').onclick = () => {
   if(currentPart === 1){
