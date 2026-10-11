@@ -384,7 +384,7 @@ function renderPractice(){
       ? 'Gemeinsam planen — vollständiger Dialog als Beispiel'
       : '시험에서 사용할 수 있는 답변 예시';
   if(currentPart === 2 || currentPart === 3){
-    const turns = t[4].split(/(?=\\s*[AB]:\\s)/).map(x=>x.trim()).filter(x=>/^[AB]:\\s/.test(x));
+    const turns = t[4].split(/(?=\s*[AB]:\s)/).map(x=>x.trim()).filter(x=>/^[AB]:\s/.test(x));
     $('model').innerHTML = '<div class="chat-log">' + turns.map(turn => {
       const speaker = turn.charAt(0);
       const message = turn.slice(2).trim();
